@@ -36,18 +36,6 @@
                 </div>
                 <button type="submit" class="btn-primary my-2 my-sm-0">Go</button>
             </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a th:href="@{/signup}">Sign Up</a></li>
-                <li class="" th:classappend="${loginActiveStatus}">
-                    <a th:href="@{/login}">Log In</a>
-                </li>
-                <li>
-                    <form action="logout" method="post">
-                        <input type="submit" value="Log Out" />
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                    </form>
-                </li>
-            </ul>
         </div>
     </div>
 </nav>

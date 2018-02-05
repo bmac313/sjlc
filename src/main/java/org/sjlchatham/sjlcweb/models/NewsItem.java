@@ -20,6 +20,10 @@ public class NewsItem {
     private String title;
 
     @NotNull
+    @Size(min = 1, max = 100, message = "Please enter an author name between 1 and 100 characters.")
+    private String author;
+
+    @NotNull
     @Size(min = 1, max = 2000000000)
     private String body;
 
@@ -34,9 +38,10 @@ public class NewsItem {
         this.timeStamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     }
 
-    public NewsItem(String title, String body, String imgUrl) {
+    public NewsItem(String title, String author, String body, String imgUrl) {
         this();
         this.title = title;
+        this.author = author;
         this.body = body;
         this.imgUrl = imgUrl;
     }
@@ -55,6 +60,14 @@ public class NewsItem {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getBody() {

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="container page-body">
+
+    <header>
+        <nav th:replace="fragments :: navigation-main"></nav>
+    </header>
+
+    <main class="container">
+
+        <div th:class="${alertClass}" th:text="${alert}"></div>
+
+        <a class="btn btn-primary" th:href="@{/posts/newpost}">Share a Find</a>
+
+        <nav aria-label="...">
+            <ul class="pager">
+                <li><a th:href="@{'/posts?page=' + ${page - 1}}" th:class="${visibilityPrev}">Previous Page</a></li>
+                <li><a th:href="@{'/posts?page=' + ${page + 1}}" th:class="${visibilityNext}">Next Page</a></li>
+            </ul>
+        </nav>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>
