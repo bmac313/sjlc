@@ -6,7 +6,42 @@
 
 <div class="container page-body">
 
-    <!--Redirect to /newsitems-->
+    <header>
+
+        <div class="site-branding">
+            <img src="" th:src="@{/img/large_logo_3.png}" />
+            <h3>"For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."</h3>
+            <h5>~John 3:16</h5>
+        </div>
+
+        <nav th:replace="fragments :: navigation-main"></nav>
+
+    </header>
+
+    <main class="container">
+
+        <div th:class="${alertClass}" th:text="${alert}"></div>
+
+        <section class="nav-boxes">
+            <div>
+                <h3>About Us</h3>
+                <img src="" th:src="@{/img/abstract-ph.jpg}" />
+            </div>
+            <div>
+                <h3>Preschool</h3>
+                <img src="" th:src="@{/img/abstract-ph2.jpg}" />
+            </div>
+            <div>
+                <h3>Calendar</h3>
+                <img src="" th:src="@{/img/abstract-ph3.jpg}" />
+            </div>
+            <div>
+                <h3>Sermons &amp; Newsletter</h3>
+                <img src="" th:src="@{/img/abstract-ph4.jpg}" />
+            </div>
+        </section>
+
+    </main>
 
 </div>
 

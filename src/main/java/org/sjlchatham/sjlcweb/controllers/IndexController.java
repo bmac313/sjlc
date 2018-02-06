@@ -19,6 +19,16 @@ public class IndexController {
     private NewsItemDao newsItemDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
+    public String index(Model model) {
+
+        model.addAttribute("title", "St. John's Lutheran Church");
+        model.addAttribute("homeActiveStatus", "active");
+
+        return "index";
+    }
+
+
+    @RequestMapping(value = "news", method = RequestMethod.GET)
     public String index(Model model,
                         @RequestParam(defaultValue = "1") int page,
                         @RequestParam(defaultValue = "false") boolean justLoggedIn,
@@ -49,9 +59,9 @@ public class IndexController {
         model.addAttribute("title", "Latest Finds - MusicFinds");
 
         model.addAttribute("page", page);
-        model.addAttribute("findsActiveStatus", "active");
+        model.addAttribute("homeActiveStatus", "active");
 
-        return "newsitems/index";
+        return "newsitems/news";
     }
 
     @RequestMapping(value = "newpost", method = RequestMethod.GET)
