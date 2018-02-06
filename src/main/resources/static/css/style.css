@@ -36,6 +36,7 @@ body {
 .navbar {
     background-color:#338980;
     border-radius:0px;
+    border: 0;
 }
 
 .nav.navbar-nav li a, .nav.navbar-nav li p {
@@ -110,4 +111,35 @@ p.body-text {
 .navbar-form {
     margin:0px;
     padding-top:3px;
+}
+
+.site-branding {
+    background-color: #70a6ff;
+    background-image: url('../img/wittenberg_church.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #d1e2ff;
+    padding-top: 6.5em;
+    padding-bottom: 6.6em;
+    padding-left 1.5em;
+    padding-right: 1.5em;
+    text-align: center;
+}
+
+.nav-boxes{
+    display: flex;
+    text-align: center;
+}
+
+.nav-boxes div{
+    margin-left: 3em;
+    margin-right: 3em;
+}
+.nav-boxes div img{
+    width: 100%;
+}
+.nav-boxes div h3{
+    height: 25%;
+    vertical-align: middle;
 }
