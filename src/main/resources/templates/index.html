@@ -6,17 +6,7 @@
 
 <div class="container page-body">
 
-    <header>
-
-        <div class="site-branding">
-            <img src="" th:src="@{/img/large_logo_3.png}" />
-            <h3>"For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."</h3>
-            <h5>~John 3:16</h5>
-        </div>
-
-        <nav th:replace="fragments :: navigation-main"></nav>
-
-    </header>
+    <header th:replace="fragments::header-wrapper"></header>
 
     <main class="container">
 

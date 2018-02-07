@@ -34,13 +34,38 @@ body {
 }
 
 .navbar {
-    background-color:#338980;
+    background-color: rgba(51, 137, 128, 0);
     border-radius:0px;
     border: 0;
+    padding-bottom: 4em;
+    text-align: center;
 }
 
 .nav.navbar-nav li a, .nav.navbar-nav li p {
     color:#E4F8F6;
+    border: 0.1em solid rgba(231, 231, 231, 0);
+    border-radius: 1.7em;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
+.nav.navbar-nav li a:hover{
+    color: #B4E4DF;
+    background-color: rgba(231, 231, 231, 0.1);
+    border: 0.1em solid rgba(231, 231, 231, 0.4);
+    transition: 0.3s;
+}
+
+li.active a{
+    background:
+        rgba(231, 231, 231, 0.4)
+        url('../img/luther_rose.png')
+        no-repeat
+        left top;
+    background-size: 135%;
+    color: #fff;
 }
 
 .navbar-header .navbar-brand {
@@ -53,6 +78,20 @@ body {
 
 .nav-emphasis {
     color:#337ab7;
+}
+
+.navbar-form {
+    margin:0px;
+    padding-top:3px;
+}
+
+.dropdown-menu{
+    background-color: rgba(231, 231, 231, 1);
+}
+
+.dropdown-item{
+    color: #4c6184;
+    display: block;
 }
 
 .post-cell-right {
@@ -108,17 +147,15 @@ p.body-text {
     display:inline;
 }
 
-.navbar-form {
-    margin:0px;
-    padding-top:3px;
-}
-
-.site-branding {
+.header-wrapper{
     background-color: #70a6ff;
-    background-image: url('../img/wittenberg_church.jpg');
+    background-image: url('../img/love.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.site-branding {
     color: #d1e2ff;
     padding-top: 6.5em;
     padding-bottom: 6.6em;
