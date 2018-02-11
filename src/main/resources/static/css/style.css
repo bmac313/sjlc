@@ -28,9 +28,9 @@ body {
 .page-body {
     background-color:#E4F8F6;
     font-family:'Lato', sans-serif;
-    padding-bottom: 10px;
-    padding-right:0px;
-    padding-left:0px;
+    padding-bottom: 0;
+    padding-right:0;
+    padding-left:0;
 }
 
 .navbar {
@@ -159,7 +159,7 @@ p.body-text {
     color: #d1e2ff;
     padding-top: 6.5em;
     padding-bottom: 6.6em;
-    padding-left 1.5em;
+    padding-left: 1.5em;
     padding-right: 1.5em;
     text-align: center;
 }
@@ -179,4 +179,43 @@ p.body-text {
 .nav-boxes div h3{
     height: 25%;
     vertical-align: middle;
+}
+
+.contact-info{
+	margin-top: 5em;
+	height: 20em;
+}
+.contact-info div{
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+	padding-left: 5em;
+	padding-right: 5em;
+}
+.contact-info .fas{
+	font-size: 1.5em;
+}
+#facebook-icon{
+	color: #fff;
+	font-size: 10em;
+}
+#facebook-icon:hover{
+	color: rgba(255, 255, 255, 0.4);
+}
+
+#contact-box{
+	color: #fff;
+	background-color: green;
+	height: 100%;
+}
+#facebook-info{
+	background-color: #2d509b;
+	color: #fff;
+	height: 100%;
+}
+
+.footer{
+	background-color: #1c1a18;
+	color: #fff;
+	padding: 2em;
+	text-align: right;
 }
