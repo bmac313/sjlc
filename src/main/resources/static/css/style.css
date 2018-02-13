@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+English+SC');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab');
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 body {
@@ -27,7 +29,7 @@ body {
 
 .page-body {
     background-color:#E4F8F6;
-    font-family:'Lato', sans-serif;
+    font-family: 'Josefin Slab', serif;
     padding-bottom: 0;
     padding-right:0;
     padding-left:0;
@@ -49,6 +51,8 @@ body {
     -moz-border-radius: 2em;
     margin-right: 1em;
     margin-left: 1em;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
 }
 
 .nav.navbar-nav li a:hover{
@@ -56,16 +60,22 @@ body {
     background-color: rgba(231, 231, 231, 0.1);
     border: 0.1em solid rgba(231, 231, 231, 0.4);
     transition: 0.3s;
+    -webkit-transition: 0.3s;
 }
 
 li.active a{
     background:
-        rgba(231, 231, 231, 0.4)
-        url('../img/luther_rose.png')
-        no-repeat
+        linear-gradient(
+              rgba(231, 231, 231, 0.45),
+              rgba(231, 231, 231, 0.45)
+            ),
+        url('../img/luther_rose.png'),
+        no-repeat,
         left top;
     background-size: 135%;
-    color: #fff;
+    color: #053028 !important;
+    font-weight: bold;
+    font-size: 1.3em;
 }
 
 .navbar-header .navbar-brand {
@@ -156,7 +166,8 @@ p.body-text {
 }
 
 .site-branding {
-    color: #d1e2ff;
+    color: #dee9fc;
+    font-family: 'IM Fell English SC', serif;
     padding-top: 6.5em;
     padding-bottom: 6.6em;
     padding-left: 1.5em;
@@ -165,18 +176,12 @@ p.body-text {
 }
 
 .nav-boxes{
-    display: flex;
     text-align: center;
 }
-
-.nav-boxes div{
-    margin-left: 3em;
-    margin-right: 3em;
-}
-.nav-boxes div img{
+.nav-boxes img{
     width: 100%;
 }
-.nav-boxes div h3{
+.nav-boxes .col h3{
     height: 25%;
     vertical-align: middle;
 }
@@ -197,15 +202,22 @@ p.body-text {
 #facebook-icon{
 	color: #fff;
 	font-size: 10em;
+	transition: 0.2s;
+    -webkit-transition: 0.2s;
 }
 #facebook-icon:hover{
 	color: rgba(255, 255, 255, 0.4);
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
 }
 
 #contact-box{
 	color: #fff;
-	background-color: green;
+	background-color: #2e9b87;
 	height: 100%;
+}
+#contact-box a{
+    color: #56ffdf;
 }
 #facebook-info{
 	background-color: #2d509b;
