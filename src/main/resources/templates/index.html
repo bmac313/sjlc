@@ -12,6 +12,9 @@
 
         <div th:class="${alertClass}" th:text="${alert}"></div>
 
+        <!-- TODO: Jumbotron for recent updates (e.g. recent events) -->
+        <!-- TODO: Sticky navbar, fix dropdown menu -->
+
         <section class="row nav-boxes">
             <div class="col col-md-3">
                 <h3>About Us</h3>
@@ -28,6 +31,18 @@
             <div class="col col-md-3">
                 <h3>Sermons &amp; Newsletter</h3>
                 <img src="" th:src="@{/img/ministries.png}" />
+            </div>
+        </section>
+
+        <!-- TODO: Turn this element into a carousel with at three "tabs." Tabs 2 and 3 should contain class times and events, respectively. -->
+        <!-- TODO: Carousel element breaks when page is resized; fix this-->
+        <section class="row carousel">
+            <img class="col col-md-5" src="" th:src="@{/img/church_exterior1.jpg}" />
+            <div id="worship-times" class="col col-md-7">
+                <h3>Worship Times</h3>
+                <p>Wednesdays @ 7:00 p.m.</p>
+                <p>Saturdays @ 6:00 p.m.</p>
+                <p>Sundays @ 9:00 a.m.</p>
             </div>
         </section>
 

@@ -6,6 +6,10 @@ body {
     background-color:#B4E4DF;
 }
 
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
 .btn-primary {
     border-radius   : 0px;
     border          : 0px;
@@ -177,6 +181,8 @@ p.body-text {
 
 .nav-boxes{
     text-align: center;
+    padding-top: 3em;
+    padding-bottom: 3em;
 }
 .nav-boxes img{
     width: 100%;
@@ -184,6 +190,24 @@ p.body-text {
 .nav-boxes .col h3{
     height: 25%;
     vertical-align: middle;
+}
+
+.carousel{
+    height: 25em;
+    margin-top: 5em;
+}
+.carousel img{
+    height: 100%;
+    padding: 0;
+}
+#worship-times{
+    background-color: #2fce7e;
+    font-size: 1.5em;
+    height: 100%;
+    padding-right: 5em;
+    padding-left: 5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .contact-info{
@@ -214,6 +238,7 @@ p.body-text {
 #contact-box{
 	color: #fff;
 	background-color: #2e9b87;
+	background-image: url('../img/checkered_pattern.png');
 	height: 100%;
 }
 #contact-box a{
@@ -221,6 +246,7 @@ p.body-text {
 }
 #facebook-info{
 	background-color: #2d509b;
+	background-image: url('../img/checkered_pattern_@2X.png');
 	color: #fff;
 	height: 100%;
 }
