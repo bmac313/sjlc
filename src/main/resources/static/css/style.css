@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Slab');
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
+/* TODO: Currently, the layout breaks at small size. Write media queries that ensure this doesn't happen. */
+
 body {
     background-color:#B4E4DF;
 }
@@ -192,11 +194,11 @@ p.body-text {
     vertical-align: middle;
 }
 
-.carousel{
+.carousel-wrapper{
     height: 25em;
     margin-top: 5em;
 }
-.carousel img{
+.carousel-wrapper img{
     height: 100%;
     padding: 0;
 }
@@ -211,7 +213,7 @@ p.body-text {
 }
 
 .contact-info{
-	margin-top: 5em;
+	margin-top: 4em;
 	height: 20em;
 }
 .contact-info div{
