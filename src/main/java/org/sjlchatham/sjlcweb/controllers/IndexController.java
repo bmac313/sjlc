@@ -21,8 +21,11 @@ public class IndexController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model) {
 
+        NewsItem testPost = new NewsItem("Test", "Brendan", "This is a test of the news system!", "https://upload.wikimedia.org/wikipedia/commons/e/e5/Wittenberg_Schlosskirche.JPG");
+
         model.addAttribute("title", "St. John's Lutheran Church");
         model.addAttribute("homeActiveStatus", "active");
+        model.addAttribute("testPost", testPost);
 
         return "index";
     }
