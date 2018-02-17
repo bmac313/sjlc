@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Entity
-public class NewsItem {
+public class Post {
 
     @Id
     @GeneratedValue
@@ -34,11 +34,11 @@ public class NewsItem {
     private final String timeStamp;
 
 
-    public NewsItem() {
+    public Post() {
         this.timeStamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     }
 
-    public NewsItem(String title, String author, String body, String imgUrl) {
+    public Post(String title, String author, String body, String imgUrl) {
         this();
         this.title = title;
         this.author = author;
