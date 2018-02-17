@@ -17,11 +17,11 @@
         <!-- Jumbotron is for recent updates (e.g. recent events) -->
         <section class="jumbotron">
             <h1 class="display-3">Recent Updates</h1>
-            <h2 th:text="${testPost.title}"></h2>
-            <p class="lead" th:text="${testPost.body}"></p>
+            <h2 th:text="${featuredPost.title}"></h2>
+            <p class="lead" th:text="${#strings.abbreviate(featuredPost.body,110)}"></p>
             <p class="lead">
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
-                    Open Modal
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                    Read More
                 </button>
             </p>
 
@@ -32,12 +32,11 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" th:text="${testPost.title}"></h4>
+                            <h4 class="modal-title" th:text="${featuredPost.title}"></h4>
                         </div>
                         <div class="modal-body">
-                            <p th:text="${testPost.body}"></p>
-                            <p>Dev's note: The below button will take the user to the full post; however, this has not yet been implemented.</p>
-                            <a class="btn btn-primary" href="#">Read More</a>
+                            <p th:text="${featuredPost.body}"></p>
+                            <a class="btn btn-primary" th:href="@{'/news/viewpost/' + ${featuredPost.id}}">Go to Post</a>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
