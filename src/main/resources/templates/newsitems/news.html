@@ -6,22 +6,20 @@
 
 <div class="container page-body">
 
-    <header>
-        <nav th:replace="fragments :: navigation-main"></nav>
-    </header>
+    <header th:replace="fragments::header-wrapper"></header>
 
     <main class="container">
 
         <div th:class="${alertClass}" th:text="${alert}"></div>
 
-        <a class="btn btn-primary" th:href="@{/posts/newpost}">Share a Find</a>
+        <a class="btn btn-primary" th:href="@{/news/new-post}">Create a News Item</a>
 
-        <p th:unless="${posts} and ${posts.getSize()}">There are currently no finds. Click 'Share a Find' Above to add one!</p>
+        <p th:unless="${posts} and ${posts.getSize()}">There are currently no items. Click 'Create a News Item' above to add one!</p>
 
         <article class="post" th:each="post : ${posts}">
 
             <h2>
-                <a th:href="@{'/posts/viewpost/' + ${post.id}}" th:text="${post.title}"></a>
+                <a th:href="@{'/news/viewpost/' + ${post.id}}" th:text="${post.title}"></a>
             </h2>
 
             <div class="row">
@@ -32,11 +30,8 @@
                     </div>
 
                     <div class="col-lg-5 col-md-5 text-center post-cell-right">
-                        <h3 th:text="'Found by ' + ${post.author.username}"></h3>
-                        <p class="lead" th:text="'Location: ' + ${post.location} + ', ' + ${post.address} + ', ' + ${post.city} + ', ' + ${post.state}"></p>
-                        <p class="lead" th:text="'Album: ' + ${post.album}"></p>
-                        <p class="lead" th:text="'Posted at: ' + ${post.timeStamp}"></p>
-                        <p th:text="${post.getComments().size()} + ' comments'"></p>
+                        <h3 th:text="'Posted by ' + ${post.author}"></h3>
+                        <p class="lead" th:text="'at: ' + ${post.timeStamp}"></p>
                     </div>
                 </div>
             </div>
@@ -51,6 +46,8 @@
         </nav>
 
     </main>
+
+    <footer th:replace="fragments::footer"></footer>
 
 </div>
 
