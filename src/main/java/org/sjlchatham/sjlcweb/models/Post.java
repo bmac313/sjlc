@@ -24,7 +24,7 @@ public class Post {
     private String author;
 
     @NotNull
-    @Size(min = 1, max = 2000000000)
+    @Size(min = 1, max = 2000000000, message = "Please enter a post body of a valid length.")
     private String body;
 
     @NotNull
