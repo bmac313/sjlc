@@ -33,6 +33,7 @@ public class NewsController {
             model.addAttribute("visibilityNext", "hidden");
         }
 
+        model.addAttribute("newsActiveStatus", "active");
         model.addAttribute("posts", postDao.findAll(pageRequest));
         model.addAttribute("title", "Latest News and Updates - St. John's Lutheran Church");
 
