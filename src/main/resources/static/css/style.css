@@ -81,7 +81,6 @@ li.active a{
     background-size: 135%;
     color: #053028 !important;
     font-weight: bold;
-    font-size: 1.3em;
 }
 
 .navbar-header .navbar-brand {
@@ -106,8 +105,10 @@ li.active a{
 }
 
 .dropdown-item{
-    color: #4c6184;
+    color: #4c6184 !important;
     display: block;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .post-cell-right {
@@ -183,6 +184,7 @@ li.active a{
 }
 
 .nav-boxes{
+    height: 25em;
     text-align: center;
     padding-top: 3em;
     padding-bottom: 3em;
@@ -190,9 +192,22 @@ li.active a{
 .nav-boxes img{
     width: 100%;
 }
+.nav-boxes div{
+    height: 100%;
+}
 .nav-boxes .col h3{
     height: 25%;
     vertical-align: middle;
+}
+
+.block-list{
+    list-style-type: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+.block-list li{
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .carousel-wrapper{
