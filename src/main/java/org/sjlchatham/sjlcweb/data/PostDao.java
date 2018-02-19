@@ -9,4 +9,6 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface PostDao extends PagingAndSortingRepository<Post, Integer> {
+    Post findFirstByOrderByIdDesc();
+    Post findFirstByOrderByTimeStampDesc();
 }

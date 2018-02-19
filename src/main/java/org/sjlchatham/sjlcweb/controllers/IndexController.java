@@ -29,7 +29,7 @@ public class IndexController {
 
         model.addAttribute("title", "St. John's Lutheran Church");
         model.addAttribute("homeActiveStatus", "active");
-        model.addAttribute("featuredPost", postDao.findOne(1));
+        model.addAttribute("featuredPost", postDao.findFirstByOrderByTimeStampDesc());
 
         return "index";
     }
