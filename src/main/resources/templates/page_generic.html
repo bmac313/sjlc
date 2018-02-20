@@ -4,12 +4,11 @@
 <body>
 
 <header th:replace="fragments::header-wrapper"></header>
-<main class="container">
-
-
-    <section th:replace="${pageBody}"></section>
-
-</main>
-
+<div class="container page-body">
+    <main class="container">
+        <section th:replace="fragments :: ${pageBody}"></section>
+        <footer th:replace="fragments::footer"></footer>
+    </main>
+</div>
 </body>
 </html>
