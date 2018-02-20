@@ -21,10 +21,14 @@ body {
     padding-bottom  : 4px;
     margin-top      : 6px;
     margin-bottom   : 6px;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
 }
 
 .btn-primary:hover {
     background-color:#617CAD;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
 }
 
 .center-block {
@@ -200,14 +204,37 @@ li.active a{
     vertical-align: middle;
 }
 
+.nav-box-active{
+    background-color: #2e9b87;
+    background-image: url('../img/checkered_pattern.png');
+    color: #E4F8F6;
+}
+.nav-box-active li a{
+    color: #fff;
+}
+
 .block-list{
     list-style-type: none;
     padding-left: 0;
     padding-right: 0;
+    width: 100%;
 }
 .block-list li{
+    width: 100%;
+}
+.block-list li a{
+    display: block;
     padding-top: 1em;
     padding-bottom: 1em;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    width: 100%;
+}
+.block-list li a:hover{
+    background-color: #E4F8F6;
+    color: #2e9b87;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
 }
 
 .carousel-wrapper{
