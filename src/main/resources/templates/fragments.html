@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title th:text="${title}"></title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" th:href="@{/css/style.css}" />
@@ -13,6 +13,7 @@
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/events.js}"></script>
 </head>
 
 <body>
@@ -42,13 +43,14 @@
                             About Us
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Staff</a>
-                            <a class="dropdown-item" href="#">What We Believe</a>
-                            <a class="dropdown-item" href="#">Church History</a>
+                            <a class="dropdown-item" th:href="@{/about/staff}">Staff</a>
+                            <a class="dropdown-item" th:href="@{/about/beliefs}">What We Believe</a>
+                            <a class="dropdown-item" th:href="@{/about/history}">Church History</a>
                         </div>
                     </li>
                     <li th:class="${psActiveStatus}"><a th:href="@{/preschool}">Preschool</a></li>
                     <li th:class="${ministriesActiveStatus}"><a th:href="@{/ministries}">Ministries</a></li>
+                    <li th:class="${newsActiveStatus}"><a th:href="@{/news}">News &amp; Updates</a></li>
                     <li th:class="${linksActiveStatus}"><a th:href="@{/links}">Links</a></li>
                     <li th:class="${contactActiveStatus}"><a th:href="@{/contact}">Contact</a></li>
                 </ul>
