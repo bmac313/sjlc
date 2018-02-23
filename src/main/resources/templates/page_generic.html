@@ -3,12 +3,26 @@
 <head th:replace="fragments::head"></head>
 <body>
 
-<header th:replace="fragments::header-wrapper"></header>
-<div class="container page-body">
+<div class="container main-body">
+    <header th:replace="fragments::header-wrapper"></header>
     <main class="container">
-        <section th:replace="fragments :: ${pageBody}"></section>
+        <div class="page-row">
+
+            <section class="page-body">
+                <img src="" th:src="@{/img/altar_wide.png}" />
+                <div th:replace="fragments :: ${pageBodyText}"></div>
+            </section>
+
+            <section class="page-sidebar">
+                <img src="" th:src="@{/img/altar.png}" />
+                <img src="" th:src="@{/img/piano.png}" />
+                <img src="" th:src="@{/img/aisle.png}" />
+            </section>
+
+        </div>
         <footer th:replace="fragments::footer"></footer>
     </main>
 </div>
+
 </body>
 </html>
