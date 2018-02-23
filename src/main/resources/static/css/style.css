@@ -9,6 +9,7 @@ body {
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: IM Fell English SC, serif;
     font-weight: bold;
 }
 
@@ -37,7 +38,7 @@ body {
     float: none;
 }
 
-.page-body {
+.main-body {
     background-color:#E4F8F6;
     font-family: 'Josefin Slab', serif;
     padding-bottom: 0;
@@ -109,6 +110,7 @@ li.active a{
 }
 
 .dropdown-item{
+    background-image: none !important;
     color: #4c6184 !important;
     display: block;
     padding-top: 1em;
@@ -179,7 +181,6 @@ li.active a{
 
 .site-branding {
     color: #dee9fc;
-    font-family: 'IM Fell English SC', serif;
     padding-top: 6.5em;
     padding-bottom: 6.6em;
     padding-left: 1.5em;
@@ -296,10 +297,55 @@ li.active a{
 	height: 100%;
 }
 
+.page-sidebar, .page-body{
+    display: inline-block;
+}
+
+.page-sidebar{
+    background-color: #d7e2e1;
+    float: left;
+}
+.page-sidebar img{
+    display: block;
+    padding: 1em;
+}
+
+.page-body{
+    height: 55em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    width: 70%;
+}
+
 .footer{
 	background-color: #1c1a18;
 	color: #fff;
+	margin-top: 4em;
 	padding: 2em;
 	text-align: right;
 }
 
+@media screen and (max-width: 1090px){
+    .page-sidebar, .page-body{
+        display: block;
+        float: none;
+    }
+    .page-body{
+        height: auto;
+    }
+    .page-sidebar{
+        text-align: center;
+    }
+    .page-sidebar img{
+        display: inline;
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+}
+
+@media screen and (max-width: 991px){
+    .page-sidebar img{
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
