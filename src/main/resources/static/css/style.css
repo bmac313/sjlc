@@ -46,6 +46,11 @@ body {
     padding-left:0;
 }
 
+.main-column{
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .navbar {
     background-color: rgba(51, 137, 128, 0);
     border-radius:0px;
@@ -242,12 +247,17 @@ li.active a{
     height: 25em;
     margin-top: 5em;
 }
+.carousel-wrapper div{
+    display: inline-block;
+}
 .carousel-wrapper img{
     height: 100%;
     padding: 0;
+    width: 100%;
 }
 #worship-times{
     background-color: #2fce7e;
+    float: right;
     font-size: 1.5em;
     height: 100%;
     padding-right: 5em;
@@ -261,6 +271,7 @@ li.active a{
 	height: 20em;
 }
 .contact-info div{
+	display: inline-block;
 	padding-top: 1.5em;
 	padding-bottom: 1.5em;
 	padding-left: 5em;
@@ -294,6 +305,7 @@ li.active a{
 	background-color: #2d509b;
 	background-image: url('../img/checkered_pattern_@2X.png');
 	color: #fff;
+	float: right;
 	height: 100%;
 }
 
@@ -324,6 +336,38 @@ li.active a{
 	padding: 2em;
 	text-align: right;
 }
+
+.width-10{
+    width: 10%;
+}
+.width-20{
+    width: 20%;
+}
+.width-30{
+    width: 30%;
+}
+.width-40{
+    width: 40%;
+}
+.width-50{
+    width: 50%;
+}
+.width-60{
+    width: 60%;
+}
+.width-70{
+    width: 70%;
+}
+.width-80{
+    width: 80%;
+}
+.width-90{
+    width: 90%;
+}
+.width-100{
+    width: 100%;
+}
+
 
 @media screen and (max-width: 1090px){
     .page-sidebar, .page-body{
