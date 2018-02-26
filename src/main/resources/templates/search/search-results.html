@@ -10,7 +10,7 @@
         <nav th:replace="fragments :: navigation-main"></nav>
     </header>
 
-    <main class="container">
+    <main class="container main-column">
 
         <h1 th:unless="${results} and ${results.size()}" th:text="'Whoops!'"></h1>
         <p th:unless="${results} and ${results.size()}" class="lead" th:text="'No results found for ' + ${searchTerm} + '. Make sure your search term is spelled correctly.'"></p>

@@ -8,7 +8,7 @@
 
     <header th:replace="fragments::header-wrapper"></header>
 
-    <main class="container">
+    <main class="container main-column">
         <h1 th:text="${header}"></h1>
         <p>Fields marked with an asterisk (*) are required.</p>
         <form th:object="${post}" method="post">
