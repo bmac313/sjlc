@@ -8,16 +8,35 @@
     <main class="container">
         <div class="page-row">
 
-            <section class="page-body">
-                <div th:replace="fragments :: ${pageBodyText}"></div>
-            </section>
- <!--
-            <section class="page-sidebar">
-                <img src="" th:src="@{/img/altar.png}" />
-                <img src="" th:src="@{/img/piano.png}" />
-                <img src="" th:src="@{/img/aisle.png}" />
-            </section>
- -->
+            <article class="page-item">
+                <h3>Pastor</h3>
+                <div>
+                    <img src="" th:src="@{/img/PASTOR_ROGERS.JPG}" />
+                </div>
+                <div th:replace="fragments :: staff-pastor-body"></div>
+            </article>
+            <article class="page-item">
+                <h3>Preschool Teacher</h3>
+                <div>
+                    <img src="" th:src="@{/img/TINA_MCRAE.JPG}" />
+                </div>
+                <div th:replace="fragments :: staff-teacher-body"></div>
+            </article>
+            <article class="page-item">
+                <h3>Preschool Aide</h3>
+                <div>
+                    <img src="" th:src="@{/img/DEB_TRAUTMAN.JPG}" />
+                </div>
+                <div th:replace="fragments :: staff-aide-body"></div>
+            </article>
+            <article class="page-item">
+                <h3>Secretary</h3>
+                <div>
+                    <img src="" th:src="@{/img/JERI_ROGERS.JPG}" />
+                </div>
+                <div th:replace="fragments :: staff-secretary-body"></div>
+            </article>
+
 
         </div>
         <footer th:replace="fragments::footer"></footer>
