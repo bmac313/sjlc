@@ -134,6 +134,11 @@ li.active a{
     background-color:#FFB782;
 }
 
+.post {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
 .post h2 {
     color:#405D92;
 }
@@ -329,12 +334,30 @@ li.active a{
     width: 70%;
 }
 
+.page-item div{
+    display: inline-block;
+    margin-bottom: 1.4em;
+    padding: 2em;
+    width: 50%;
+}
+.page-item h3{
+    padding-left: 1.3em;
+    padding-right: 1.3em;
+}
+.page-item img{
+    width: 100%;
+}
+
 .footer{
 	background-color: #1c1a18;
 	color: #fff;
 	margin-top: 4em;
 	padding: 2em;
 	text-align: right;
+}
+
+.right{
+    float: right;
 }
 
 .width-10{
@@ -376,6 +399,7 @@ li.active a{
     }
     .page-body{
         height: auto;
+        width: 100%;
     }
     .page-sidebar{
         text-align: center;
@@ -391,5 +415,14 @@ li.active a{
     .page-sidebar img{
         margin-left: 0;
         margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 766px){
+    .site-branding img{
+        width: 100%;
+    }
+    .page-body img{
+        width: 100%;
     }
 }
