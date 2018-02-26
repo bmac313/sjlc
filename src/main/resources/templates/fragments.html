@@ -54,20 +54,34 @@
                     <li th:class="${linksActiveStatus}"><a th:href="@{/links}">Links</a></li>
                     <li th:class="${contactActiveStatus}"><a th:href="@{/contact}">Contact</a></li>
                 </ul>
+                <!-- Not implemented yet
                 <form class="navbar-form form-inline navbar-left my-2 my-lg-0" method="get" th:action="@{/search}">
                     <div class="form-group">
                         <input type="text" name="searchTerm" class="form-control mr-sm-2" placeholder="Search this site..." />
                     </div>
                     <button type="submit" class="btn-primary my-2 my-sm-0">Go</button>
                 </form>
+                -->
             </div>
         </div>
     </nav>
 </header>
 
-<div th:fragment="staff-page-body">
-    <h2 th:text="${header}"></h2>
-    <p>Page coming soon</p>
+<div class="right" th:fragment="staff-pastor-body">
+    <p><strong>Pastor Rogers</strong> has been serving as pastor at St. Johns since June 19, 2005. He is a graduate of Concordia Theological seminary, Fort Wayne, IN.</p>
+    <p>His favorite Bible verse is Romans 1:16. "For I am not ashamed of the Gospel, for it is the power of salvation unto all who believe."</p>
+    <p>Pastor Rogers faithfully proclaims the Word of God, both Law and Gospel, among the members of St. Johns and throughout the community, while sharing the love of Christ in Word and caring service to the neighbor.</p>
+    <p>He married his wife, Jeri, on May 17, 1975. Together they have two grown sons, Erik and Christopher, who have blessed them with three wonderful grandchildren.</p>
+    <p>Pastor Rogers holds an associates degree in technology, a Bachelors Degree in Electrical Engineering, and a Masters Degree of Divinty. He worked for 30 years in various engineering positions before answering God's call to serve as a pastor. His greatest joy is seeing his flock grow in their faith and trust in the Lord and coming to realize the truth that we are saved by grace alone, through faith alone in Christ Jesus and His saving work on the cross for sinners.</p>
+</div>
+<div class="right" th:fragment="staff-teacher-body">
+    <p><strong>Tina McRae,</strong> Tina McRae has been teaching at St. Johns since 2008. She attended Lewis and Clark Community College in Godfey, IL. She and her husband Jeff have two children. She was a stay-at-home for 14 years and enjoyed raising her sons. She spends her time helping out at church, staying active, and teaching young children.</p>
+</div>
+<div class="right" th:fragment="staff-aide-body">
+    <p><strong>Deborah "Debbie" Trautmann</strong> moved to the area in 2008 with her husband Mark and four children: Brandon, Cortney, Caitlin, and Arial. They also have a dog, Grace, and a cat, Jonas. Debbie attended Robert Morris College and Carl Sandburg College. She has been a preschool teacher since 2003 and has been at St Johns as a preschool teacher aide since 2008. Debbie recently remarked, "I have the best job in the world. I am very active in my church, love spending time with my family, going on walks, and am very blessed by what God has done in my life."</p>
+</div>
+<div class="right" th:fragment="staff-secretary-body">
+    <p><strong>Jeri Rogers</strong> [Bio in progress]</p>
 </div>
 
 
@@ -75,7 +89,7 @@
     <h2 th:text="${header}"></h2>
 
     <h3>Worship</h3>
-    <p>We at St. John's are committed to liturgical, Lutheran worship.  Services are taken from the Lutheran Service Book with an occasional service based upon the theme of the day of the Church Year.  The Divine Service  is often supported by the adult and children's choirs.</p>
+    <p>We at St. John's are committed to liturgical, Lutheran worship. Services are taken from the Lutheran Service Book with an occasional service based upon the theme of the day of the Church Year.  The Divine Service  is often supported by the adult and children's choirs.</p>
     <p>Our understanding of worship is summarized by the following statement found in the hymnal Lutheran Worship:</p>
     <blockquote>
         <p>"Our Lord speaks and we listen. His Word bestows what it says. Faith that is born from what is heard acknowledges the gifts received with eager thankfulness and praise. Music is drawn into this thankfulness and praise, enlarging and elevating the adoration of God, our gracious giver.</p>
@@ -126,7 +140,7 @@
     <p>Page coming soon!</p>
 </div>
 
-<div th:fragment="footer" class="row footer">
+<div th:fragment="footer" class="footer">
     <p>&copy; St. John's Lutheran Church 2018</p>
     <p>Designed and developed by Brendan T. McRae</p>
     <p>Powered by <a href="https://getbootstrap.com/">Bootstrap</a> and <a href="https://spring.io/">Spring</a></p>
