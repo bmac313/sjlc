@@ -10,24 +10,24 @@
 
     <header th:replace="fragments::header-wrapper"></header>
 
-    <main class="container">
+    <main class="container main-column">
 
         <div th:class="${alertClass}" th:text="${alert}"></div>
 
         <section class="row nav-boxes">
-            <div id="about-us" class="col col-md-3">
+            <div id="about-us" class="col col-xs-12 col-sm-6 col-md-3">
                 <h3>About Us</h3>
                 <img src="" th:src="@{/img/community_links.png}" />
             </div>
-            <div id="preschool" class="col col-md-3">
+            <div id="preschool" class="col col-xs-12 col-sm-6 col-md-3">
                 <h3>Preschool</h3>
                 <img src="" th:src="@{/img/preschool.png}" />
             </div>
-            <div id="calendar" class="col col-md-3">
+            <div id="calendar" class="col col-xs-12 col-sm-6 col-md-3">
                 <h3>Calendar</h3>
                 <img src="" th:src="@{/img/calendar.png}" />
             </div>
-            <div id="sermons-newsletter" class="col col-md-3">
+            <div id="sermons-newsletter" class="col col-xs-12 col-sm-6 col-md-3">
                 <h3>Sermons &amp; Newsletter</h3>
                 <img src="" th:src="@{/img/ministries.png}" />
             </div>
@@ -67,9 +67,11 @@
         </section>
 
         <!-- TODO: Turn this element into a carousel with at three "tabs." Tabs 2 and 3 should contain class times and events, respectively. -->
-        <section class="row carousel-wrapper">
-            <img class="col col-md-5" src="" th:src="@{/img/church_exterior1.jpg}" />
-            <div id="worship-times" class="col col-md-7">
+        <section class="carousel-wrapper">
+            <div class="width-40">
+                <img src="" th:src="@{/img/church_exterior1.jpg}" />
+            </div>
+            <div id="worship-times" class="width-60">
                 <h3>Worship Times</h3>
                 <p>Wednesdays @ 7:00 p.m.</p>
                 <p>Saturdays @ 6:00 p.m.</p>
@@ -77,16 +79,16 @@
             </div>
         </section>
 
-        <section class="row contact-info">
+        <section class="contact-info">
 
-            <div id="contact-box" class="col col-md-6 col-sm-6">
+            <div id="contact-box" class="width-50">
                 <h3>Contact Info</h3>
                 <p><i class="fas fa-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp;1225 N Main St. Chatham</p>
                 <p><i class="fas fa-phone"></i>&nbsp;&nbsp;&nbsp;(217) 483-2612</p>
                 <p><i class="fas fa-envelope-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:stjohnslcms@comcast.net">stjohnslcms@comcast.net</a></p>
             </div>
 
-            <div id="facebook-info" class="col col-md-6 col-sm-6">
+            <div id="facebook-info" class="width-50">
                 <h3>Find Us On Facebook</h3>
                 <a id="facebook-icon" href="https://www.facebook.com/st.church.94"><i class="fab fa-facebook"></i></a>
             </div>
