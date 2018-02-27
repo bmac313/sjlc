@@ -52,7 +52,6 @@
                     <li th:class="${ministriesActiveStatus}"><a th:href="@{/ministries}">Ministries</a></li>
                     <li th:class="${newsActiveStatus}"><a th:href="@{/news}">News &amp; Updates</a></li>
                     <li th:class="${linksActiveStatus}"><a th:href="@{/links}">Links</a></li>
-                    <li th:class="${contactActiveStatus}"><a th:href="@{/contact}">Contact</a></li>
                 </ul>
                 <!-- Not implemented yet
                 <form class="navbar-form form-inline navbar-left my-2 my-lg-0" method="get" th:action="@{/search}">
@@ -192,11 +191,6 @@
             <td><a href="http://www.cidlcms.org/gatepost.html">http://www.cidlcms.org/gatepost.html</a></td>
         </tr>
     </table>
-</div>
-
-<div th:fragment="contact-page-body">
-    <h2 th:text="${header}"></h2>
-    <p>Page coming soon!</p>
 </div>
 
 <div th:fragment="footer" class="footer">
