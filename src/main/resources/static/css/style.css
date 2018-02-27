@@ -334,9 +334,11 @@ li.active a{
     width: 70%;
 }
 
+.page-item{
+    margin-bottom: 1.4em;
+}
 .page-item div{
     display: inline-block;
-    margin-bottom: 1.4em;
     padding: 2em;
     width: 50%;
 }
@@ -415,6 +417,10 @@ li.active a{
     .page-sidebar img{
         margin-left: 0;
         margin-right: 0;
+        width: 30%;
+    }
+    .page-item div{
+        height: 40em;
     }
 }
 
@@ -423,6 +429,12 @@ li.active a{
         width: 100%;
     }
     .page-body img{
+        width: 100%;
+    }
+    .page-item div{
+        display: block;
+        float: none;
+        height: auto;
         width: 100%;
     }
 }
