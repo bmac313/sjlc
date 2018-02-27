@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head"></head>
+<body>
+
+<div class="container main-body">
+    <header th:replace="fragments::header-wrapper"></header>
+    <main class="container">
+        <div class="page-row">
+
+            <section class="page-body extra-space">
+                <img src="" th:src="@{/img/altar_wide.png}" />
+                <div th:replace="fragments :: ${pageBodyText}"></div>
+            </section>
+
+            <section class="page-sidebar">
+                <img src="" th:src="@{/img/altar.png}" />
+                <img src="" th:src="@{/img/piano.png}" />
+                <img src="" th:src="@{/img/aisle.png}" />
+            </section>
+
+        </div>
+        <footer th:replace="fragments::footer"></footer>
+    </main>
+</div>
+
+</body>
+</html>
