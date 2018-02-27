@@ -27,7 +27,7 @@ public class PagesController {
         model.addAttribute("aboutActiveStatus", "active");
         model.addAttribute("pageBodyText", "beliefs-page-body");
 
-        return "page_generic";
+        return "about/beliefs";
     }
 
     @RequestMapping(value = "/about/history", method = RequestMethod.GET)
@@ -70,17 +70,6 @@ public class PagesController {
         model.addAttribute("header", "Links");
         model.addAttribute("linksActiveStatus", "active");
         model.addAttribute("pageBodyText", "links-page-body");
-
-        return "page_generic";
-    }
-
-    @RequestMapping(value = "/contact", method = RequestMethod.GET)
-    public String showContactPage(Model model) {
-
-        model.addAttribute("title", "Contact - St. John's Lutheran Church");
-        model.addAttribute("header", "Contact Us");
-        model.addAttribute("contactActiveStatus", "active");
-        model.addAttribute("pageBodyText", "contact-page-body");
 
         return "page_generic";
     }
