@@ -350,12 +350,20 @@ li.active a{
     width: 100%;
 }
 
+.table-two-col tr td{
+    padding: 1em;
+}
+
 .footer{
 	background-color: #1c1a18;
 	color: #fff;
 	margin-top: 4em;
 	padding: 2em;
 	text-align: right;
+}
+
+.no-border{
+    border: 0;
 }
 
 .right{
