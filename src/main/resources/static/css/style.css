@@ -8,6 +8,10 @@ body {
     background-color:#B4E4DF;
 }
 
+section{
+    margin-bottom: 1em;
+}
+
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     font-family: IM Fell English SC, serif;
     font-weight: bold;
@@ -365,10 +369,18 @@ li.active a{
     background-color: #4f787f;
     color: #fff;
     display: inline-block;
+    height: 26em;
+    margin-right: 1em;
+    padding: 1em;
+    text-align: center;
     vertical-align: top;
 }
 .inline-box h4{
     color: #E4F8F6;
+}
+.inline-box i {
+    font-size: 5em;
+    padding: 0.2em;
 }
 
 .extra-space{
@@ -448,6 +460,8 @@ li.active a{
 @media screen and (max-width: 766px){
     .inline-box{
         text-align: center;
+        height: auto;
+        margin: 0;
         width: 100%;
     }
     .site-branding img{
