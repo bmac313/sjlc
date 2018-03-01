@@ -25,46 +25,47 @@
         <h4>~John 3:16</h4>
     </div>
 
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li th:class="${homeActiveStatus}"><a th:href="@{/}">Home</a></li>
-                    <li th:class="${aboutActiveStatus}">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            About Us
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" th:href="@{/about/staff}">Staff</a>
-                            <a class="dropdown-item" th:href="@{/about/beliefs}">What We Believe</a>
-                            <a class="dropdown-item" th:href="@{/about/history}">Church History</a>
-                        </div>
-                    </li>
-                    <li th:class="${psActiveStatus}"><a th:href="@{/preschool}">Preschool</a></li>
-                    <li th:class="${ministriesActiveStatus}"><a th:href="@{/ministries}">Ministries</a></li>
-                    <li th:class="${newsActiveStatus}"><a th:href="@{/news}">News &amp; Updates</a></li>
-                    <li th:class="${linksActiveStatus}"><a th:href="@{/links}">Links</a></li>
-                </ul>
-                <!-- Not implemented yet
-                <form class="navbar-form form-inline navbar-left my-2 my-lg-0" method="get" th:action="@{/search}">
-                    <div class="form-group">
-                        <input type="text" name="searchTerm" class="form-control mr-sm-2" placeholder="Search this site..." />
-                    </div>
-                    <button type="submit" class="btn-primary my-2 my-sm-0">Go</button>
-                </form>
-                -->
-            </div>
-        </div>
-    </nav>
 </header>
+
+<nav th:fragment="navbar" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li th:class="${homeActiveStatus}"><a th:href="@{/}">Home</a></li>
+                <li th:class="${aboutActiveStatus}">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        About Us
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" th:href="@{/about/staff}">Staff</a>
+                        <a class="dropdown-item" th:href="@{/about/beliefs}">What We Believe</a>
+                        <a class="dropdown-item" th:href="@{/about/history}">Church History</a>
+                    </div>
+                </li>
+                <li th:class="${psActiveStatus}"><a th:href="@{/preschool}">Preschool</a></li>
+                <li th:class="${ministriesActiveStatus}"><a th:href="@{/ministries}">Ministries</a></li>
+                <li th:class="${newsActiveStatus}"><a th:href="@{/news}">News &amp; Updates</a></li>
+                <li th:class="${linksActiveStatus}"><a th:href="@{/links}">Links</a></li>
+            </ul>
+            <!-- Not implemented yet
+            <form class="navbar-form form-inline navbar-left my-2 my-lg-0" method="get" th:action="@{/search}">
+                <div class="form-group">
+                    <input type="text" name="searchTerm" class="form-control mr-sm-2" placeholder="Search this site..." />
+                </div>
+                <button type="submit" class="btn-primary my-2 my-sm-0">Go</button>
+            </form>
+            -->
+        </div>
+    </div>
+</nav>
 
 <div class="right" th:fragment="staff-pastor-body">
     <p><strong>Pastor Rogers</strong> has been serving as pastor at St. Johns since June 19, 2005. He is a graduate of Concordia Theological seminary, Fort Wayne, IN.</p>
