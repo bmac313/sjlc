@@ -56,10 +56,11 @@ section{
 }
 
 .navbar {
-    background-color: rgba(51, 137, 128, 0);
+    background-color: #0E625C;
     border-radius:0px;
     border: 0;
-    padding-bottom: 4em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
     text-align: center;
 }
 
