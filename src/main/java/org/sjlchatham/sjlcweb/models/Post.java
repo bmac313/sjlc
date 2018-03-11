@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -29,6 +30,7 @@ public class Post {
 
     @NotNull
     @Size(min = 1, max = 255, message = "Please provide a link to your image (255 characters or less).")
+    @Pattern(regexp = "^(https://|http://).+(jpg|png|svg|gif)$", message = "Please enter a valid image URL. Your URL must start with 'http://' or 'https://' end with .jpg, .png, .svg, or .gif.")
     private String imgUrl;
 
     private final String timeStamp;
