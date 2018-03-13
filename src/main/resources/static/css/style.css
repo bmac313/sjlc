@@ -2,8 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Slab');
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
-/* TODO: Currently, the layout breaks at small size. Write media queries that ensure this doesn't happen. */
-
 body {
     background-color:#B4E4DF;
 }
@@ -17,11 +15,10 @@ section{
     font-weight: bold;
 }
 
-.btn-primary {
+.btn-primary, .btn-default {
     border-radius   : 0px;
     border          : 0px;
-    background-color: #405D92;
-    box-shadow      : 0px 5px 0px #8DA4CE;
+    color           : #fff;
     padding-top     : 4px;
     padding-bottom  : 4px;
     margin-top      : 6px;
@@ -29,9 +26,21 @@ section{
     transition: 0.2s;
     -webkit-transition: 0.2s;
 }
-
+.btn-primary{
+    background-color: #1E7C75;
+    box-shadow      : 0px 5px 0px #8AC9C5;
+}
+.btn-default{
+    background-color: #4D2B89;
+    box-shadow      : 0px 5px 0px #AD97D3;
+}
 .btn-primary:hover {
-    background-color:#617CAD;
+    background-color: #617CAD;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+}
+.btn-default:hover {
+    background-color: #63439A;
     transition: 0.2s;
     -webkit-transition: 0.2s;
 }
@@ -205,6 +214,8 @@ li.active a{
 
 .nav-boxes{
     text-align: center;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     padding-top: 3em;
     padding-bottom: 3em;
 }
@@ -220,9 +231,9 @@ li.active a{
 }
 
 .nav-box-active{
-    background-color: #2e9b87;
+    background-color: #C97330;
     background-image: url('../img/checkered_pattern.png');
-    color: #E4F8F6;
+    color: #FFD2AF;
 }
 .nav-box-active li a{
     color: #fff;
@@ -252,6 +263,10 @@ li.active a{
     -webkit-transition: 0.2s;
 }
 
+.jumbotron{
+    background-color: #FFD2AF;
+}
+
 .carousel-wrapper{
     height: 25em;
     margin-top: 5em;
@@ -265,7 +280,7 @@ li.active a{
     width: 100%;
 }
 #worship-times{
-    background-color: #2fce7e;
+    background-color: #FFF184;
     float: right;
     font-size: 1.5em;
     height: 100%;
@@ -427,6 +442,12 @@ li.active a{
 }
 
 
+@media screen and (max-width: 1199px){
+    .carousel-wrapper{
+        height: 20.8em;
+    }
+}
+
 @media screen and (max-width: 1090px){
     .page-sidebar, .page-body{
         display: block;
@@ -447,6 +468,9 @@ li.active a{
 }
 
 @media screen and (max-width: 991px){
+    .carousel-wrapper{
+        height: 16.1em;
+    }
     .page-sidebar img{
         margin-left: 0;
         margin-right: 0;
@@ -458,6 +482,22 @@ li.active a{
 }
 
 @media screen and (max-width: 766px){
+    .carousel-wrapper{
+        height: auto;
+    }
+    .carousel-wrapper div{
+        display: block;
+        float: none !important;
+        width: 100%;
+    }
+    .contact-info{
+        height: auto;
+    }
+    .contact-info div{
+        display: block;
+        float: none !important;
+        width: 100%;
+    }
     .inline-box{
         text-align: center;
         height: auto;
