@@ -6,9 +6,8 @@
 
 <div class="container page-body">
 
-    <header>
-        <nav th:replace="fragments :: navigation-main"></nav>
-    </header>
+    <header th:replace="fragments::header-wrapper"></header>
+    <nav th:replace="fragments::navbar-main"></nav>
 
     <main class="container main-column">
         <div th:text="${logOutConfirm}" th:class="${alertClass1}"></div>
@@ -18,7 +17,7 @@
 
         <span th:text="${wrongLoginInfoError}" class="text-danger"></span>
 
-        <form th:action="${loginProcessingUrl}" method="post">
+        <form method="post">
 
             <div class="form-group row">
                 <label th:for="username" class="col-sm-2 col-form-label">Username*</label>
