@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <title th:text="${title}"></title>
@@ -55,14 +55,15 @@
                 <li th:class="${newsActiveStatus}"><a th:href="@{/news}">News &amp; Updates</a></li>
                 <li th:class="${linksActiveStatus}"><a th:href="@{/links}">Links</a></li>
             </ul>
-            <!-- Not implemented yet
-            <form class="navbar-form form-inline navbar-left my-2 my-lg-0" method="get" th:action="@{/search}">
+<!-- Not implemented yet
+            <form class="navbar-form form-inline navbar-right my-2 my-lg-0" method="get" th:action="@{/search}">
                 <div class="form-group">
                     <input type="text" name="searchTerm" class="form-control mr-sm-2" placeholder="Search this site..." />
                 </div>
+                <div sec:authentication="name"></div>
                 <button type="submit" class="btn-primary my-2 my-sm-0">Go</button>
             </form>
-            -->
+-->
         </div>
     </div>
 </nav>
