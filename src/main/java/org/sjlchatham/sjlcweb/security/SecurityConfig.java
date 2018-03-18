@@ -18,18 +18,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password("password").roles("USER", "ADMIN");
     }
 
-    protected void configure(HttpSecurity http) throws Exception {
+    @Override
+    protected void configure(final HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/login").permitAll()
+                    .antMatchers(
+                            "/",
+                            "/login",
+                            "/about/*",
+                            "/preschool",
+                            "/preschool/*",
+                            "/calendar",
+                            "/news",
+                            "/news/viewpost/*",
+                            "/links",
+                            "/downloads/*").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated()
                         .and()
                 .formLogin()
                     .loginPage("/login")
+                    .loginProcessingUrl("/login")
                     .failureUrl("/login-error")
                         .and()
-                .httpBasic();
+                    .logout()
+                        .logoutSuccessUrl("/");
     }
 
 }
