@@ -58,6 +58,7 @@
                 <span th:errors="*{imgUrl}" class="text-danger col-sm-3"></span>
             </div>
 
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <input type="submit" value="Post" class="btn btn-primary" />
 
         </form>
