@@ -17,6 +17,12 @@ public class User {
     @Size(min = 1, message = "Please enter a username.")
     private String name;
 
+    public User(){}
+
+    public User(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
