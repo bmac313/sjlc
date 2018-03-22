@@ -11,9 +11,6 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue
-    private int id;
-
     @NotNull
     @Size(min = 1, message = "Please enter a username.")
     private String username;
@@ -22,6 +19,7 @@ public class User {
     @Size(min = 5, message = "Passwords must be at least 5 characters long.")
     private String password;
 
+    @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -35,10 +33,6 @@ public class User {
         this();
         this.username = username;
         this.password = password;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {
