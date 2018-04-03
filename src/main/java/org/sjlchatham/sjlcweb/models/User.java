@@ -16,7 +16,7 @@ public class User {
     private String username;
 
     @NotNull
-    @Size(min = 5, message = "Passwords must be at least 5 characters long.")
+    @Size(min = 5, message = "Please enter a password of at least 5 characters.")
     private String password;
 
     @Column(name = "ENABLED", nullable = false)
@@ -35,16 +35,8 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return username;
-    }
-
-    public void setName(String username) {
-        this.username = username;
-    }
-
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
