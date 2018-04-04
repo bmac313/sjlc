@@ -2,6 +2,7 @@ package org.sjlchatham.sjlcweb.controllers;
 
 import org.sjlchatham.sjlcweb.data.UserDao;
 import org.sjlchatham.sjlcweb.models.User;
+import org.sjlchatham.sjlcweb.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,9 @@ public class UserController {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private AdminService adminService;
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String showLoginPage(Model model) {
@@ -63,6 +67,12 @@ public class UserController {
     @RequestMapping(value = "admin", method = RequestMethod.GET)
     public String showAdminPage (ModelMap model, Principal principal) {
         String loggedInUser = principal.getName(); // Username of the currently logged-in user / who is sending this request.
+        return "users/admin";
+    }
+
+    @RequestMapping(value = "admin-service", method = RequestMethod.GET)
+    public String adminService (ModelMap model, Principal principal) {
+        adminService.performSomeAdminService();
         return "users/admin";
     }
 
