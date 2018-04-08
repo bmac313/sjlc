@@ -19,6 +19,11 @@
 <body>
 
 <header th:fragment="header-wrapper" class="header-wrapper">
+    <div class="right">
+        <a href="/login" class="btn btn-primary">Log In</a>
+        <p>Welcome, <span sec:authentication="name"></span></p>
+        <a href="/logout" class="btn btn-primary">Log Out</a>
+    </div>
     <div class="site-branding">
         <img src="" th:src="@{/img/large_logo_brightened.png}" />
         <h2>"For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."</h2>
