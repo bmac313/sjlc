@@ -13,7 +13,7 @@ public class User {
     @Id
     @NotNull
     @Size(min = 1, message = "Please enter a username.")
-    @Column(name = "USERNAME", length = 45, nullable = false, unique = true)
+    @Column(name = "USERNAME", length = 50, nullable = false, unique = true)
     private String username;
 
     @NotNull

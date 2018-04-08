@@ -15,7 +15,7 @@ public class Authorities {
     @JoinColumn(name = "USERNAME", nullable = false)
     private User user;
 
-    @Column(name = "AUTHORITY", nullable = false, length = 45)
+    @Column(name = "AUTHORITY", nullable = false, length = 50)
     private String authority;
 
     public Authorities() {}
