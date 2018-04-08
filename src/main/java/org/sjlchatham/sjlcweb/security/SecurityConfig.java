@@ -64,9 +64,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/login")
                     .failureUrl("/login-error")
                         .and()
-                    .logout()
-                        .logoutSuccessUrl("/")
-                        .and()
                 .httpBasic()
                         .and()
                 // Limits the maximum session for each user so that only 1 "instance" of each user can be logged in at once.
