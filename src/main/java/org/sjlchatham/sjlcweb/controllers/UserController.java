@@ -1,6 +1,8 @@
 package org.sjlchatham.sjlcweb.controllers;
 
+import org.sjlchatham.sjlcweb.data.AuthoritiesDao;
 import org.sjlchatham.sjlcweb.data.UserDao;
+import org.sjlchatham.sjlcweb.models.Authorities;
 import org.sjlchatham.sjlcweb.models.User;
 import org.sjlchatham.sjlcweb.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class UserController {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private AuthoritiesDao authoritiesDao;
 
     @Autowired
     private AdminService adminService;
@@ -57,6 +62,9 @@ public class UserController {
 
             return "users/signup";
         }
+
+        Authorities userRole = new Authorities(newUser, "ROLE_USER");
+        newUser.addAuthority(userRole);
 
         userDao.save(newUser);
 
