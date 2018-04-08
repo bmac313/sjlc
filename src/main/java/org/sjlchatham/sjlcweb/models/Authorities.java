@@ -3,22 +3,34 @@ package org.sjlchatham.sjlcweb.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "AUTHORITIES")
+@Table(name = "AUTHORITIES", uniqueConstraints = @UniqueConstraint(columnNames = {"authority", "username"}))
 public class Authorities {
 
     @Id
-    @Column(name = "AUTHORITY")
-    private String authority;
+    @GeneratedValue
+    @Column(name = "USER_AUTHORITY_ID", unique = true, nullable = false)
+    private Integer userAuthorityId;
 
-    @ManyToOne
-    @JoinColumn(name = "ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USERNAME", nullable = false)
     private User user;
+
+    @Column(name = "AUTHORITY", nullable = false, length = 45)
+    private String authority;
 
     public Authorities() {}
 
-    public Authorities(String authority, User user) {
-        this.authority = authority;
+    public Authorities(User user, String authority) {
         this.user = user;
+        this.authority = authority;
+    }
+
+    public Integer getUserAuthorityId() {
+        return userAuthorityId;
+    }
+
+    public void setUserAuthorityId(Integer userAuthorityId) {
+        this.userAuthorityId = userAuthorityId;
     }
 
     public String getAuthority() {
