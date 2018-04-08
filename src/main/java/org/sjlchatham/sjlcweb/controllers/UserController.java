@@ -13,6 +13,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -63,8 +64,11 @@ public class UserController {
             return "users/signup";
         }
 
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(newUser.getPassword());
         Authorities userRole = new Authorities(newUser, "ROLE_USER");
         newUser.addAuthority(userRole);
+        newUser.setPassword(encodedPassword);
 
         userDao.save(newUser);
 
