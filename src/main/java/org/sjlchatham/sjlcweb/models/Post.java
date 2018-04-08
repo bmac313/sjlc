@@ -20,8 +20,6 @@ public class Post {
     @Size(min = 1, max = 100, message = "Post title must be between 1 and 100 characters.")
     private String title;
 
-    @NotNull
-    @Size(min = 1, max = 100, message = "Please enter an author name between 1 and 100 characters.")
     private String author;
 
     @NotNull

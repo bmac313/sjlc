@@ -2,6 +2,7 @@ package org.sjlchatham.sjlcweb.controllers;
 
 import org.sjlchatham.sjlcweb.data.PostDao;
 import org.sjlchatham.sjlcweb.models.Post;
+import org.sjlchatham.sjlcweb.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -11,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("news")
@@ -54,8 +56,9 @@ public class NewsController {
 
     @RequestMapping(value = "new-post", method = RequestMethod.POST)
     public String handleFormSubmission(@Valid @ModelAttribute Post postToAdd,
-                                          Errors errors,
-                                          Model model) {
+                                       Errors errors,
+                                       Principal principal,
+                                       Model model) {
 
         if (errors.hasErrors()) {
 
@@ -66,6 +69,9 @@ public class NewsController {
 
             return "newsitems/new-post";
         }
+
+        String loggedInUser = principal.getName();
+        postToAdd.setAuthor(loggedInUser);
 
         postDao.save(postToAdd);
 

@@ -23,18 +23,6 @@
             </div>
 
             <div class="form-group row">
-                <label th:for="author" class="col-sm-2 col-form-label">Author*
-                    <a href="#" data-toggle="tooltip" title="Who wrote this news item?">
-                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-                    </a>
-                </label>
-                <div class="col-sm-7">
-                    <input th:field="*{author}" class="form-control input-lg" />
-                </div>
-                <span th:errors="*{author}" class="text-danger col-sm-3"></span>
-            </div>
-
-            <div class="form-group row">
                 <label th:for="body" class="col-sm-2 col-form-label">Body*
                     <a href="#" data-toggle="tooltip" title="Type your post here.">
                         <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
