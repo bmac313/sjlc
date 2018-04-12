@@ -41,8 +41,8 @@
 
         <nav aria-label="...">
             <ul class="pager">
-                <li><a th:href="@{'/posts?page=' + ${page - 1}}" th:class="${visibilityPrev}">Previous Page</a></li>
-                <li><a th:href="@{'/posts?page=' + ${page + 1}}" th:class="${visibilityNext}">Next Page</a></li>
+                <li><a th:href="@{'/news?page=' + ${page - 1}}" th:class="${visibilityPrev}">Previous Page</a></li>
+                <li><a th:href="@{'/news?page=' + ${page + 1}}" th:class="${visibilityNext}">Next Page</a></li>
             </ul>
         </nav>
 
