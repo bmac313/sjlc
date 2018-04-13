@@ -32,12 +32,12 @@ $(document).ready(function() {
         mouseenter: function() {
             $('#calendar').addClass('nav-box-active');
             $('#calendar > img').addClass('hidden');
-            $('#calendar > .inner-nav-box').removeClass('hidden');
+            $('#calendar > .block-list').removeClass('hidden');
         },
         mouseleave: function() {
             $('#calendar').removeClass('nav-box-active');
             $('#calendar > img').removeClass('hidden');
-            $('#calendar > .inner-nav-box').addClass('hidden');
+            $('#calendar > .block-list').addClass('hidden');
         }
     });
 
