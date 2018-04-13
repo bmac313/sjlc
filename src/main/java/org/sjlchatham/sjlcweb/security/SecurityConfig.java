@@ -51,18 +51,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/css/**",
                             "/img/**",
                             "/js/**",
+                            "/doc/**",
                             "/",
                             "/login",
                             "/signup",
-                            "/about/*",
+                            "/about/**",
                             "/preschool",
-                            "/preschool/*",
+                            "/preschool/**",
                             "/calendar",
                             "/news",
                             "/news/viewpost/*",
                             "/links",
-                            "/downloads/*").permitAll()
-                    .antMatchers("/admin", "/admin-service").hasRole("ADMIN")
+                            "/downloads/**").permitAll()
+                    .antMatchers("/news/new-post", "/admin", "/admin-service").hasRole("ADMIN")
                         .anyRequest().authenticated()
                         .and()
                 .formLogin()
