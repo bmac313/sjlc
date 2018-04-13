@@ -30,6 +30,17 @@ public class PagesController {
         return "about/beliefs";
     }
 
+    @RequestMapping(value = "/about/worship", method = RequestMethod.GET)
+    public String showWorshipPage(Model model) {
+
+        model.addAttribute("title", "About Our Worship - St. John's Lutheran Church");
+        model.addAttribute("header", "About Our Worship");
+        model.addAttribute("aboutActiveStatus", "active");
+        model.addAttribute("pageBodyText", "worship-page-body");
+
+        return "page_generic";
+    }
+
     @RequestMapping(value = "/about/history", method = RequestMethod.GET)
     public String showHistoryPage(Model model) {
 
@@ -70,6 +81,28 @@ public class PagesController {
         model.addAttribute("header", "Links");
         model.addAttribute("linksActiveStatus", "active");
         model.addAttribute("pageBodyText", "links-page-body");
+
+        return "page_generic";
+    }
+
+    @RequestMapping(value = "/downloads/sermons", method = RequestMethod.GET)
+    public String showSermonsPage(Model model) {
+
+        model.addAttribute("title", "Archived Sermons - St. John's Lutheran Church");
+        model.addAttribute("header", "Archived Sermons");
+        model.addAttribute("sermonsActiveStatus", "active");
+        model.addAttribute("pageBodyText", "sermons-page-body");
+
+        return "page_generic";
+    }
+
+    @RequestMapping(value = "/downloads/newsletter", method = RequestMethod.GET)
+    public String showNewsletterPage(Model model) {
+
+        model.addAttribute("title", "Newsletter - St. John's Lutheran Church");
+        model.addAttribute("header", "Newsletter");
+        model.addAttribute("newsletterActiveStatus", "active");
+        model.addAttribute("pageBodyText", "newsletter-page-body");
 
         return "page_generic";
     }
