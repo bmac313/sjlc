@@ -10,14 +10,12 @@
         <div class="page-row">
 
             <section class="page-body extra-space">
-                <img src="" th:src="@{/img/altar_wide.png}" />
+                <img src="" th:src="@{${headerImagePath}}" />
                 <div th:replace="fragments :: ${pageBodyText}"></div>
             </section>
 
             <section class="page-sidebar">
-                <img src="" th:src="@{/img/altar.png}" />
-                <img src="" th:src="@{/img/piano.png}" />
-                <img src="" th:src="@{/img/aisle.png}" />
+                <img th:each="path : ${sideBarImagePaths}" src="" th:src="@{${path}}" />
             </section>
 
         </div>
