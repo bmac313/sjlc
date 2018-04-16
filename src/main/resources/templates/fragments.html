@@ -50,15 +50,42 @@
                         About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{/about/staff}">Staff</a>
                         <a class="dropdown-item" th:href="@{/about/beliefs}">What We Believe</a>
+                        <a class="dropdown-item" th:href="@{/about/worship}">About Our Worship</a>
+                        <a class="dropdown-item" th:href="@{/about/staff}">Staff</a>
                         <a class="dropdown-item" th:href="@{/about/history}">Church History</a>
                     </div>
                 </li>
-                <li th:class="${psActiveStatus}"><a th:href="@{/preschool}">Preschool</a></li>
-                <li th:class="${ministriesActiveStatus}"><a th:href="@{/ministries}">Ministries</a></li>
-                <li th:class="${newsActiveStatus}"><a th:href="@{/news}">News &amp; Updates</a></li>
-                <li th:class="${linksActiveStatus}"><a th:href="@{/links}">Links</a></li>
+                <li th:class="${psActiveStatus}">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Preschool
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" th:href="@{/preschool}">About</a>
+                        <a class="dropdown-item" target="_blank" th:href="@{/doc/2018-19_Preschool_Registration_Form.pdf}">Registration Form</a>
+                        <a class="dropdown-item" target="_blank" th:href="@{/doc/Child_Record_Form_2018-19.pdf}">Child Record Form</a>
+                    </div>
+                </li>
+                <li th:class="${newsActiveStatus}">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Happenings
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" th:href="@{/news}">News &amp; Updates</a>
+                        <a class="dropdown-item" th:href="@{/calendar}">Calendar</a>
+                        <a class="dropdown-item" th:href="@{/links}">Links</a>
+                    </div>
+                </li>
+                <li th:class="${sermonsActiveStatus}">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sermons &amp; Newsletter
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Current Sermon</a>
+                        <a class="dropdown-item" th:href="@{/downloads/sermons}">Archived Sermons</a>
+                        <a class="dropdown-item" th:href="@{/downloads/newsletter}">Newsletter</a>
+                    </div>
+                </li>
             </ul>
 <!-- Not implemented yet
             <form class="navbar-form form-inline navbar-right my-2 my-lg-0" method="get" th:action="@{/search}">
@@ -167,7 +194,7 @@
 
 </div>
 
-<div th:fragment="ministries-page-body">
+<div th:fragment="calendar-page-body">
     <h2 th:text="${header}"></h2>
     <p>Page coming soon!</p>
 </div>
