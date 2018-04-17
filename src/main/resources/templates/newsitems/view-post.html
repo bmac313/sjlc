@@ -3,7 +3,8 @@
 <head th:replace="fragments :: head"></head>
 
 <body>
-
+<div id="fb-root"></div>
+<script th:src="@{/js/fb.js}"></script>
 <div class="container main-body">
 
     <header th:replace="fragments::header-wrapper"></header>
@@ -23,32 +24,8 @@
             </div>
         </article>
 
-        <!-- Commenting out until implemented -->
-        <!--
-        <form th:object="${comment}" method="post">
-
-            <div class="form-group">
-                <div class="row">
-                    <label th:for="text" class="col-sm-3 col-form-label">Write a Comment</label>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <textarea class="form-control" th:field="*{text}"></textarea>
-                    </div>
-                    <span th:errors="*{text}" class="text-danger col-sm-3"></span>
-                </div>
-            </div>
-
-            <input class="btn-primary" type="submit" />
-
-        </form>
-
-        <article class="container comment" th:each="comment : ${comments}">
-            <h6 th:text="${comment.author.username}"></h6>
-            <p th:text="${comment.text}"></p>
-        </article>
-
-        -->
+        <h3>Write a Comment</h3>
+        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
 
         <footer th:replace="fragments::footer"></footer>
 
