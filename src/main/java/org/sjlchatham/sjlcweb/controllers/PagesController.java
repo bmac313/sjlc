@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class PagesController {
 
+    @RequestMapping(value = "/about", method = RequestMethod.GET)
+    public String handleAboutRequest() {  // Handle a request to /about if a user manually types it in (this is also done with similar paths below).
+        return "redirect:/about/beliefs";
+    }
+
     @RequestMapping(value = "/about/staff", method = RequestMethod.GET)
     public String showStaffPage(Model model) {
 
@@ -110,6 +115,11 @@ public class PagesController {
         model.addAttribute("pageBodyText", "links-page-body");
 
         return "page_generic";
+    }
+
+    @RequestMapping(value = "/downloads", method = RequestMethod.GET)
+    public String handleDownloadsRequest() {
+        return "redirect:/downloads/sermons";
     }
 
     @RequestMapping(value = "/downloads/sermons", method = RequestMethod.GET)
