@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
 
 <body>
@@ -13,7 +13,7 @@
 
         <div th:class="${alertClass}" th:text="${alert}"></div>
 
-        <a class="btn btn-primary" th:href="@{/news/new-post}">Create a News Item</a>
+        <a sec:authorize="${isAuthenticated()}" class="btn btn-primary" th:href="@{/news/new-post}">Create a News Item</a>
 
         <p th:unless="${posts} and ${posts.getSize()}">There are currently no items. Click 'Create a News Item' above to add one!</p>
 
