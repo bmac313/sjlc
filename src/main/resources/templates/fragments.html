@@ -85,7 +85,7 @@
                         Sermons &amp; Newsletter
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Current Sermon</a>
+                        <a class="dropdown-item" target="_blank" href="https://drive.google.com/open?id=1OxI2xOZmtsnAL_gQzzuMS2841XP4LsS8">Current Sermon</a>
                         <a class="dropdown-item" th:href="@{/downloads/sermons}">Archived Sermons</a>
                         <a class="dropdown-item" th:href="@{/downloads/newsletter}">Newsletter</a>
                     </div>
@@ -253,7 +253,8 @@
 
 <div th:fragment="newsletter-page-body">
     <h2 th:text="${header}"></h2>
-    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1tENEK1GVyPtWKPm2OKwQBJKYECCmIa2Y#list" style="width:100%; border:0;"></iframe>
+    <h3>2018</h3>
+    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1ixguiQ4F_RGnkKSRLM--NptsLjlcPFlf#list" style="width:100%; border:0;"></iframe>
 </div>
 
 <div th:fragment="footer" class="footer">
