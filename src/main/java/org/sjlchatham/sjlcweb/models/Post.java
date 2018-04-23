@@ -28,7 +28,7 @@ public class Post {
 
     @NotNull
     @Size(min = 1, max = 255, message = "Please provide a link to your image (255 characters or less).")
-    @Pattern(regexp = "^(https://|http://).+(jpg|png|svg|gif)$", message = "Please enter a valid image URL. Your URL must start with 'http://' or 'https://' end with .jpg, .png, .svg, or .gif.")
+    @Pattern(regexp = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|png|svg))", message = "Please enter a valid image URL. Your URL must start with 'http://' or 'https://' end with .jpg, .png, .svg, or .gif.")
     private String imgUrl;
 
     private final String timeStamp;
