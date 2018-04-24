@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,7 +37,8 @@ public class UserController {
     private AdminService adminService;
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String showLoginPage(Model model) {
+    public String showLoginPage(@RequestParam(required = false) boolean loginError, Model model) {
+        model.addAttribute("loginError", loginError);
         model.addAttribute("title", "Log In - St. John's Lutheran Church");
         model.addAttribute("header", "Log In");
         return "users/login";
@@ -44,10 +46,7 @@ public class UserController {
 
     @RequestMapping(value = "login-error", method = RequestMethod.GET)
     public String loginError(Model model) {
-        model.addAttribute("loginError", true);
-        model.addAttribute("title", "Log In - St. John's Lutheran Church");
-        model.addAttribute("header", "Log In");
-        return "users/login";
+        return "redirect:/login?loginError=true";
     }
 
     @RequestMapping(value = "signup", method = RequestMethod.GET)

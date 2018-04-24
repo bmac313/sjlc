@@ -4,10 +4,6 @@
 
 <body>
 
-<!--TODO:
-    - Get failureURL / error messages working properly.
--->
-
 <div class="container main-body">
 
     <header th:replace="fragments::header-wrapper"></header>
@@ -17,9 +13,9 @@
         <h1 th:text="${header}"></h1>
         <p>Fields marked with an asterisk (*) are required.</p>
 
-        <p th:if="${loginError}" class="error">Wrong username or password</p>
+        <p th:if="${loginError}" class="alert-danger emphasis">Wrong username or password</p>
 
-        <form th:action="@{/login}" method="post">
+        <form method="post">
 
             <div class="form-group row">
                 <label th:for="username" class="col-sm-2 col-form-label">Username*</label>
