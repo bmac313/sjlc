@@ -402,6 +402,10 @@ li.active a{
     height: 20em;
 }
 
+.emphasis{
+    font-weight: bold;
+}
+
 .extra-space{
     height: 55em;
 }
