@@ -20,9 +20,6 @@
 
 <header th:fragment="header-wrapper" class="header-wrapper">
     <div class="right">
-        <div sec:authorize="${isAnonymous()}">
-            <a href="/login" class="btn btn-primary">Log In</a>
-        </div>
         <div sec:authorize="${isAuthenticated()}">
             <p>Welcome, <span sec:authentication="name"></span></p>
             <a href="/logout" class="btn btn-primary">Log Out</a>
@@ -91,15 +88,6 @@
                     </div>
                 </li>
             </ul>
-<!-- Not implemented yet
-            <form class="navbar-form form-inline navbar-right my-2 my-lg-0" method="get" th:action="@{/search}">
-                <div class="form-group">
-                    <input type="text" name="searchTerm" class="form-control mr-sm-2" placeholder="Search this site..." />
-                </div>
-                <div sec:authentication="name"></div>
-                <button type="submit" class="btn-primary my-2 my-sm-0">Go</button>
-            </form>
--->
         </div>
     </div>
 </nav>
@@ -200,7 +188,7 @@
 
 <div th:fragment="calendar-page-body">
     <h2 th:text="${header}"></h2>
-    <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=sjlchatham%40gmail.com&amp;color=%2329527A&amp;ctz=America%2FChicago" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=sjlchatham%40gmail.com&amp;color=%2329527A&amp;ctz=America%2FChicago" style="border-width:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
 </div>
 
 <div th:fragment="links-page-body">
@@ -261,6 +249,9 @@
     <p>&copy; St. John's Lutheran Church 2018</p>
     <p>Designed and developed by Brendan T. McRae</p>
     <p>Powered by <a href="https://getbootstrap.com/">Bootstrap</a> and <a href="https://spring.io/">Spring</a></p>
+    <div sec:authorize="${isAnonymous()}">
+        <a href="/login">Admin Sign In</a>
+    </div>
 </div>
 
 </body>
