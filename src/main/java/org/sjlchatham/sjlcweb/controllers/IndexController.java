@@ -17,16 +17,6 @@ public class IndexController {
                         @RequestParam(defaultValue = "false") boolean justSignedUp,
                         Model model) {
 
-        if (justLoggedIn) {
-            model.addAttribute("alertClass", "alert alert-success");
-            model.addAttribute("alert", "Logged in successfully!");
-        }
-
-        if (justSignedUp) {
-            model.addAttribute("alertClass", "alert alert-success");
-            model.addAttribute("alert", "Signed up successfully!");
-        }
-
         model.addAttribute("title", "St. John's Lutheran Church");
         model.addAttribute("homeActiveStatus", "active");
         model.addAttribute("featuredPost", postDao.findFirstByOrderByTimeStampDesc());
