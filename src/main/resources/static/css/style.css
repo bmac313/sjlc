@@ -281,29 +281,10 @@ li.active a{
 }
 #worship-times{
     background-color: #FFF184;
-    float: right;
     font-size: 1.5em;
     height: 100%;
-    padding-right: 5em;
-    padding-left: 5em;
-    padding-top: 1em;
-    padding-bottom: 1em;
 }
 
-.contact-info{
-	margin-top: 4em;
-	height: 20em;
-}
-.contact-info div{
-	display: inline-block;
-	padding-top: 1.5em;
-	padding-bottom: 1.5em;
-	padding-left: 5em;
-	padding-right: 5em;
-}
-.contact-info .fas{
-	font-size: 1.5em;
-}
 #facebook-icon{
 	color: #fff;
 	font-size: 10em;
@@ -329,7 +310,6 @@ li.active a{
 	background-color: #2d509b;
 	background-image: url('../img/checkered_pattern_@2X.png');
 	color: #fff;
-	float: right;
 	height: 100%;
 }
 
@@ -400,6 +380,19 @@ li.active a{
 
 .google-drive-folder {
     height: 20em;
+}
+
+.info-boxes{
+    height: 31em;
+    margin-right: 0;
+    margin-left: 0;
+}
+.info-boxes div {
+    padding-right: 1em;
+    padding-left: 1em;
+}
+.info-boxes img, info-boxes i {
+    width: 100%;
 }
 
 .emphasis{
@@ -487,6 +480,12 @@ li.active a{
     .page-item div{
         height: 40em;
     }
+    #worship-times{
+        font-size: 1em;
+    }
+    .info-boxes{
+        height: 25em;
+    }
 }
 
 @media screen and (max-width: 766px){
@@ -526,5 +525,12 @@ li.active a{
         float: none;
         height: auto;
         width: 100%;
+    }
+    .info-boxes{
+        height: auto;
+    }
+    .info-boxes div{
+        padding-right: 6em;
+        padding-left: 6em;
     }
 }
