@@ -1,6 +1,22 @@
 $(document).ready(function() {
 
-    /* .nav-boxes events*/
+    /* navbar events */
+    if (document.getElementById("navbar")) { // If the navbar is present in the document
+        window.onscroll = function() {stickNavBar()};
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+    }
+
+    function stickNavBar() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky");
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+
+
+    /* .nav-boxes events */
 
     $('#about-us').bind({
         mouseenter: function() {
@@ -53,6 +69,5 @@ $(document).ready(function() {
             $('#sermons-newsletter > .block-list').addClass('hidden');
         }
     });
-
 
 });
