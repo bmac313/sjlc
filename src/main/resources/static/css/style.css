@@ -4,6 +4,7 @@
 
 body {
     background-color:#B4E4DF;
+    font-size: 1.7em;
 }
 
 section{
@@ -157,9 +158,6 @@ li.active a{
     color:#405D92;
 }
 
-.post p, .post span {
-    color:#405D92;
-}
 .post-body {
     font-size: 1.2em;
     margin-top: 1.3em;
@@ -364,7 +362,8 @@ li.active a{
     background-color: #4f787f;
     color: #fff;
     display: inline-block;
-    height: 26em;
+    font-size: 0.9em;
+    height: 28em;
     margin-right: 1em;
     padding: 1em;
     text-align: center;
@@ -409,6 +408,16 @@ li.active a{
 
 .right{
     float: right;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+.sticky + .main-body {
+  padding-top: 60px;
 }
 
 .width-10{
@@ -479,6 +488,7 @@ li.active a{
     }
     .page-item div{
         height: 40em;
+        font-size: 0.9em;
     }
     #worship-times{
         font-size: 1em;
@@ -489,13 +499,17 @@ li.active a{
 }
 
 @media screen and (max-width: 766px){
-    .carousel-wrapper{
-        height: auto;
+    .navbar-nav li a{
+        border-radius: 0 !important;
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
     }
-    .carousel-wrapper div{
-        display: block;
-        float: none !important;
-        width: 100%;
+    .dropdown-menu{
+        background-color: #e7e7e7 !important;
+    }
+    .dropdown-item{
+        color: #fff !important;
+        text-align: center;
     }
     .contact-info{
         height: auto;
@@ -522,6 +536,7 @@ li.active a{
     }
     .page-item div{
         display: block;
+        font-size: 1em;
         float: none;
         height: auto;
         width: 100%;
