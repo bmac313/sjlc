@@ -87,7 +87,7 @@ public class NewsController {
         model.addAttribute("title", "View Post - MusicFinds");
         model.addAttribute("post", post);
 
-        model.addAttribute("findsActiveStatus", "active");
+        model.addAttribute("newsActiveStatus", "active");
 
         return "newsitems/view-post";
     }
