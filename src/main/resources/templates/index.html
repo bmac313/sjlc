@@ -53,7 +53,7 @@
         </section>
 
         <!-- Jumbotron is for recent updates (e.g. recent events) -->
-        <section class="jumbotron">
+        <section th:if="${featuredPost}" class="jumbotron">
             <h1 class="display-3">Recent Updates</h1>
             <h2 th:text="${featuredPost.title}"></h2>
             <p class="lead" th:text="${#strings.abbreviate(featuredPost.body,110)}"></p>
