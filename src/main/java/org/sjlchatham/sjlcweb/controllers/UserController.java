@@ -70,26 +70,16 @@ public class UserController {
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(newUser.getPassword());
-        Authorities userRole = new Authorities(newUser, "ROLE_USER");
-        newUser.addAuthority(userRole);
+        Authorities userRole1 = new Authorities(newUser, "ROLE_USER");
+        Authorities userRole2 = new Authorities(newUser, "ROLE_ADMIN");
+        newUser.addAuthority(userRole1);
+        newUser.addAuthority(userRole2);
         newUser.setPassword(encodedPassword);
 
         userDao.save(newUser);
 
         return "redirect:";
 
-    }
-
-    @RequestMapping(value = "admin", method = RequestMethod.GET)
-    public String showAdminPage (ModelMap model, Principal principal) {
-        String loggedInUser = principal.getName(); // Username of the currently logged-in user / who is sending this request.
-        return "users/admin";
-    }
-
-    @RequestMapping(value = "admin-service", method = RequestMethod.GET)
-    public String adminService (ModelMap model, Principal principal) {
-        adminService.performSomeAdminService();
-        return "users/admin";
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.GET)
