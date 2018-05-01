@@ -70,9 +70,6 @@ public class NewsController {
             return "newsitems/new-post";
         }
 
-        String loggedInUser = principal.getName();
-        postToAdd.setAuthor(loggedInUser);
-
         postDao.save(postToAdd);
 
         return "redirect:";
