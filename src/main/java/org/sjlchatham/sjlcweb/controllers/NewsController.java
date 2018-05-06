@@ -37,7 +37,7 @@ public class NewsController {
 
         model.addAttribute("newsActiveStatus", "active");
         model.addAttribute("posts", postDao.findAll(pageRequest));
-        model.addAttribute("title", "Latest News and Updates - St. John's Lutheran Church");
+        model.addAttribute("title", "Latest News and Updates | St. John's Lutheran Church");
 
         model.addAttribute("page", page);
 
@@ -47,7 +47,7 @@ public class NewsController {
     @RequestMapping(value = "new-post", method = RequestMethod.GET)
     public String showNewsForm(Model model) {
 
-        model.addAttribute("title", "Create a News Item - St. John's Lutheran Church");
+        model.addAttribute("title", "Create a News Item | St. John's Lutheran Church");
         model.addAttribute("header", "Create a News Item");
         model.addAttribute(new Post());
 
@@ -62,8 +62,8 @@ public class NewsController {
 
         if (errors.hasErrors()) {
 
-            model.addAttribute("title", "New Post - St. John's Lutheran Church");
-            model.addAttribute("header", "Create a News Post");
+            model.addAttribute("title", "Create a News Item | St. John's Lutheran Church");
+            model.addAttribute("header", "Create a News Item");
 
             model.addAttribute("findsActiveStatus", "active");
 

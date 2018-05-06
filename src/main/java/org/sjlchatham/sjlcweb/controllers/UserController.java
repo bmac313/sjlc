@@ -39,8 +39,8 @@ public class UserController {
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String showLoginPage(@RequestParam(required = false) boolean loginError, Model model) {
         model.addAttribute("loginError", loginError);
-        model.addAttribute("title", "Log In - St. John's Lutheran Church");
-        model.addAttribute("header", "Log In");
+        model.addAttribute("title", "Admin Log In | St. John's Lutheran Church");
+        model.addAttribute("header", "Admin Log In");
         return "users/login";
     }
 
@@ -52,7 +52,7 @@ public class UserController {
     @RequestMapping(value = "signup", method = RequestMethod.GET)
     public String showSignUpPage(Model model) {
         model.addAttribute(new User());
-        model.addAttribute("title", "Create an Account - St. John's Lutheran Church");
+        model.addAttribute("title", "Create an Account | St. John's Lutheran Church");
         model.addAttribute("header", "Create an Account");
 
         return "users/signup";
@@ -62,7 +62,7 @@ public class UserController {
     public String signUpUser(@Valid @ModelAttribute User newUser,
                              Errors errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Create an Account - St. John's Lutheran Church");
+            model.addAttribute("title", "Create an Account | St. John's Lutheran Church");
             model.addAttribute("header", "Create an Account");
 
             return "users/signup";
@@ -78,18 +78,6 @@ public class UserController {
 
         return "redirect:";
 
-    }
-
-    @RequestMapping(value = "admin", method = RequestMethod.GET)
-    public String showAdminPage (ModelMap model, Principal principal) {
-        String loggedInUser = principal.getName(); // Username of the currently logged-in user / who is sending this request.
-        return "users/admin";
-    }
-
-    @RequestMapping(value = "admin-service", method = RequestMethod.GET)
-    public String adminService (ModelMap model, Principal principal) {
-        adminService.performSomeAdminService();
-        return "users/admin";
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.GET)
