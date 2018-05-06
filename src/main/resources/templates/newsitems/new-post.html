@@ -9,7 +9,7 @@
     <header th:replace="fragments::header-wrapper"></header>
     <nav th:replace="fragments::navbar-main"></nav>
 
-    <main class="container main-column">
+    <main class="container">
         <h1 th:text="${header}"></h1>
         <p>Fields marked with an asterisk (*) are required.</p>
         <form th:object="${post}" method="post">
@@ -58,14 +58,17 @@
                 <span th:errors="*{imgUrl}" class="text-danger col-sm-3"></span>
             </div>
 
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-            <input type="submit" value="Post" class="btn btn-primary" />
+            <div class="form-group row">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <div class="col-sm-2">
+                    <input type="submit" value="Post" class="btn btn-primary" />
+                </div>
+            </div>
 
         </form>
-
-        <footer th:replace="fragments::footer"></footer>
-
     </main>
+
+    <footer th:replace="fragments::footer"></footer>
 
 </div>
 
