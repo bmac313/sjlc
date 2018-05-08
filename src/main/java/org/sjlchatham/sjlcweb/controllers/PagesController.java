@@ -19,7 +19,7 @@ public class PagesController {
         String[] sideBarImagePaths = {"/img/altar.png", "/img/piano.png", "/img/aisle.png"};
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
-        model.addAttribute("title", "Staff - St. John's Lutheran Church");
+        model.addAttribute("title", "Staff | St. John's Lutheran Church");
         model.addAttribute("header", "Staff");
         model.addAttribute("aboutActiveStatus", "active");
         model.addAttribute("pageBodyText", "staff-page-body");
@@ -34,7 +34,7 @@ public class PagesController {
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/about_us_header.png");
-        model.addAttribute("title", "What We Believe - St. John's Lutheran Church");
+        model.addAttribute("title", "What We Believe | St. John's Lutheran Church");
         model.addAttribute("header", "What We Believe");
         model.addAttribute("aboutActiveStatus", "active");
         model.addAttribute("pageBodyText", "beliefs-page-body");
@@ -49,7 +49,7 @@ public class PagesController {
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/altar_wide.png");
-        model.addAttribute("title", "About Our Worship - St. John's Lutheran Church");
+        model.addAttribute("title", "About Our Worship | St. John's Lutheran Church");
         model.addAttribute("header", "About Our Worship");
         model.addAttribute("aboutActiveStatus", "active");
         model.addAttribute("pageBodyText", "worship-page-body");
@@ -64,7 +64,7 @@ public class PagesController {
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/church_history_header.png");
-        model.addAttribute("title", "Church History - St. John's Lutheran Church");
+        model.addAttribute("title", "Church History | St. John's Lutheran Church");
         model.addAttribute("header", "Church History");
         model.addAttribute("aboutActiveStatus", "active");
         model.addAttribute("pageBodyText", "history-page-body");
@@ -79,7 +79,7 @@ public class PagesController {
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/preschool_header.png");
-        model.addAttribute("title", "Preschool - St. John's Lutheran Church");
+        model.addAttribute("title", "Preschool | St. John's Lutheran Church");
         model.addAttribute("header", "St. John's Lutheran Preschool");
         model.addAttribute("psActiveStatus", "active");
         model.addAttribute("pageBodyText", "preschool-page-body");
@@ -94,7 +94,7 @@ public class PagesController {
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/altar_wide.png");
-        model.addAttribute("title", "Calendar - St. John's Lutheran Church");
+        model.addAttribute("title", "Calendar | St. John's Lutheran Church");
         model.addAttribute("header", "Calendar");
         model.addAttribute("newsActiveStatus", "active");
         model.addAttribute("pageBodyText", "calendar-page-body");
@@ -109,7 +109,7 @@ public class PagesController {
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/altar_wide.png");
-        model.addAttribute("title", "Links - St. John's Lutheran Church");
+        model.addAttribute("title", "Links | St. John's Lutheran Church");
         model.addAttribute("header", "Links");
         model.addAttribute("newsActiveStatus", "active");
         model.addAttribute("pageBodyText", "links-page-body");
@@ -129,7 +129,7 @@ public class PagesController {
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/altar_wide.png");
-        model.addAttribute("title", "Archived Sermons - St. John's Lutheran Church");
+        model.addAttribute("title", "Archived Sermons | St. John's Lutheran Church");
         model.addAttribute("header", "Archived Sermons");
         model.addAttribute("sermonsActiveStatus", "active");
         model.addAttribute("pageBodyText", "sermons-page-body");
@@ -144,8 +144,8 @@ public class PagesController {
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/altar_wide.png");
-        model.addAttribute("title", "Newsletter - St. John's Lutheran Church");
-        model.addAttribute("header", "Newsletter");
+        model.addAttribute("title", "Newsletters | St. John's Lutheran Church");
+        model.addAttribute("header", "Newsletters");
         model.addAttribute("sermonsActiveStatus", "active");
         model.addAttribute("pageBodyText", "newsletter-page-body");
 

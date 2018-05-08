@@ -7,8 +7,17 @@ $(window).resize(function() {
 });
 
 var initEvents = function() {
+    bindHeaderEvents();
     bindNavBarEvents();
     bindNavBoxEvents();
+}
+
+var bindHeaderEvents = function() {
+    $('#header-scroll-btn').click(function() {
+        $('html,body').animate({
+            scrollTop: $("#scroll-location").offset().top},
+            'slow');
+    });
 }
 
 var bindNavBarEvents = function() {
