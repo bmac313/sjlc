@@ -47,16 +47,16 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li th:class="${homeActiveStatus}"><a href="/">Home</a></li>
+                <li class="font-weight-bold" th:classappend="${homeActiveStatus}"><a href="/#scroll-location">Home</a></li>
                 <li th:class="${aboutActiveStatus}">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/about/beliefs#navbar">What We Believe</a>
-                        <a class="dropdown-item" href="/about/worship#navbar">About Our Worship</a>
-                        <a class="dropdown-item" href="/about/staff#navbar">Staff</a>
-                        <a class="dropdown-item" href="/about/history#navbar">Church History</a>
+                        <a class="dropdown-item" href="/about/beliefs">What We Believe</a>
+                        <a class="dropdown-item" href="/about/worship">About Our Worship</a>
+                        <a class="dropdown-item" href="/about/staff">Staff</a>
+                        <a class="dropdown-item" href="/about/history">Church History</a>
                     </div>
                 </li>
                 <li th:class="${psActiveStatus}">
@@ -64,7 +64,7 @@
                         Preschool
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/preschool#navbar">About</a>
+                        <a class="dropdown-item" href="/preschool">About</a>
                         <a class="dropdown-item" target="_blank" href="https://drive.google.com/open?id=1rBdzAIqL65sMS7Fc1QawkxDlIyezixM0">Registration Form</a>
                         <a class="dropdown-item" target="_blank" href="https://drive.google.com/open?id=16qaE26I-YWSLeL8izE-tYW8RwxxxR3fw">Child Record Form</a>
                     </div>
@@ -74,9 +74,9 @@
                         Happenings
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/news#navbar">News &amp; Updates</a>
-                        <a class="dropdown-item" href="/calendar#navbar">Calendar</a>
-                        <a class="dropdown-item" href="/links#navbar">Links</a>
+                        <a class="dropdown-item" href="/news">News &amp; Updates</a>
+                        <a class="dropdown-item" href="/calendar">Calendar</a>
+                        <a class="dropdown-item" href="/links">Links</a>
                     </div>
                 </li>
                 <li th:class="${sermonsActiveStatus}">
@@ -84,8 +84,8 @@
                         Sermons &amp; Newsletter
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/downloads/sermons#navbar">Archived Sermons</a>
-                        <a class="dropdown-item" href="/downloads/newsletter#navbar">Newsletter</a>
+                        <a class="dropdown-item" href="/downloads/sermons">Archived Sermons</a>
+                        <a class="dropdown-item" href="/downloads/newsletter">Newsletter</a>
                     </div>
                 </li>
             </ul>

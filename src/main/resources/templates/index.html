@@ -4,30 +4,42 @@
 
 <body>
 
-<div class="container main-body">
+<div class="container main-body no-top-padding">
 
     <header th:replace="fragments::header-wrapper"></header>
 
     <main class="container main-column">
 
         <div th:class="${alertClass}" th:text="${alert}"></div>
+
+        <section th:if="${featuredPost}" class="jumbotron jumbotron-fluid">
+            <p>
+                <span class="h2">Message of the Day:</span>
+                <span class="h4" th:text="${featuredPost.title}"></span>
+            </p>
+            <p class="lead">
+                <a class="btn btn-primary" th:href="@{'/news/viewpost/' + ${featuredPost.id}}">Read More</a>
+            </p>
+        </section>
+
         <h4 id="mobile-nav-instructions" class="hidden" style="text-align:center;">Tap a title or image to toggle navigation.</h4>
+
         <section class="row nav-boxes">
             <div id="about-us" class="col col-xs-12 col-sm-6 col-md-3">
                 <h3>About Us</h3>
                 <img alt="Wood engraging of Leonardo Da Vinci's 'The Last Supper'" src="" th:src="@{/img/community_links.png}" />
                 <ul class="block-list hidden">
-                    <li><a href='/about/beliefs#navbar'>What We Believe</a></li>
-                    <li><a href='/about/worship#navbar'>About Our Worship</a></li>
-                    <li><a href='/about/staff#navbar'>Staff</a></li>
-                    <li><a href='/about/history#navbar'>Church History</a></li>
+                    <li><a href='/about/beliefs'>What We Believe</a></li>
+                    <li><a href='/about/worship'>About Our Worship</a></li>
+                    <li><a href='/about/staff'>Staff</a></li>
+                    <li><a href='/about/history'>Church History</a></li>
                 </ul>
             </div>
             <div id="preschool" class="col col-xs-12 col-sm-6 col-md-3">
                 <h3>Preschool</h3>
                 <img alt="Photo of the St. John's Lutheran Preschool playground" src="" th:src="@{/img/preschool.png}" />
                 <ul class="block-list hidden">
-                    <li><a href='/preschool#navbar'>About</a></li>
+                    <li><a href='/preschool'>About</a></li>
                     <li><a href="https://drive.google.com/open?id=1rBdzAIqL65sMS7Fc1QawkxDlIyezixM0" target="_blank">Registration Form</a></li>
                     <li><a href="https://drive.google.com/open?id=16qaE26I-YWSLeL8izE-tYW8RwxxxR3fw" target="_blank">Child Record Form</a></li>
                 </ul>
@@ -36,58 +48,25 @@
                 <h3>Happenings</h3>
                 <img alt="Close-up of a blue calendar" src="" th:src="@{/img/calendar.png}" />
                 <ul class="block-list hidden">
-                    <li><a href="/news#navbar">News &amp; Updates</a></li>
-                    <li><a href="/calendar#navbar">Calendar</a></li>
-                    <li><a href="/links#navbar">Links</a></li>
+                    <li><a href="/news">News &amp; Updates</a></li>
+                    <li><a href="/calendar">Calendar</a></li>
+                    <li><a href="/links">Links</a></li>
                 </ul>
             </div>
             <div id="sermons-newsletter" class="col col-xs-12 col-sm-6 col-md-3">
                 <h3>Sermons &amp; Newsletters</h3>
                 <img alt="Close-up of the glass door to the St. John's Sanctuary" src="" th:src="@{/img/ministries.png}" />
                 <ul class="block-list hidden">
-                    <li><a href='/downloads/sermons#navbar'>Archived Sermons</a></li>
-                    <li><a href='/downloads/newsletter#navbar'>Newsletters</a></li>
+                    <li><a href='/downloads/sermons'>Archived Sermons</a></li>
+                    <li><a href='/downloads/newsletter'>Newsletters</a></li>
                 </ul>
-            </div>
-        </section>
-
-        <!-- Jumbotron is for recent updates (e.g. recent events) -->
-        <section th:if="${featuredPost}" class="jumbotron">
-            <h1 class="display-3">Recent Updates</h1>
-            <h2 th:text="${featuredPost.title}"></h2>
-            <p class="lead" th:text="${#strings.abbreviate(featuredPost.body,110)}"></p>
-            <p class="lead">
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                    Read More
-                </button>
-            </p>
-
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" th:text="${featuredPost.title}"></h4>
-                        </div>
-                        <div class="modal-body">
-                            <p th:text="${featuredPost.body}"></p>
-                            <a class="btn btn-primary" th:href="@{'/news/viewpost/' + ${featuredPost.id}}">Go to Post</a>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-
-                </div>
             </div>
         </section>
 
         <section class="row info-boxes">
             <div id="worship-times" class="col col-xs-12 col-sm-4 col-md-4">
                 <h3>Worship Times</h3>
-                <img alt="Exterior photo of St. John's Lutheran Church" src="" th:src="@{/img/church_exterior1.jpg}" />
+                <img alt="Exterior photo of St. John's Lutheran Church" src="" th:src="@{/img/love.jpg}" />
                 <p>Saturdays @ 6:00 p.m.</p>
                 <p>Sundays @ 9:00 a.m.</p>
             </div>
@@ -103,7 +82,6 @@
             <div id="facebook-info" class="col col-xs-12 col-sm-4 col-md-4">
                 <h3>Find Us On Facebook</h3>
                 <a id="facebook-icon" href="https://www.facebook.com/StJohnsLutheranChurchAndPreschool/"><i class="fab fa-facebook"></i></a>
-                <p>Click the icon above to visit our Facebook page.</p>
             </div>
         </section>
 

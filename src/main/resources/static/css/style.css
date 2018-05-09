@@ -16,6 +16,10 @@ section{
     font-weight: bold;
 }
 
+p, a {
+    font-family: Lato Light, sans-serif;
+}
+
 .btn-primary, .btn-default {
     border-radius   : 0px;
     border          : 0px;
@@ -54,9 +58,9 @@ section{
 
 .main-body {
     background-color:#E4F8F6;
-    font-family: 'Josefin Slab', serif;
     padding-bottom: 0;
     padding-right:0;
+    padding-top: 5em;
     padding-left:0;
 }
 
@@ -75,6 +79,7 @@ section{
 }
 
 .nav.navbar-nav li a, .nav.navbar-nav li p {
+    font-family: Lato, sans-serif;
     color:#E4F8F6;
     border: 0.1em solid rgba(231, 231, 231, 0);
     border-radius: 1.7em;
@@ -100,12 +105,9 @@ li.active a{
               rgba(231, 231, 231, 0.45),
               rgba(231, 231, 231, 0.45)
             ),
-        url('../img/luther_rose.png'),
         no-repeat,
         left top;
-    background-size: 135%;
     color: #053028 !important;
-    font-weight: bold;
 }
 
 .navbar-header .navbar-brand {
@@ -131,7 +133,7 @@ li.active a{
 
 .dropdown-item{
     background-image: none !important;
-    color: #4c6184 !important;
+    color: #000 !important;
     display: block;
     padding-top: 1em;
     padding-bottom: 1em;
@@ -200,7 +202,7 @@ li.active a{
 
 .header-wrapper{
     background-color: #70a6ff;
-    background-image: url('../img/love.jpg');
+    background-image: url('../img/church_exterior1.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -238,10 +240,10 @@ li.active a{
 }
 .nav-boxes div{
     background-image: url('../img/checkered_pattern.png');
-    height: 26em;
+    height: 15em;
 }
 .nav-boxes .col h3{
-    height: 25%;
+    height: 2em;
     vertical-align: middle;
 }
 
@@ -265,8 +267,8 @@ li.active a{
 }
 .block-list li a{
     display: block;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     transition: 0.2s;
     -webkit-transition: 0.2s;
     width: 100%;
@@ -279,21 +281,15 @@ li.active a{
 }
 
 .jumbotron{
-    background-color: #FFD2AF;
+    background-color: #BCC8E8;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    padding: 0.5em;
+    margin-bottom: 0;
+    margin-top: 1.5em;
 }
 
-.carousel-wrapper{
-    height: 25em;
-    margin-top: 5em;
-}
-.carousel-wrapper div{
-    display: inline-block;
-}
-.carousel-wrapper img{
-    height: 100%;
-    padding: 0;
-    width: 100%;
-}
 #worship-times{
     background-color: #FFF184;
     font-size: 1.5em;
@@ -399,7 +395,7 @@ li.active a{
 }
 
 .info-boxes{
-    height: 31em;
+    height: 25em;
     margin-right: 0;
     margin-left: 0;
 }
@@ -427,14 +423,11 @@ li.active a{
     float: right;
 }
 
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%
-}
-
-.sticky + .main-body {
-  padding-top: 60px;
+/* Most pages use top padding to prevent the fixed navbar from covering page elements. This class is used to
+ * override this padding for pages that don't have the fixed navbar.
+ */
+.no-top-padding{
+    padding-top: 0;
 }
 
 .width-10{
@@ -472,6 +465,9 @@ li.active a{
 @media screen and (max-width: 1199px){
     .carousel-wrapper{
         height: 20.8em;
+    }
+    .info-boxes{
+        height: 22em;
     }
 }
 
@@ -511,7 +507,7 @@ li.active a{
         font-size: 1em;
     }
     .info-boxes{
-        height: 25em;
+        height: 21em;
     }
 }
 
