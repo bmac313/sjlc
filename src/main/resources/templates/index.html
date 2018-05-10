@@ -25,63 +25,77 @@
         <h4 id="mobile-nav-instructions" class="hidden" style="text-align:center;">Tap a title or image to toggle navigation.</h4>
 
         <section class="row nav-boxes">
-            <div id="about-us" class="col col-xs-12 col-sm-6 col-md-3">
-                <h3>About Us</h3>
-                <img alt="Wood engraging of Leonardo Da Vinci's 'The Last Supper'" src="" th:src="@{/img/community_links.png}" />
-                <ul class="block-list hidden">
-                    <li><a href='/about/beliefs'>What We Believe</a></li>
-                    <li><a href='/about/worship'>About Our Worship</a></li>
-                    <li><a href='/about/staff'>Staff</a></li>
-                    <li><a href='/about/history'>Church History</a></li>
-                </ul>
+            <div class="col col-xs-12 col-sm-6 col-md-3">
+                <article id="about-us">
+                    <h3>About Us</h3>
+                    <img alt="Wood engraging of Leonardo Da Vinci's 'The Last Supper'" src="" th:src="@{/img/community_links.png}" />
+                    <ul class="block-list hidden">
+                        <li><a href='/about/beliefs'>What We Believe</a></li>
+                        <li><a href='/about/worship'>About Our Worship</a></li>
+                        <li><a href='/about/staff'>Staff</a></li>
+                        <li><a href='/about/history'>Church History</a></li>
+                    </ul>
+                </article>
             </div>
-            <div id="preschool" class="col col-xs-12 col-sm-6 col-md-3">
-                <h3>Preschool</h3>
-                <img alt="Photo of the St. John's Lutheran Preschool playground" src="" th:src="@{/img/preschool.png}" />
-                <ul class="block-list hidden">
-                    <li><a href='/preschool'>About</a></li>
-                    <li><a href="https://drive.google.com/open?id=1rBdzAIqL65sMS7Fc1QawkxDlIyezixM0" target="_blank">Registration Form</a></li>
-                    <li><a href="https://drive.google.com/open?id=16qaE26I-YWSLeL8izE-tYW8RwxxxR3fw" target="_blank">Child Record Form</a></li>
-                </ul>
+            <div class="col col-xs-12 col-sm-6 col-md-3">
+                <article id="preschool">
+                    <h3>Preschool</h3>
+                    <img alt="Photo of the St. John's Lutheran Preschool playground" src="" th:src="@{/img/preschool.png}" />
+                    <ul class="block-list hidden">
+                        <li><a href='/preschool'>About</a></li>
+                        <li><a href="https://drive.google.com/open?id=1rBdzAIqL65sMS7Fc1QawkxDlIyezixM0" target="_blank">Registration Form</a></li>
+                        <li><a href="https://drive.google.com/open?id=16qaE26I-YWSLeL8izE-tYW8RwxxxR3fw" target="_blank">Child Record Form</a></li>
+                    </ul>
+                </article>
             </div>
-            <div id="calendar" class="col col-xs-12 col-sm-6 col-md-3">
-                <h3>Happenings</h3>
-                <img alt="Close-up of a blue calendar" src="" th:src="@{/img/calendar.png}" />
-                <ul class="block-list hidden">
-                    <li><a href="/news">News &amp; Updates</a></li>
-                    <li><a href="/calendar">Calendar</a></li>
-                    <li><a href="/links">Links</a></li>
-                </ul>
+            <div class="col col-xs-12 col-sm-6 col-md-3">
+                <article id="calendar">
+                    <h3>Happenings</h3>
+                    <img alt="Close-up of a blue calendar" src="" th:src="@{/img/calendar.png}" />
+                    <ul class="block-list hidden">
+                        <li><a href="/news">News &amp; Updates</a></li>
+                        <li><a href="/calendar">Calendar</a></li>
+                        <li><a href="/links">Links</a></li>
+                    </ul>
+                </article>
             </div>
-            <div id="sermons-newsletter" class="col col-xs-12 col-sm-6 col-md-3">
-                <h3>Sermons &amp; Newsletters</h3>
-                <img alt="Close-up of the glass door to the St. John's Sanctuary" src="" th:src="@{/img/ministries.png}" />
-                <ul class="block-list hidden">
-                    <li><a href='/downloads/sermons'>Archived Sermons</a></li>
-                    <li><a href='/downloads/newsletter'>Newsletters</a></li>
-                </ul>
+            <div class="col col-xs-12 col-sm-6 col-md-3">
+                <article id="sermons-newsletter">
+                    <h3>Sermons &amp; Newsletters</h3>
+                    <img alt="Close-up of the glass door to the St. John's Sanctuary" src="" th:src="@{/img/ministries.png}" />
+                    <ul class="block-list hidden">
+                        <li><a href='/downloads/sermons'>Archived Sermons</a></li>
+                        <li><a href='/downloads/newsletter'>Newsletters</a></li>
+                    </ul>
+                </article>
             </div>
         </section>
 
         <section class="row info-boxes">
-            <div id="worship-times" class="col col-xs-12 col-sm-4 col-md-4">
-                <h3>Worship Times</h3>
-                <img alt="Exterior photo of St. John's Lutheran Church" src="" th:src="@{/img/love.jpg}" />
-                <p>Saturdays @ 6:00 p.m.</p>
-                <p>Sundays @ 9:00 a.m.</p>
+            <div class="col col-xs-12 col-sm-4 col-md-4">
+                <article id="worship-times">
+                    <h3>Worship Times</h3>
+                    <img alt="Exterior photo of St. John's Lutheran Church" src="" th:src="@{/img/love.jpg}" />
+                    <p>Saturdays @ 6:00 p.m.</p>
+                    <p>Sundays @ 9:00 a.m.</p>
+                </article>
             </div>
 
-            <div id="contact-box" class="col col-xs-12 col-sm-4 col-md-4">
-                <h3>Contact Info</h3>
-                <img alt="Photo of the Castle Church in Wittenberg, Germany" src="" th:src="@{/img/wittenberg_church.jpg}" />
-                <p><i class="fas fa-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp;1225 N Main St. Chatham, IL</p>
-                <p><i class="fas fa-phone"></i>&nbsp;&nbsp;&nbsp;(217) 483-2612</p>
-                <p><i class="fas fa-envelope-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:stjohnslcms@comcast.net">stjohnslcms@comcast.net</a></p>
+            <div class="col col-xs-12 col-sm-4 col-md-4">
+                <article id="contact-box">
+                    <h3>Contact Info</h3>
+                    <img alt="Photo of the Castle Church in Wittenberg, Germany" src="" th:src="@{/img/wittenberg_church.jpg}" />
+                    <p><i class="fas fa-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp;1225 N Main St. Chatham, IL</p>
+                    <p><i class="fas fa-phone"></i>&nbsp;&nbsp;&nbsp;(217) 483-2612</p>
+                    <p><i class="fas fa-envelope-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:stjohnslcms@comcast.net">stjohnslcms@comcast.net</a></p>
+                </article>
             </div>
 
-            <div id="facebook-info" class="col col-xs-12 col-sm-4 col-md-4">
-                <h3>Find Us On Facebook</h3>
-                <a id="facebook-icon" href="https://www.facebook.com/StJohnsLutheranChurchAndPreschool/"><i class="fab fa-facebook"></i></a>
+            <div class="col col-xs-12 col-sm-4 col-md-4">
+                <article id="facebook-info">
+                    <h3>Find Us On Facebook</h3>
+                    <a id="facebook-icon" href="https://www.facebook.com/StJohnsLutheranChurchAndPreschool/"><i class="fab fa-facebook"></i></a>
+                </article>
             </div>
         </section>
 

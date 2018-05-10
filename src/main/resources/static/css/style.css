@@ -213,13 +213,13 @@ li.active a{
     text-align: center;
 }
 #header-scroll-btn{
-    color: #FFF6AF;
+    color: #B4E4DF;
     font-size: 3em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
 }
 #header-scroll-btn:hover{
-	color: rgba(255, 246, 175, 0.4);
+	color: rgba(180, 228, 223, 0.4);
 	transition: 0.2s;
 	-webkit-transition: 0.2s;
 }
@@ -238,9 +238,13 @@ li.active a{
 .nav-boxes img{
     width: 100%;
 }
-.nav-boxes div{
+.nav-boxes article{
     background-image: url('../img/checkered_pattern.png');
+    background-color: #6276AC;
+    box-shadow: 0px 5px 0px #BCC8E8;
+    color: #fff;
     height: 15em;
+    padding-top: 0.5em;
 }
 .nav-boxes .col h3{
     height: 2em;
@@ -248,9 +252,7 @@ li.active a{
 }
 
 .nav-box-active{
-    background-color: #C97330;
-    background-image: url('../img/checkered_pattern.png');
-    color: #FFD2AF;
+    color: #E3E9F8;
 }
 .nav-box-active li a{
     color: #fff;
@@ -291,7 +293,10 @@ li.active a{
 }
 
 #worship-times{
-    background-color: #FFF184;
+    background-color: #6276AC;
+    background-image: url('../img/checkered_pattern_@2X.png');
+    box-shadow: 0px 5px 0px #BCC8E8;
+    color: #fff;
     font-size: 1.5em;
     height: 100%;
 }
@@ -312,14 +317,16 @@ li.active a{
 	color: #fff;
 	background-color: #2e9b87;
 	background-image: url('../img/checkered_pattern.png');
+	box-shadow: 0px 5px 0px #B4E4DF;
 	height: 100%;
 }
 #contact-box a{
     color: #56ffdf;
 }
 #facebook-info{
-	background-color: #2d509b;
+	background-color: #6276AC;
 	background-image: url('../img/checkered_pattern_@2X.png');
+	box-shadow: 0px 5px 0px #BCC8E8;
 	color: #fff;
 	height: 100%;
 }
@@ -395,13 +402,15 @@ li.active a{
 }
 
 .info-boxes{
-    height: 25em;
-    margin-right: 0;
     margin-left: 0;
+    margin-right: 0;
 }
-.info-boxes div {
+
+.info-boxes article {
+    height: 25em;
     padding-right: 1em;
     padding-left: 1em;
+    padding-top: 0.5em;
 }
 .info-boxes img, info-boxes i {
     width: 100%;
@@ -466,7 +475,7 @@ li.active a{
     .carousel-wrapper{
         height: 20.8em;
     }
-    .info-boxes{
+    .info-boxes article{
         height: 22em;
     }
 }
@@ -506,12 +515,12 @@ li.active a{
     #worship-times{
         font-size: 1em;
     }
-    .info-boxes{
+    .info-boxes article{
         height: 21em;
     }
 }
 
-@media screen and (max-width: 767px){
+@media screen and (max-width: 766px){
     .navbar-nav li a{
         border-radius: 0 !important;
         -webkit-border-radius: 0 !important;
@@ -543,7 +552,7 @@ li.active a{
     .nav-boxes img{
         width: 65%;
     }
-    .nav-boxes div{
+    .nav-boxes article{
         border: 0.01em dotted black;
         height: 18em;
     }
@@ -560,11 +569,15 @@ li.active a{
         height: auto;
         width: 100%;
     }
-    .info-boxes{
+    .info-boxes article{
         height: auto;
-    }
-    .info-boxes div{
         padding-right: 6em;
         padding-left: 6em;
+    }
+}
+
+@media screen and (max-width: 618px) {
+    .nav-boxes article{
+        height: 15em;
     }
 }
