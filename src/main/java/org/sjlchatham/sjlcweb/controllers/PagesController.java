@@ -33,7 +33,7 @@ public class PagesController {
         String[] sideBarImagePaths = {"/img/altar.png", "/img/piano.png", "/img/aisle.png"};
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
-        model.addAttribute("headerImagePath", "/img/about_us_header.png");
+        model.addAttribute("headerImagePath", "/img/love_page_version.png");
         model.addAttribute("title", "What We Believe | St. John's Lutheran Church");
         model.addAttribute("header", "What We Believe");
         model.addAttribute("aboutActiveStatus", "active");

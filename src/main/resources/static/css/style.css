@@ -70,21 +70,22 @@ p, a {
 }
 
 .navbar {
-    background-color: #0E625C;
+    background-color: #6276AC;
     border-radius:0px;
     border: 0;
     padding-bottom: 0.5em;
     padding-top: 0.5em;
     text-align: center;
 }
+.icon-bar{
+    background-color: #fff !important;
+}
 
 .nav.navbar-nav li a, .nav.navbar-nav li p {
     font-family: Lato, sans-serif;
+    font-size: 1em;
     color:#E4F8F6;
     border: 0.1em solid rgba(231, 231, 231, 0);
-    border-radius: 1.7em;
-    -webkit-border-radius: 2em;
-    -moz-border-radius: 2em;
     margin-right: 1em;
     margin-left: 1em;
     transition: 0.2s;
@@ -196,18 +197,12 @@ li.active a{
     color:#338980;
 }
 
-.inline {
-    display:inline;
-}
-
 .header-wrapper{
     background-color: #70a6ff;
     background-image: url('../img/church_exterior1.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding-top: 6em;
-    padding-bottom: 6em;
     padding-left: 1.5em;
     padding-right: 1.5em;
     text-align: center;
@@ -223,9 +218,17 @@ li.active a{
 	transition: 0.2s;
 	-webkit-transition: 0.2s;
 }
+#header-upper-row{
+    padding-bottom: 9em;
+}
 
 .site-branding {
-    color: #dee9fc;
+    color: #E0F7F5;
+    background-color: rgba(98, 118, 172, 0.5);
+}
+
+.login-msg {
+    text-align: right;
 }
 
 .nav-boxes{
@@ -241,7 +244,7 @@ li.active a{
 .nav-boxes article{
     background-image: url('../img/checkered_pattern.png');
     background-color: #6276AC;
-    box-shadow: 0px 5px 0px #BCC8E8;
+    box-shadow: 0px 8px 0px #BCC8E8;
     color: #fff;
     height: 15em;
     padding-top: 0.5em;
@@ -295,7 +298,7 @@ li.active a{
 #worship-times{
     background-color: #6276AC;
     background-image: url('../img/checkered_pattern_@2X.png');
-    box-shadow: 0px 5px 0px #BCC8E8;
+    box-shadow: 0px 8px 0px #BCC8E8;
     color: #fff;
     font-size: 1.5em;
     height: 100%;
@@ -317,7 +320,7 @@ li.active a{
 	color: #fff;
 	background-color: #2e9b87;
 	background-image: url('../img/checkered_pattern.png');
-	box-shadow: 0px 5px 0px #B4E4DF;
+	box-shadow: 0px 8px 0px #B4E4DF;
 	height: 100%;
 }
 #contact-box a{
@@ -326,7 +329,7 @@ li.active a{
 #facebook-info{
 	background-color: #6276AC;
 	background-image: url('../img/checkered_pattern_@2X.png');
-	box-shadow: 0px 5px 0px #BCC8E8;
+	box-shadow: 0px 8px 0px #BCC8E8;
 	color: #fff;
 	height: 100%;
 }
@@ -336,7 +339,7 @@ li.active a{
 }
 
 .page-sidebar{
-    background-color: #d7e2e1;
+    background-color: #d7eae8;
     float: left;
 }
 .page-sidebar img{
@@ -428,8 +431,15 @@ li.active a{
     border: 0;
 }
 
+.inline {
+    display: inline;
+}
+
 .right{
     float: right;
+}
+.left{
+    float: left;
 }
 
 /* Most pages use top padding to prevent the fixed navbar from covering page elements. This class is used to
