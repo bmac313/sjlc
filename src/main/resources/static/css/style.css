@@ -225,6 +225,7 @@ li.active a{
 .site-branding {
     color: #E0F7F5;
     background-color: rgba(98, 118, 172, 0.5);
+    padding: 0.1em;
 }
 
 .login-msg {
@@ -563,8 +564,8 @@ li.active a{
         width: 65%;
     }
     .nav-boxes article{
-        border: 0.01em dotted black;
         height: 18em;
+        margin-bottom: 1.5em;
     }
     .site-branding img{
         width: 100%;
@@ -581,6 +582,7 @@ li.active a{
     }
     .info-boxes article{
         height: auto;
+        margin-bottom: 1.5em;
         padding-right: 6em;
         padding-left: 6em;
     }
@@ -589,5 +591,9 @@ li.active a{
 @media screen and (max-width: 618px) {
     .nav-boxes article{
         height: 15em;
+    }
+    .info-boxes article{
+        padding-right: 4em;
+        padding-left: 4em;
     }
 }
