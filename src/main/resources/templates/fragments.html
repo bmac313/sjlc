@@ -27,18 +27,23 @@
             <img class="width-40" alt="Christ Figure" src="" th:src="@{/img/christ_figure.png}" />
         </div>
     </div>
-    <!-- TODO: Find better positioning for logged in message. -->
-    <div class="right login-msg">
-        <div sec:authorize="${isAuthenticated()}">
-            <p>Welcome, <span sec:authentication="name"></span></p>
-            <a href="/logout" class="btn btn-primary">Log Out</a>
-        </div>
-    </div>
     <div class="site-branding">
         <h2>"For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."</h2>
         <h4>~John 3:16</h4>
     </div>
-    <a id="header-scroll-btn" href="#"><i class="fas fa-chevron-circle-down"></i></a>
+    <div class="row">
+        <div class="col col-md-7 col-sm-7 col-xs-7 text-right">
+            <a id="header-scroll-btn" href="#"><i class="fas fa-chevron-circle-down"></i></a>
+        </div>
+        <div class="col col-md-5 col-sm-5 col-xs-5">
+            <article class="login-msg">
+                <div sec:authorize="${isAuthenticated()}">
+                    <p>Welcome, <span sec:authentication="name"></span></p>
+                    <a href="/logout" class="btn btn-primary">Log Out</a>
+                </div>
+            </article>
+        </div>
+    </div>
     <div id="scroll-location"></div>
 
 </header>
@@ -92,7 +97,7 @@
                         Sermons &amp; Newsletter
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/downloads/sermons">Archived Sermons</a>
+                        <a class="dropdown-item" href="/downloads/sermons">Sermons</a>
                         <a class="dropdown-item" href="/downloads/newsletter">Newsletter</a>
                     </div>
                 </li>
@@ -249,12 +254,27 @@
 
     <h3>2017</h3>
     <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1glKeRfCqBW3Dwg5742L9l-we1sh_45vC#list" style="width:100%; border:0;"></iframe>
+
+    <h3>2016</h3>
+    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1at-3Djo1wJ3B5p--vupayTaxWBlmpnxr#list" style="width:100%; border:0;"></iframe>
 </div>
 
 <div th:fragment="newsletter-page-body">
     <h2 th:text="${header}"></h2>
     <h3>2018</h3>
     <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1ixguiQ4F_RGnkKSRLM--NptsLjlcPFlf#list" style="width:100%; border:0;"></iframe>
+
+    <h3>2017</h3>
+    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1TynYzgIerQ1jRsDi8Q7ebSf0EzUYspfJ#list" style="width:100%; border:0;"></iframe>
+
+    <h3>2016</h3>
+    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1ZrmnDZ-AoDrKpM2QCtbhm0n5LlkxEz6z#list" style="width:100%; border:0;"></iframe>
+
+    <h3>2015</h3>
+    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1Io6aQsZHB6xNNBjschtfJShw9pPOCcsU#list" style="width:100%; border:0;"></iframe>
+
+    <h3>2014</h3>
+    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1yqB6Mjipy3h8FNENFNYRPK5ATsJkgjVA#list" style="width:100%; border:0;"></iframe>
 </div>
 
 <div th:fragment="footer" class="footer">
