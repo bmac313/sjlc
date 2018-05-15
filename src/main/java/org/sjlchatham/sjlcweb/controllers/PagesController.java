@@ -93,7 +93,7 @@ public class PagesController {
         String[] sideBarImagePaths = {"/img/altar.png", "/img/piano.png", "/img/aisle.png"};
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
-        model.addAttribute("headerImagePath", "/img/altar_wide.png");
+        model.addAttribute("headerImagePath", "/img/contact_us_header.png");
         model.addAttribute("title", "Calendar | St. John's Lutheran Church");
         model.addAttribute("header", "Calendar");
         model.addAttribute("newsActiveStatus", "active");
@@ -108,7 +108,7 @@ public class PagesController {
         String[] sideBarImagePaths = {"/img/altar.png", "/img/piano.png", "/img/aisle.png"};
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
-        model.addAttribute("headerImagePath", "/img/altar_wide.png");
+        model.addAttribute("headerImagePath", "/img/youth_gathering.png");
         model.addAttribute("title", "Links | St. John's Lutheran Church");
         model.addAttribute("header", "Links");
         model.addAttribute("newsActiveStatus", "active");
