@@ -18,9 +18,9 @@
 
         <article class="post" th:each="post : ${posts}">
 
-            <h2>
-                <a th:href="@{'/news/viewpost/' + ${post.id}}" th:text="${post.title}"></a>
-            </h2>
+            <a th:href="@{'/news/viewpost/' + ${post.id}}">
+                <h2 th:text="${post.title}"></h2>
+            </a>
 
             <div class="row">
 
