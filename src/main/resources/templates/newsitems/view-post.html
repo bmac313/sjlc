@@ -15,7 +15,7 @@
             <h2 th:text="${post.title}"></h2>
             <img th:src="${post.imgUrl}" src="" style="max-width:100%;" />
             <div class="post-body">
-                <p th:text="${post.body}"></p>
+                <p th:each="line : ${post.bodyLines}" th:text="${line}"></p>
             </div>
             <div class="post-signature">
                 <p th:text="'Posted by ' + ${post.author}"></p>

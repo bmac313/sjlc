@@ -24,6 +24,8 @@ public class Post {
     @Size(min = 1, max = 2000000000, message = "Please enter a post body of a valid length.")
     private String body;
 
+    private String[] bodyLines;
+
     @NotNull
     @Size(min = 1, max = 100, message = "Author name must be between 1 and 100 characters.")
     private String author;
@@ -40,11 +42,12 @@ public class Post {
         this.timeStamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     }
 
-    public Post(String title, String author, String body, String imgUrl) {
+    public Post(String title, String author, String body, String[] bodyLines, String imgUrl) {
         this();
         this.title = title;
         this.author = author;
         this.body = body;
+        this.bodyLines = bodyLines;
         this.imgUrl = imgUrl;
     }
 
@@ -86,5 +89,13 @@ public class Post {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String[] getBodyLines() {
+        return bodyLines;
+    }
+
+    public void setBodyLines(String[] bodyLines) {
+        this.bodyLines = bodyLines;
     }
 }

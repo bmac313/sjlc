@@ -70,6 +70,9 @@ public class NewsController {
             return "newsitems/new-post";
         }
 
+        String[] bodyLines = postToAdd.getBody().split("\n");
+        postToAdd.setBodyLines(bodyLines);
+
         postDao.save(postToAdd);
 
         return "redirect:";
