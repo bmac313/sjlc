@@ -12,9 +12,11 @@
 
         <div th:class="${alertClass}" th:text="${alert}"></div>
 
-        <a sec:authorize="${isAuthenticated()}" class="btn btn-primary" th:href="@{/news/new-post}">Create a News Item</a>
-
-        <p th:unless="${posts} and ${posts.getSize()}">There are currently no items. Click 'Create a News Item' above to add one!</p>
+        <div class="row container">
+            <div sec:authorize="${isAuthenticated()}" class="col col-lg-12 col-md-12 col-sm-12">
+                <a class="btn btn-primary" th:href="@{/news/new-post}">Create a News Item</a>
+            </div>
+        </div>
 
         <article class="post" th:each="post : ${posts}">
 
