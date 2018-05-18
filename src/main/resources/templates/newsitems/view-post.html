@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
 
 <body>
-<div id="fb-root"></div>
-<script th:src="@{/js/plugins.js}"></script>
 <div class="container main-body">
 
     <nav th:replace="fragments::navbar-main"></nav>
@@ -14,28 +12,15 @@
         <article class="post" style="max-width:45em; margin:auto;">
             <h2 th:text="${post.title}"></h2>
             <img th:src="${post.imgUrl}" src="" style="max-width:100%;" />
-            <div class="post-body">
-                <p th:each="line : ${post.bodyLines}" th:text="${line}"></p>
-            </div>
+            <iframe th:src="'https://docs.google.com/document/d/' + ${post.docId} + '/pub?embedded=true'"></iframe>
             <div class="post-signature">
                 <p th:text="'Posted by ' + ${post.author}"></p>
                 <span th:text="${post.timeStamp}"></span>
             </div>
 
-            <div class="row">
-                <div class="col col-lg-3 col-md-3">
-                    <a class="twitter-share-button"
-                       href="https://twitter.com/intent/tweet?text=Check%20out%20this%20post%20from%20St.%20John's%20Lutheran%20Church:%20"
-                       data-size="large">
-                        Tweet
-                    </a>
-                </div>
-                <div class="col col-lg-3 col-md-3">
-                    <div class="fb-share-button" data-layout="button_count" data-size="large" data-mobile-iframe="true">
-                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
-                            Share
-                        </a>
-                    </div>
+            <div sec:authorize="${isAuthenticated()}" class="row">
+                <div class="col col-lg-6 col-md-6">
+                    <a th:href="@{'/news/editpost/' + ${postId}}" class="btn btn-primary">Edit Post</a>
                 </div>
             </div>
         </article>

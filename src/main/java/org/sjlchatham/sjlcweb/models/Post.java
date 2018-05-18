@@ -21,10 +21,8 @@ public class Post {
     private String title;
 
     @NotNull
-    @Size(min = 1, max = 2000000000, message = "Please enter a post body of a valid length.")
-    private String body;
-
-    private String[] bodyLines;
+    @Size(min = 1, max = 300, message = "Please enter the ID of a public Google Document.")
+    private String docId;
 
     @NotNull
     @Size(min = 1, max = 100, message = "Author name must be between 1 and 100 characters.")
@@ -42,12 +40,11 @@ public class Post {
         this.timeStamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     }
 
-    public Post(String title, String author, String body, String[] bodyLines, String imgUrl) {
+    public Post(String title, String author, String docId, String imgUrl) {
         this();
         this.title = title;
         this.author = author;
-        this.body = body;
-        this.bodyLines = bodyLines;
+        this.docId = docId;
         this.imgUrl = imgUrl;
     }
 
@@ -75,12 +72,12 @@ public class Post {
         this.author = author;
     }
 
-    public String getBody() {
-        return body;
+    public String getDocId() {
+        return docId;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setDocId(String docId) {
+        this.docId = docId;
     }
 
     public String getImgUrl() {
@@ -91,11 +88,4 @@ public class Post {
         this.imgUrl = imgUrl;
     }
 
-    public String[] getBodyLines() {
-        return bodyLines;
-    }
-
-    public void setBodyLines(String[] bodyLines) {
-        this.bodyLines = bodyLines;
-    }
 }
