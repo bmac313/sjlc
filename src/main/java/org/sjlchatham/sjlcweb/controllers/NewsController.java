@@ -1,8 +1,8 @@
 package org.sjlchatham.sjlcweb.controllers;
 
+import javafx.geometry.Pos;
 import org.sjlchatham.sjlcweb.data.PostDao;
 import org.sjlchatham.sjlcweb.models.Post;
-import org.sjlchatham.sjlcweb.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -65,13 +65,10 @@ public class NewsController {
             model.addAttribute("title", "Create a News Item | St. John's Lutheran Church");
             model.addAttribute("header", "Create a News Item");
 
-            model.addAttribute("findsActiveStatus", "active");
+            model.addAttribute("newsActiveStatus", "active");
 
             return "newsitems/new-post";
         }
-
-        String[] bodyLines = postToAdd.getBody().split("\n");
-        postToAdd.setBodyLines(bodyLines);
 
         postDao.save(postToAdd);
 
@@ -84,12 +81,68 @@ public class NewsController {
 
         Post post = postDao.findOne(id);
 
-        model.addAttribute("title", "View Post - MusicFinds");
+        model.addAttribute("title", "View Post | St. John's Lutheran Church");
+        model.addAttribute("postId", id);
         model.addAttribute("post", post);
 
         model.addAttribute("newsActiveStatus", "active");
 
         return "newsitems/view-post";
+    }
+
+    @RequestMapping(value = "editpost/{id}", method = RequestMethod.GET)
+    public String editPost(@PathVariable(value = "id") int id,
+                           Model model) {
+
+        Post post = postDao.findOne(id);
+
+        model.addAttribute("title", "Edit Post | St. John's Lutheran Church");
+        model.addAttribute("header", "Edit Post");
+        model.addAttribute("newsActiveStatus", "active");
+        model.addAttribute("postId", id);
+
+        model.addAttribute("titleVal", post.getTitle());
+        model.addAttribute("docIdVal", post.getDocId());
+        model.addAttribute("authorVal", post.getAuthor());
+        model.addAttribute("imgUrlVal", post.getImgUrl());
+
+        model.addAttribute(new Post()); // The post that will overwrite the old one
+
+        model.addAttribute("newsActiveStatus", "active");
+
+        return "newsitems/edit-post";
+
+    }
+
+    @RequestMapping(value = "editpost/{id}", method = RequestMethod.POST)
+    public String handleEditPostSubmission(@PathVariable(value = "id") int id,
+                                           @Valid @ModelAttribute Post editedPost,
+                                           Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Edit Post | St. John's Lutheran Church");
+            model.addAttribute("header", "Edit Post");
+            model.addAttribute("newsActiveStatus", "active");
+            model.addAttribute("postId", id);
+
+            model.addAttribute("titleVal", editedPost.getTitle());
+            model.addAttribute("docIdVal", editedPost.getDocId());
+            model.addAttribute("authorVal", editedPost.getAuthor());
+            model.addAttribute("imgUrlVal", editedPost.getImgUrl());
+
+            return "newsitems/edit-post";
+        }
+
+        Post postToEdit = postDao.findOne(id);
+
+        postToEdit.setTitle(editedPost.getTitle());
+        postToEdit.setAuthor(editedPost.getAuthor());
+        postToEdit.setDocId(editedPost.getDocId());
+        postToEdit.setImgUrl(editedPost.getImgUrl());
+
+        postDao.save(postToEdit);
+
+        return "redirect:/news/viewpost/{id}";
     }
 
 }
