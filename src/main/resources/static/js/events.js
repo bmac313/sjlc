@@ -8,7 +8,6 @@ $(window).resize(function() {
 
 var initEvents = function() {
     bindHeaderEvents();
-    bindNavBarEvents();
     bindNavBoxEvents();
 }
 
@@ -18,23 +17,6 @@ var bindHeaderEvents = function() {
             scrollTop: $("#scroll-location").offset().top},
             'slow');
     });
-}
-
-var bindNavBarEvents = function() {
-    /* navbar events */
-    if (document.getElementById("navbar")) { // If the navbar is present in the document
-        window.onscroll = function() {stickNavBar()};
-        var navbar = document.getElementById("navbar");
-        var sticky = navbar.offsetTop;
-    }
-
-    function stickNavBar() {
-        if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky");
-        } else {
-            navbar.classList.remove("sticky");
-        }
-    }
 }
 
 var bindNavBoxEvents = function() {

@@ -17,16 +17,20 @@
 </head>
 <body>
 
-<header th:replace="fragments::header-wrapper"></header>
 <nav th:replace="fragments::navbar-main"></nav>
-<main class="container">
-    <h1>Forbidden</h1>
-    <p>
-        You don't have permission to access this file or page. If you have any questions, please contact the developer at
-        <a href="mailto:brendan.t.mcrae@gmail.com">brendan.t.mcrae@gmail.com</a>
-    </p>
+<main class="container main-body">
+    <section class="error-page">
+        <h1>Forbidden</h1>
+        <i class="fas fa-times error-icon"></i>
+        <p>
+            You don't have permission to access this file or page. If you have any questions, please contact the developer at
+            <a href="mailto:brendan.t.mcrae@gmail.com">brendan.t.mcrae@gmail.com</a>
+        </p>
+    </section>
+
+    <footer th:replace="fragments::footer"></footer>
 </main>
-<footer th:replace="fragments::footer"></footer>
+
 
 </body>
 </html>

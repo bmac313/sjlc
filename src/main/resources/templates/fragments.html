@@ -19,23 +19,36 @@
 <body>
 
 <header th:fragment="header-wrapper" class="header-wrapper">
-    <div class="right">
-        <div sec:authorize="${isAuthenticated()}">
-            <p>Welcome, <span sec:authentication="name"></span></p>
-            <a href="/logout" class="btn btn-primary">Log Out</a>
+    <div id="header-upper-row" class="row">
+        <div class="col col-lg-8 col-md-8 col-sm-8 col-xs-8 text-left">
+            <img class="width-20" alt="LCMS Logo" src="" th:src="@{/img/Maroon_LCMS_Logo_transparent.png}" />
+        </div>
+        <div class="col col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right">
+            <img class="width-40" alt="Christ Figure" src="" th:src="@{/img/christ_figure.png}" />
         </div>
     </div>
     <div class="site-branding">
-        <a href="/"><img src="" th:src="@{/img/large_logo_brightened.png}" /></a>
         <h2>"For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."</h2>
         <h4>~John 3:16</h4>
     </div>
-    <a id="header-scroll-btn" href="#"><i class="fas fa-chevron-circle-down"></i></a>
+    <div class="row">
+        <div class="col col-md-7 col-sm-7 col-xs-7 text-right">
+            <a id="header-scroll-btn" href="#"><i class="fas fa-chevron-circle-down"></i></a>
+        </div>
+        <div class="col col-md-5 col-sm-5 col-xs-5">
+            <article class="login-msg">
+                <div sec:authorize="${isAuthenticated()}">
+                    <p>Welcome, <span sec:authentication="name"></span></p>
+                    <a href="/logout" class="btn btn-primary">Log Out</a>
+                </div>
+            </article>
+        </div>
+    </div>
     <div id="scroll-location"></div>
 
 </header>
 
-<nav th:fragment="navbar-main" id="navbar" class="navbar navbar-default">
+<nav th:fragment="navbar-main" id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -47,16 +60,16 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li th:class="${homeActiveStatus}"><a href="/">Home</a></li>
+                <li th:class="${homeActiveStatus}"><a id="home-link" href="/#scroll-location">Home</a></li>
                 <li th:class="${aboutActiveStatus}">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/about/beliefs#navbar">What We Believe</a>
-                        <a class="dropdown-item" href="/about/worship#navbar">About Our Worship</a>
-                        <a class="dropdown-item" href="/about/staff#navbar">Staff</a>
-                        <a class="dropdown-item" href="/about/history#navbar">Church History</a>
+                        <a class="dropdown-item" href="/about/beliefs">What We Believe</a>
+                        <a class="dropdown-item" href="/about/worship">About Our Worship</a>
+                        <a class="dropdown-item" href="/about/staff">Staff</a>
+                        <a class="dropdown-item" href="/about/history">Church History</a>
                     </div>
                 </li>
                 <li th:class="${psActiveStatus}">
@@ -64,7 +77,7 @@
                         Preschool
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/preschool#navbar">About</a>
+                        <a class="dropdown-item" href="/preschool">About</a>
                         <a class="dropdown-item" target="_blank" href="https://drive.google.com/open?id=1rBdzAIqL65sMS7Fc1QawkxDlIyezixM0">Registration Form</a>
                         <a class="dropdown-item" target="_blank" href="https://drive.google.com/open?id=16qaE26I-YWSLeL8izE-tYW8RwxxxR3fw">Child Record Form</a>
                     </div>
@@ -74,9 +87,9 @@
                         Happenings
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/news#navbar">News &amp; Updates</a>
-                        <a class="dropdown-item" href="/calendar#navbar">Calendar</a>
-                        <a class="dropdown-item" href="/links#navbar">Links</a>
+                        <a class="dropdown-item" href="/news">News &amp; Updates</a>
+                        <a class="dropdown-item" href="/calendar">Calendar</a>
+                        <a class="dropdown-item" href="/links">Links</a>
                     </div>
                 </li>
                 <li th:class="${sermonsActiveStatus}">
@@ -84,8 +97,8 @@
                         Sermons &amp; Newsletter
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/downloads/sermons#navbar">Archived Sermons</a>
-                        <a class="dropdown-item" href="/downloads/newsletter#navbar">Newsletter</a>
+                        <a class="dropdown-item" href="/downloads/sermons">Sermons</a>
+                        <a class="dropdown-item" href="/downloads/newsletter">Newsletter</a>
                     </div>
                 </li>
             </ul>
@@ -99,6 +112,9 @@
     <p>Pastor Rogers faithfully proclaims the Word of God, both Law and Gospel, among the members of St. Johns and throughout the community, while sharing the love of Christ in Word and caring service to the neighbor.</p>
     <p>He married his wife, Jeri, on May 17, 1975. Together they have two grown sons, Erik and Christopher, who have blessed them with three wonderful grandchildren.</p>
     <p>Pastor Rogers holds an associates degree in technology, a Bachelors Degree in Electrical Engineering, and a Masters Degree of Divinty. He worked for 30 years in various engineering positions before answering God's call to serve as a pastor. His greatest joy is seeing his flock grow in their faith and trust in the Lord and coming to realize the truth that we are saved by grace alone, through faith alone in Christ Jesus and His saving work on the cross for sinners.</p>
+</div>
+<div class="right" th:fragment="staff-asst-pastor-body">
+    <p>Description coming soon!</p>
 </div>
 <div class="right" th:fragment="staff-teacher-body">
     <p><strong>Tina McRae,</strong> Tina McRae has been teaching at St. Johns since 2008. She attended Lewis and Clark Community College in Godfey, IL. She and her husband Jeff have two children. She was a stay-at-home for 14 years and enjoyed raising her sons. She spends her time helping out at church, staying active, and teaching young children.</p>
@@ -238,12 +254,27 @@
 
     <h3>2017</h3>
     <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1glKeRfCqBW3Dwg5742L9l-we1sh_45vC#list" style="width:100%; border:0;"></iframe>
+
+    <h3>2016</h3>
+    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1at-3Djo1wJ3B5p--vupayTaxWBlmpnxr#list" style="width:100%; border:0;"></iframe>
 </div>
 
 <div th:fragment="newsletter-page-body">
     <h2 th:text="${header}"></h2>
     <h3>2018</h3>
     <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1ixguiQ4F_RGnkKSRLM--NptsLjlcPFlf#list" style="width:100%; border:0;"></iframe>
+
+    <h3>2017</h3>
+    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1TynYzgIerQ1jRsDi8Q7ebSf0EzUYspfJ#list" style="width:100%; border:0;"></iframe>
+
+    <h3>2016</h3>
+    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1ZrmnDZ-AoDrKpM2QCtbhm0n5LlkxEz6z#list" style="width:100%; border:0;"></iframe>
+
+    <h3>2015</h3>
+    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1Io6aQsZHB6xNNBjschtfJShw9pPOCcsU#list" style="width:100%; border:0;"></iframe>
+
+    <h3>2014</h3>
+    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1yqB6Mjipy3h8FNENFNYRPK5ATsJkgjVA#list" style="width:100%; border:0;"></iframe>
 </div>
 
 <div th:fragment="footer" class="footer">
