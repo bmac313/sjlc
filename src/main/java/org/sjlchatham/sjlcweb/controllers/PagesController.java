@@ -22,6 +22,7 @@ public class PagesController {
         model.addAttribute("title", "Staff | St. John's Lutheran Church");
         model.addAttribute("header", "Staff");
         model.addAttribute("aboutActiveStatus", "active");
+        model.addAttribute("optionalClass", "alt");
         model.addAttribute("pageBodyText", "staff-page-body");
 
         return "about/staff";
@@ -37,6 +38,7 @@ public class PagesController {
         model.addAttribute("title", "What We Believe | St. John's Lutheran Church");
         model.addAttribute("header", "What We Believe");
         model.addAttribute("aboutActiveStatus", "active");
+        model.addAttribute("optionalClass", "alt");
         model.addAttribute("pageBodyText", "beliefs-page-body");
 
         return "about/beliefs";
@@ -45,7 +47,7 @@ public class PagesController {
     @RequestMapping(value = "/about/worship", method = RequestMethod.GET)
     public String showWorshipPage(Model model) {
 
-        String[] sideBarImagePaths = {"/img/altar.png", "/img/piano.png", "/img/aisle.png"};
+        String[] sideBarImagePaths = {"/img/worship_1.png", "/img/worship_2.png", "/img/worship_3.png"};
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/altar_wide.png");
@@ -67,6 +69,7 @@ public class PagesController {
         model.addAttribute("title", "Church History | St. John's Lutheran Church");
         model.addAttribute("header", "Church History");
         model.addAttribute("aboutActiveStatus", "active");
+        model.addAttribute("optionalClass", "alt");
         model.addAttribute("pageBodyText", "history-page-body");
 
         return "page_generic";
@@ -75,7 +78,7 @@ public class PagesController {
     @RequestMapping(value = "/preschool", method = RequestMethod.GET)
     public String showPreschoolPage(Model model) {
 
-        String[] sideBarImagePaths = {"/img/altar.png", "/img/piano.png", "/img/aisle.png"};
+        String[] sideBarImagePaths = {"/img/preschool_1.png", "/img/preschool_2.png", "/img/preschool_3.png"};
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/preschool_header.png");
@@ -97,6 +100,7 @@ public class PagesController {
         model.addAttribute("title", "Calendar | St. John's Lutheran Church");
         model.addAttribute("header", "Calendar");
         model.addAttribute("newsActiveStatus", "active");
+        model.addAttribute("optionalClass", "alt");
         model.addAttribute("pageBodyText", "calendar-page-body");
 
         return "page_generic";
@@ -112,6 +116,7 @@ public class PagesController {
         model.addAttribute("title", "Links | St. John's Lutheran Church");
         model.addAttribute("header", "Links");
         model.addAttribute("newsActiveStatus", "active");
+        model.addAttribute("optionalClass", "alt");
         model.addAttribute("pageBodyText", "links-page-body");
 
         return "page_generic";
@@ -132,6 +137,7 @@ public class PagesController {
         model.addAttribute("title", "Archived Sermons | St. John's Lutheran Church");
         model.addAttribute("header", "Archived Sermons");
         model.addAttribute("sermonsActiveStatus", "active");
+        model.addAttribute("optionalClass", "alt");
         model.addAttribute("pageBodyText", "sermons-page-body");
 
         return "page_generic";
@@ -147,6 +153,7 @@ public class PagesController {
         model.addAttribute("title", "Newsletters | St. John's Lutheran Church");
         model.addAttribute("header", "Newsletters");
         model.addAttribute("sermonsActiveStatus", "active");
+        model.addAttribute("optionalClass", "alt");
         model.addAttribute("pageBodyText", "newsletter-page-body");
 
         return "page_generic";
