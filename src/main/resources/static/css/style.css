@@ -463,10 +463,11 @@ li.active a{
     padding-top: 0.5em;
 }
 .info-boxes img, info-boxes i {
+    margin-bottom: 0.5em;
     width: 100%;
 }
 .info-boxes div{
-    height: 24em
+    height: 25em;
 }
 
 .error-page{
@@ -587,7 +588,7 @@ li.active a{
         font-size: 1em;
     }
     .info-boxes div{
-        height: 20.5em;
+        height: 20em;
     }
     #email-link{
         font-size: 0.8em;
@@ -657,7 +658,7 @@ li.active a{
         height: auto;
     }
     #email-link{
-        font-size: 0.8em;
+        font-size: 1em;
     }
     .table-two-col tr td{
         display: block;
