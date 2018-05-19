@@ -18,14 +18,19 @@
 <body>
 
 <nav th:replace="fragments::navbar-main"></nav>
-<main class="container">
+<main class="container main-body">
+    <section class="error-page">
+        <i class="fas fa-times error-icon"></i>
+        <p>
+            There was a problem resolving the hostname. Please retry the URL. If this does not solve the problem, please contact the developer at
+            <a href="mailto:brendan.t.mcrae@gmail.com">brendan.t.mcrae@gmail.com</a>
+        </p>
+    </section>
     <h1>502 Bad Gateway</h1>
-    <p>
-        There was a problem resolving the hostname. Please retry the URL. If this does not solve the problem, please contact the developer at
-        <a href="mailto:brendan.t.mcrae@gmail.com">brendan.t.mcrae@gmail.com</a>
-    </p>
+
+    <footer th:replace="fragments::footer"></footer>
 </main>
-<footer th:replace="fragments::footer"></footer>
+
 
 </body>
 </html>
