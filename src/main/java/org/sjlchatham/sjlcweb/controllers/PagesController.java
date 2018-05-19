@@ -134,8 +134,8 @@ public class PagesController {
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/altar_wide.png");
-        model.addAttribute("title", "Archived Sermons | St. John's Lutheran Church");
-        model.addAttribute("header", "Archived Sermons");
+        model.addAttribute("title", "Sermons | St. John's Lutheran Church");
+        model.addAttribute("header", "Sermons");
         model.addAttribute("sermonsActiveStatus", "active");
         model.addAttribute("optionalClass", "alt");
         model.addAttribute("pageBodyText", "sermons-page-body");
