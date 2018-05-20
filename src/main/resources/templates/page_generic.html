@@ -14,7 +14,7 @@
             </section>
 
             <section class="page-sidebar">
-                <img th:each="path : ${sideBarImagePaths}" src="" th:src="@{${path}}" />
+                <img th:each="path : ${sideBarImagePaths}" th:class="${optionalClass}" src="" th:src="@{${path}}" />
             </section>
 
         </div>
