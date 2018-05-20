@@ -155,6 +155,18 @@ li.active a{
     padding-bottom: 1em;
 }
 
+#contact-info{
+    margin-right: 0;
+    margin-left: 0;
+    text-align: center;
+    font-size: 1.4em;
+    background-color: #6276AC;
+    color: #fff;
+}
+#contact-info h3{
+    font-weight: normal;
+}
+
 .post {
     padding-left: 1em;
     padding-right: 1em;
