@@ -1,6 +1,5 @@
 package org.sjlchatham.sjlcweb.controllers;
 
-import javafx.geometry.Pos;
 import org.sjlchatham.sjlcweb.data.PostDao;
 import org.sjlchatham.sjlcweb.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
