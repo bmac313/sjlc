@@ -156,11 +156,11 @@ li.active a{
 }
 
 #contact-info{
+    background-color: #6276AC;
     margin-right: 0;
     margin-left: 0;
     text-align: center;
     font-size: 1.4em;
-    background-color: #6276AC;
     color: #fff;
 }
 #contact-info h3{
@@ -267,7 +267,6 @@ li.active a{
 
 .site-branding {
     color: #fff;
-    background-color: rgba(98, 118, 172, 0.5);
     padding: 0.1em;
 }
 
@@ -345,11 +344,9 @@ li.active a{
 }
 
 #worship-times{
-    background-color: #6276AC;
     background-image: url('../img/checkered_pattern_@2X.png');
     box-shadow: 0px 8px 0px #BCC8E8;
     color: #fff;
-    font-size: 1.5em;
     height: 100%;
 }
 
@@ -369,7 +366,6 @@ li.active a{
 
 #contact-box{
 	color: #fff;
-	background-color: #2e9b87;
 	background-image: url('../img/checkered_pattern.png');
 	box-shadow: 0px 8px 0px #B4E4DF;
 	height: 100%;
@@ -378,7 +374,6 @@ li.active a{
     color: #56ffdf;
 }
 #facebook-info{
-	background-color: #6276AC;
 	background-image: url('../img/checkered_pattern_@2X.png');
 	box-shadow: 0px 8px 0px #BCC8E8;
 	color: #fff;
@@ -469,6 +464,7 @@ li.active a{
 }
 
 .info-boxes article {
+    background-color: #6276AC;
     height: 25em;
     padding-right: 1em;
     padding-left: 1em;
@@ -595,9 +591,6 @@ li.active a{
     .page-item div{
         height: 40em;
         font-size: 0.9em;
-    }
-    #worship-times{
-        font-size: 1em;
     }
     .info-boxes div{
         height: 20em;
