@@ -413,7 +413,6 @@ li.active a{
 .page-item div{
     display: inline-block;
     padding: 2em;
-    width: 50%;
 }
 .page-item h3{
     padding-left: 1.3em;
@@ -421,6 +420,13 @@ li.active a{
 }
 .page-item img{
     width: 100%;
+}
+/*
+ * Due to Pastor Miller's bio being considerably longer than the others, this property adds extra height to that section
+ * of the page.
+ */
+#miller-bio{
+    height: 52em;
 }
 
 .table-two-col tr td{
@@ -558,6 +564,9 @@ li.active a{
     .info-boxes div{
         height: 21.5em;
     }
+    #miller-bio{
+        height: 65em;
+    }
 }
 
 @media screen and (max-width: 1090px){
@@ -591,6 +600,9 @@ li.active a{
     .page-item div{
         height: 40em;
         font-size: 0.9em;
+    }
+    #miller-bio{
+        height: 70em;
     }
     .info-boxes div{
         height: 20em;
@@ -653,6 +665,9 @@ li.active a{
         float: none;
         height: auto;
         width: 100%;
+    }
+    #miller-bio{
+        height: auto;
     }
     .info-boxes article{
         margin-bottom: 1.5em;
