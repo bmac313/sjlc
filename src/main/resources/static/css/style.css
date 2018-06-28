@@ -255,6 +255,7 @@ li.active a{
     font-size: 3em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+    padding-right: 1em;
 }
 #header-scroll-btn:hover{
 	color: rgba(180, 228, 223, 0.4);
@@ -411,7 +412,6 @@ li.active a{
     margin-bottom: 1.4em;
 }
 .page-item div{
-    display: inline-block;
     padding: 2em;
 }
 .page-item h3{
@@ -420,13 +420,6 @@ li.active a{
 }
 .page-item img{
     width: 100%;
-}
-/*
- * Due to Pastor Miller's bio being considerably longer than the others, this property adds extra height to that section
- * of the page.
- */
-#miller-bio{
-    height: 52em;
 }
 
 .table-two-col tr td{
@@ -564,8 +557,8 @@ li.active a{
     .info-boxes div{
         height: 21.5em;
     }
-    #miller-bio{
-        height: 65em;
+    #header-scroll-btn{
+        padding-right: 0.7em;
     }
 }
 
@@ -589,6 +582,9 @@ li.active a{
 }
 
 @media screen and (max-width: 991px){
+    #header-scroll-btn{
+        padding-right: 0.4em;
+    }
     .nav-boxes article{
         margin-bottom: 1.5em;
     }
@@ -598,11 +594,7 @@ li.active a{
         width: 30%;
     }
     .page-item div{
-        height: 40em;
         font-size: 0.9em;
-    }
-    #miller-bio{
-        height: 70em;
     }
     .info-boxes div{
         height: 20em;
@@ -613,6 +605,9 @@ li.active a{
 }
 
 @media screen and (max-width: 766px){
+    #header-scroll-btn{
+        padding-right: 0;
+    }
     .btn-primary, .btn-dark, .btn-default {
         font-size: 1em;
     }
@@ -663,11 +658,7 @@ li.active a{
         display: block;
         font-size: 1em;
         float: none;
-        height: auto;
         width: 100%;
-    }
-    #miller-bio{
-        height: auto;
     }
     .info-boxes article{
         margin-bottom: 1.5em;
