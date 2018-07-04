@@ -31,14 +31,13 @@ public class PagesController {
     @RequestMapping(value = "/about/beliefs", method = RequestMethod.GET)
     public String showBeliefsPage(Model model) {
 
-        String[] sideBarImagePaths = {"/img/altar.png", "/img/piano.png", "/img/aisle.png"};
+        String[] sideBarImagePaths = {"/img/beliefs_1.png", "/img/beliefs_2.png", "/img/beliefs_3.png"};
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
-        model.addAttribute("headerImagePath", "/img/love_page_version.png");
+        model.addAttribute("headerImagePath", "/img/beliefs_header_new.png");
         model.addAttribute("title", "What We Believe | St. John's Lutheran Church");
         model.addAttribute("header", "What We Believe");
         model.addAttribute("aboutActiveStatus", "active");
-        model.addAttribute("optionalClass", "alt");
         model.addAttribute("pageBodyText", "beliefs-page-body");
 
         return "about/beliefs";
