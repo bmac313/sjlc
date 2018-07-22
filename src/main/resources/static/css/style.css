@@ -16,7 +16,7 @@ section{
     font-weight: bold;
 }
 
-p, a, label {
+p, a, label, span {
     font-family: Lato Light, sans-serif;
 }
 input, ul {
@@ -183,7 +183,6 @@ li.active a{
 .post iframe {
     border: none;
     width: 100%;
-    height: 20em;
     padding: 1em 0 1em 0;
 }
 .post iframe .c3{

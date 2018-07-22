@@ -105,6 +105,12 @@
                     </div>
                 </li>
             </ul>
+            <nav class="login-msg nav navbar-nav navbar-right">
+                <div sec:authorize="${isAuthenticated()}">
+                    <span>Welcome, <span sec:authentication="name"></span></span>
+                    <a href="/logout" class="btn btn-primary">Log Out</a>
+                </div>
+            </nav>
         </div>
     </div>
 </nav>
@@ -267,31 +273,31 @@
 <div th:fragment="sermons-page-body">
     <h2 th:text="${header}"></h2> <!-- header == "Sermon Archives"; to change, set value in PagesController -->
     <h3>2018</h3>
-    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=10jw6FN-8SLkoDk2FnHcia0NgPJ0g6AMh#list" style="width:100%; border:0;"></iframe>
+    <iframe src="https://drive.google.com/embeddedfolderview?id=10jw6FN-8SLkoDk2FnHcia0NgPJ0g6AMh#list" style="width:100%; border:0;"></iframe>
 
     <h3>2017</h3>
-    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1glKeRfCqBW3Dwg5742L9l-we1sh_45vC#list" style="width:100%; border:0;"></iframe>
+    <iframe src="https://drive.google.com/embeddedfolderview?id=1glKeRfCqBW3Dwg5742L9l-we1sh_45vC#list" style="width:100%; border:0;"></iframe>
 
     <h3>2016</h3>
-    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1at-3Djo1wJ3B5p--vupayTaxWBlmpnxr#list" style="width:100%; border:0;"></iframe>
+    <iframe src="https://drive.google.com/embeddedfolderview?id=1at-3Djo1wJ3B5p--vupayTaxWBlmpnxr#list" style="width:100%; border:0;"></iframe>
 </div>
 
 <div th:fragment="newsletter-page-body">
     <h2 th:text="${header}"></h2> <!-- header == "Newsletter Archives; to change, set value in PagesController" -->
     <h3>2018</h3>
-    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1ixguiQ4F_RGnkKSRLM--NptsLjlcPFlf#list" style="width:100%; border:0;"></iframe>
+    <iframe src="https://drive.google.com/embeddedfolderview?id=1ixguiQ4F_RGnkKSRLM--NptsLjlcPFlf#list" style="width:100%; border:0;"></iframe>
 
     <h3>2017</h3>
-    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1TynYzgIerQ1jRsDi8Q7ebSf0EzUYspfJ#list" style="width:100%; border:0;"></iframe>
+    <iframe src="https://drive.google.com/embeddedfolderview?id=1TynYzgIerQ1jRsDi8Q7ebSf0EzUYspfJ#list" style="width:100%; border:0;"></iframe>
 
     <h3>2016</h3>
-    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1ZrmnDZ-AoDrKpM2QCtbhm0n5LlkxEz6z#list" style="width:100%; border:0;"></iframe>
+    <iframe src="https://drive.google.com/embeddedfolderview?id=1ZrmnDZ-AoDrKpM2QCtbhm0n5LlkxEz6z#list" style="width:100%; border:0;"></iframe>
 
     <h3>2015</h3>
-    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1Io6aQsZHB6xNNBjschtfJShw9pPOCcsU#list" style="width:100%; border:0;"></iframe>
+    <iframe src="https://drive.google.com/embeddedfolderview?id=1Io6aQsZHB6xNNBjschtfJShw9pPOCcsU#list" style="width:100%; border:0;"></iframe>
 
     <h3>2014</h3>
-    <iframe class="google-drive-folder" src="https://drive.google.com/embeddedfolderview?id=1yqB6Mjipy3h8FNENFNYRPK5ATsJkgjVA#list" style="width:100%; border:0;"></iframe>
+    <iframe src="https://drive.google.com/embeddedfolderview?id=1yqB6Mjipy3h8FNENFNYRPK5ATsJkgjVA#list" style="width:100%; border:0;"></iframe>
 </div>
 
 <div th:fragment="footer" class="footer">
