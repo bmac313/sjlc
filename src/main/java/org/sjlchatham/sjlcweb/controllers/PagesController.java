@@ -133,8 +133,8 @@ public class PagesController {
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/altar_wide.png");
-        model.addAttribute("title", "Sermons | St. John's Lutheran Church");
-        model.addAttribute("header", "Sermons");
+        model.addAttribute("title", "Sermon Archives | St. John's Lutheran Church");
+        model.addAttribute("header", "Sermon Archives");
         model.addAttribute("sermonsActiveStatus", "active");
         model.addAttribute("optionalClass", "alt");
         model.addAttribute("pageBodyText", "sermons-page-body");
@@ -149,8 +149,8 @@ public class PagesController {
 
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/altar_wide.png");
-        model.addAttribute("title", "Newsletters | St. John's Lutheran Church");
-        model.addAttribute("header", "Newsletters");
+        model.addAttribute("title", "Newsletter Archives | St. John's Lutheran Church");
+        model.addAttribute("header", "Newsletter Archives");
         model.addAttribute("sermonsActiveStatus", "active");
         model.addAttribute("optionalClass", "alt");
         model.addAttribute("pageBodyText", "newsletter-page-body");
