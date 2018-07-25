@@ -16,14 +16,14 @@ section{
     font-weight: bold;
 }
 
-p, a, label, span {
+p, a, label, span, button {
     font-family: Lato Light, sans-serif;
 }
 input, ul {
     font-family: Lato, sans-serif;
 }
 
-.btn-primary, .btn-dark, .btn-default {
+.btn-primary, .btn-dark, .btn-default, .btn-danger {
     border-radius   : 0px;
     border          : 0px;
     color           : #fff;
@@ -45,6 +45,9 @@ input, ul {
 .btn-default{
     background-color: #4D2B89;
     box-shadow      : 0px 5px 0px #AD97D3;
+}
+.btn-danger{
+    box-shadow      : 0px 5px 0px #ffbbba;
 }
 .btn-primary:hover {
     background-color: #617CAD;
@@ -599,9 +602,21 @@ li.active a{
     }
 }
 
+@media screen and (max-width: 953px){
+    .main-body{
+        padding-top: 7em;
+    }
+}
+
 @media screen and (max-width: 766px){
     #header-scroll-btn{
         padding-right: 0;
+    }
+    .main-body{
+        padding-top: 5em;
+    }
+    .post iframe{
+        height: 12em;
     }
     .btn-primary, .btn-dark, .btn-default {
         font-size: 1em;
@@ -690,5 +705,11 @@ li.active a{
     }
     #email-link{
         font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width: 399px) {
+    .post iframe{
+        height: 15em;
     }
 }
