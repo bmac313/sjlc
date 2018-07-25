@@ -144,4 +144,22 @@ public class NewsController {
         return "redirect:/news/viewpost/{id}";
     }
 
+    @RequestMapping(value = "deletepost", method = RequestMethod.GET)
+    public String redirectGet() {
+        return "redirect:";
+    }
+
+    @RequestMapping(value = "deletepost", method = RequestMethod.POST)
+    public String deletePostById(@RequestParam int postId) {
+        /* Boolean accessedDirectly determines whether the user has accessed this path directly.
+         * This safeguards against accidental deletion of posts by the user.
+         * If accessedDirectly is true, the user is redirected to the normal page for the post.
+         * It is true by default. Going through the "delete post" button sets it as false when directing to this path.
+         */
+
+        postDao.delete(postId);
+
+        return "redirect:";
+    }
+
 }
