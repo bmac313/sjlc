@@ -28,9 +28,8 @@ public class Post {
     @Size(min = 1, max = 100, message = "Author name must be between 1 and 100 characters.")
     private String author;
 
-    @NotNull
-    @Size(min = 1, max = 255, message = "Please provide a link to your image (255 characters or less).")
-    @Pattern(regexp = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|png|svg))", message = "Please enter a valid image URL. Your URL must start with 'http://' or 'https://' end with .jpg, .png, .svg, or .gif.")
+    @Size(max = 300, message = "Image URLs cannot be longer than 300 characters.")
+    @Pattern(regexp = "^$|(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|png|svg|PNG|JPG|JPEG|GIF|PNG|SVG))", message = "Please enter a valid image URL. Your URL must start with 'http://' or 'https://' end with .jpg, .png, .svg, or .gif.")
     private String imgUrl;
 
     private final String timeStamp;
