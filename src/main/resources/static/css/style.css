@@ -16,10 +16,10 @@ section{
     font-weight: bold;
 }
 
-p, a, label, span, button {
+p, a, label, span, button, {
     font-family: Lato Light, sans-serif;
 }
-input, ul {
+input, ul, .alert {
     font-family: Lato, sans-serif;
 }
 
