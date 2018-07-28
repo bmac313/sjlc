@@ -21,7 +21,19 @@ public class NewsController {
     private PostDao postDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String showNewsPage(@RequestParam(defaultValue = "1") int page, Model model) {
+    public String showNewsPage(@RequestParam(defaultValue = "1") int page,
+                               @RequestParam(defaultValue = "false") boolean alertActive,
+                               @RequestParam(defaultValue = "") String alertType,
+                               Model model) {
+
+        if (alertActive) {
+            model.addAttribute("alertClass", "alert alert-success alert-dismissible");
+        } else {
+            model.addAttribute("alertClass", "hidden");
+        }
+        if (alertType.equals("postDeleteSuccess")) {
+            model.addAttribute("alert", "The post was deleted successfully!");
+        }
 
         PageRequest pageRequest = new PageRequest(page-1, 5, Sort.Direction.DESC, "timeStamp");
         int pages = postDao.findAll(pageRequest).getTotalPages();
@@ -144,22 +156,19 @@ public class NewsController {
         return "redirect:/news/viewpost/{id}";
     }
 
+    // For safety, a redirect is declared explicitly. Deleting from the database is a potentially dangerous feature.
     @RequestMapping(value = "deletepost", method = RequestMethod.GET)
     public String redirectGet() {
         return "redirect:";
     }
 
+    // This path is protected by the security config so that only admins can send requests to it.
     @RequestMapping(value = "deletepost", method = RequestMethod.POST)
     public String deletePostById(@RequestParam int postId) {
-        /* Boolean accessedDirectly determines whether the user has accessed this path directly.
-         * This safeguards against accidental deletion of posts by the user.
-         * If accessedDirectly is true, the user is redirected to the normal page for the post.
-         * It is true by default. Going through the "delete post" button sets it as false when directing to this path.
-         */
 
         postDao.delete(postId);
 
-        return "redirect:";
+        return "redirect:?alertActive=true&alertType=postDeleteSuccess";
     }
 
 }
