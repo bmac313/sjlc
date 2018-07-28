@@ -21,7 +21,19 @@ public class NewsController {
     private PostDao postDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String showNewsPage(@RequestParam(defaultValue = "1") int page, Model model) {
+    public String showNewsPage(@RequestParam(defaultValue = "1") int page,
+                               @RequestParam(defaultValue = "false") boolean alertActive,
+                               @RequestParam(defaultValue = "") String alertType,
+                               Model model) {
+
+        if (alertActive) {
+            model.addAttribute("alertClass", "alert alert-success alert-dismissible");
+        } else {
+            model.addAttribute("alertClass", "hidden");
+        }
+        if (alertType.equals("postDeleteSuccess")) {
+            model.addAttribute("alert", "The post was deleted successfully!");
+        }
 
         PageRequest pageRequest = new PageRequest(page-1, 5, Sort.Direction.DESC, "timeStamp");
         int pages = postDao.findAll(pageRequest).getTotalPages();
@@ -156,7 +168,7 @@ public class NewsController {
 
         postDao.delete(postId);
 
-        return "redirect:";
+        return "redirect:?alertActive=true&alertType=postDeleteSuccess";
     }
 
 }
