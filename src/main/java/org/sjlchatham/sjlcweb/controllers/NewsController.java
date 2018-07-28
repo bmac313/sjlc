@@ -144,18 +144,15 @@ public class NewsController {
         return "redirect:/news/viewpost/{id}";
     }
 
+    // For safety, a redirect is declared explicitly. Deleting from the database is a potentially dangerous feature.
     @RequestMapping(value = "deletepost", method = RequestMethod.GET)
     public String redirectGet() {
         return "redirect:";
     }
 
+    // This path is protected by the security config so that only admins can send requests to it.
     @RequestMapping(value = "deletepost", method = RequestMethod.POST)
     public String deletePostById(@RequestParam int postId) {
-        /* Boolean accessedDirectly determines whether the user has accessed this path directly.
-         * This safeguards against accidental deletion of posts by the user.
-         * If accessedDirectly is true, the user is redirected to the normal page for the post.
-         * It is true by default. Going through the "delete post" button sets it as false when directing to this path.
-         */
 
         postDao.delete(postId);
 
