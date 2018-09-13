@@ -342,7 +342,7 @@ li.active a{
     margin-bottom: 0;
     margin-top: 1.5em;
 }
-.jumbotron p{
+.jumbotron h2, .jumbotron h4{
     color: #ffe62d !important;
 }
 
