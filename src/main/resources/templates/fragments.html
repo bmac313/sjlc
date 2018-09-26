@@ -19,6 +19,7 @@
 <body>
 
 <header th:fragment="header-wrapper" class="header-wrapper">
+    <div th:class="${alertClass}" th:text="${alert}"></div>
     <div id="header-upper-row" class="row">
         <div class="col col-lg-8 col-md-8 col-sm-8 col-xs-8 text-left">
             <img class="width-20" alt="LCMS Logo" src="" th:src="@{/img/Maroon_LCMS_Logo_transparent.png}" />
