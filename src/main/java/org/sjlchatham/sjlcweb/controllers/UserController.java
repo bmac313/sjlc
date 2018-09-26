@@ -109,6 +109,14 @@ public class UserController {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         User currentUser = userDao.findByUsername(username);
 
+        if (currentPass.equals("") || newPass.equals("") || confirmNewPass.equals("")) { // Any one box is empty.
+            model.addAttribute("title", "Change Password | St. John's Lutheran Church");
+            model.addAttribute("header", "Change Password");
+            model.addAttribute("username", username);
+            model.addAttribute("alertClass", "alert alert-danger");
+            model.addAttribute("alert", "Please fill out all three boxes.");
+            return "users/change-password";
+        }
         if (!encoder.matches(currentPass, currentUser.getPassword())) { // Current password box doesn't match stored password for user
             model.addAttribute("title", "Change Password | St. John's Lutheran Church");
             model.addAttribute("header", "Change Password");
