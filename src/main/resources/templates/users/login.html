@@ -12,7 +12,7 @@
         <h1 th:text="${header}"></h1>
         <p>Fields marked with an asterisk (*) are required.</p>
 
-        <p th:if="${loginError}" class="alert-danger emphasis">Wrong username or password</p>
+        <div th:if="${loginError}" class="alert alert-danger emphasis">Wrong username or password</div>
 
         <form method="post">
 
