@@ -55,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/doc/**",
                             "/",
                             "/login",
+                            "/login/resetpass",
                             "/signup",
                             "/about/**",
                             "/preschool",
