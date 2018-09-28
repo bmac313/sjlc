@@ -142,4 +142,11 @@ public class UserController {
         return "redirect:/?passChanged=true";
     }
 
+    @RequestMapping(value = "/login/resetpass", method = RequestMethod.GET)
+    public String resetPass(Model model) {
+        model.addAttribute("title", "Reset Password | St. John's Lutheran Church");
+        model.addAttribute("header", "Reset Password");
+        return "users/forgot-password";
+    }
+
 }
