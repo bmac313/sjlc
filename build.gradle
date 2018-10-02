@@ -30,6 +30,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
+	compile('org.springframework.boot:spring-boot-starter-mail')
 	compile('org.springframework:spring-aop')
     compile('commons-dbcp:commons-dbcp')
     compile('mysql:mysql-connector-java')
