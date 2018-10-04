@@ -19,11 +19,7 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /*  TODO:
-        - There is a bug where, if the user fails a login, then succeeds, they are redirected to the login-error path
-          even though the login still works. Curiously, they are not redirected to login-error UNTIL the login
-          succeeds.
-     */
+    // TODO: new roles for reset password paths
 
     @Bean(name = "passwordEncoder")
     public PasswordEncoder passwordEncoder() {
@@ -65,7 +61,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/news/viewpost/*",
                             "/links",
                             "/downloads/**").permitAll()
-                    .antMatchers("/news/new-post", "/news/editpost/**", "/news/deletepost", "/news/deletepost/**", "/changepass", "/changepass/**" ).hasRole("ADMIN")
+                    .antMatchers(
+                            "/news/new-post",
+                            "/news/editpost/**",
+                            "/news/deletepost",
+                            "/news/deletepost/**",
+                            "/changepass",
+                            "/changepass/**" ).hasRole("ADMIN")
                         .anyRequest().authenticated()
                         .and()
                 .formLogin()
