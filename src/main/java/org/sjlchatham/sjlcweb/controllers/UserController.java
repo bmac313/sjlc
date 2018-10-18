@@ -1,11 +1,14 @@
 package org.sjlchatham.sjlcweb.controllers;
 
 import org.sjlchatham.sjlcweb.data.AuthoritiesDao;
+import org.sjlchatham.sjlcweb.data.PasswordResetTokenDao;
 import org.sjlchatham.sjlcweb.data.UserDao;
 import org.sjlchatham.sjlcweb.models.Authorities;
 import org.sjlchatham.sjlcweb.models.User;
 import org.sjlchatham.sjlcweb.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -32,7 +36,19 @@ public class UserController {
     private AuthoritiesDao authoritiesDao;
 
     @Autowired
+    private PasswordResetTokenDao passwordResetTokenDao;
+
+    @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    @Autowired
+    private Environment env;
+
+    @Autowired
+    private ServletContext servletContext;
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String showLoginPage(@RequestParam(required = false) boolean loginError, Model model) {
@@ -135,18 +151,10 @@ public class UserController {
             return "users/change-password";
         }
 
-        String newPassEncoded = encoder.encode(newPass);
-        currentUser.setPassword(newPassEncoded);
+        currentUser.setPassword(encoder.encode(newPass));
         userDao.save(currentUser);
 
         return "redirect:/?passChanged=true";
-    }
-
-    @RequestMapping(value = "/login/resetpass", method = RequestMethod.GET)
-    public String resetPass(Model model) {
-        model.addAttribute("title", "Reset Password | St. John's Lutheran Church");
-        model.addAttribute("header", "Reset Password");
-        return "users/forgot-password";
     }
 
 }
