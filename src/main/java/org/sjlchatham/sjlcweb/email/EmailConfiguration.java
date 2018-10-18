@@ -7,6 +7,8 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
+// Note: this feature will be tested and implemented after the site and email server have been set up, as there
+// is not a reliable way of testing it at the moment.
 @Configuration
 public class EmailConfiguration {
 
@@ -16,11 +18,9 @@ public class EmailConfiguration {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        /* TODO: Set up test gmail server for testing purposes, replace below
-         *       properties with server login credentials.
-         */
-        //mailSender.setUsername("usernamegoeshere");
-        //mailSender.setPassword("passwordgoeshere");
+        // Email login credentials. Replace the below placeholder with the site email credentials in production.
+        //mailSender.setUsername("someemail@sjlchatham.org");
+        //mailSender.setPassword("********");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
