@@ -9,4 +9,5 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface PasswordResetTokenDao extends CrudRepository<PasswordResetToken, Integer> {
+    PasswordResetToken findByToken(String token);
 }
