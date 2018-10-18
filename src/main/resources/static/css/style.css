@@ -342,7 +342,7 @@ li.active a{
     margin-bottom: 0;
     margin-top: 1.5em;
 }
-.jumbotron p{
+.jumbotron h2, .jumbotron h4{
     color: #ffe62d !important;
 }
 
@@ -516,7 +516,7 @@ li.active a{
  * override this padding for pages that don't have the fixed navbar.
  */
 .no-top-padding{
-    padding-top: 0;
+    padding-top: 0 !important;
 }
 
 .width-10{

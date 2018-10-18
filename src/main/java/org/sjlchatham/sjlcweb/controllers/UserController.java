@@ -1,17 +1,19 @@
 package org.sjlchatham.sjlcweb.controllers;
 
 import org.sjlchatham.sjlcweb.data.AuthoritiesDao;
+import org.sjlchatham.sjlcweb.data.PasswordResetTokenDao;
 import org.sjlchatham.sjlcweb.data.UserDao;
 import org.sjlchatham.sjlcweb.models.Authorities;
 import org.sjlchatham.sjlcweb.models.User;
 import org.sjlchatham.sjlcweb.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 public class UserController {
@@ -34,7 +36,19 @@ public class UserController {
     private AuthoritiesDao authoritiesDao;
 
     @Autowired
+    private PasswordResetTokenDao passwordResetTokenDao;
+
+    @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    @Autowired
+    private Environment env;
+
+    @Autowired
+    private ServletContext servletContext;
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String showLoginPage(@RequestParam(required = false) boolean loginError, Model model) {
@@ -90,6 +104,59 @@ public class UserController {
         }
 
         return "redirect:/login?logout";
+    }
+
+    @RequestMapping(value = "changepass", method = RequestMethod.GET)
+    public String redirectGetChangePass(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String loggedInUser = auth.getName();
+
+        model.addAttribute("title", "Change Password | St. John's Lutheran Church");
+        model.addAttribute("header", "Change Password");
+        model.addAttribute("username", loggedInUser);
+        return "users/change-password";
+    }
+
+    @RequestMapping(value = "changepass", method = RequestMethod.POST)
+    public String changePassByUser(@RequestParam String username,
+                                   @RequestParam String currentPass,
+                                   @RequestParam String newPass,
+                                   @RequestParam String confirmNewPass,
+                                   Model model) {
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        User currentUser = userDao.findByUsername(username);
+
+        if (currentPass.equals("") || newPass.equals("") || confirmNewPass.equals("")) { // Any one box is empty.
+            model.addAttribute("title", "Change Password | St. John's Lutheran Church");
+            model.addAttribute("header", "Change Password");
+            model.addAttribute("username", username);
+            model.addAttribute("alertClass", "alert alert-danger");
+            model.addAttribute("alert", "Please fill out all three boxes.");
+            return "users/change-password";
+        }
+        if (!encoder.matches(currentPass, currentUser.getPassword())) { // Current password box doesn't match stored password for user
+            model.addAttribute("title", "Change Password | St. John's Lutheran Church");
+            model.addAttribute("header", "Change Password");
+            model.addAttribute("username", username);
+            model.addAttribute("alertClass", "alert alert-danger");
+            model.addAttribute("alert", "Incorrect password entered for 'Current Password.' Please try again.");
+            return "users/change-password";
+        }
+
+        if (!newPass.equals(confirmNewPass)) { // New password and confirm boxes don't match
+            model.addAttribute("title", "Change Password | St. John's Lutheran Church");
+            model.addAttribute("header", "Change Password");
+            model.addAttribute("username", username);
+            model.addAttribute("alertClass", "alert alert-danger");
+            model.addAttribute("alert", "'New Password' and 'Confirm New Password' fields do not match. Please try again.'");
+            return "users/change-password";
+        }
+
+        currentUser.setPassword(encoder.encode(newPass));
+        userDao.save(currentUser);
+
+        return "redirect:/?passChanged=true";
     }
 
 }

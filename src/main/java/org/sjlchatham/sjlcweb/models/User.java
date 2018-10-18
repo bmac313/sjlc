@@ -21,6 +21,10 @@ public class User {
     @Column(name = "PASSWORD", length = 60, nullable = false)
     private String password;
 
+    @NotNull
+    @Size(min = 1, message = "Please enter a valid email address.")
+    private String email;
+
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled = true;
 
@@ -29,15 +33,17 @@ public class User {
 
     public User(){}
 
-    public User(String username, String password, boolean enabled) {
+    public User(String username, String password, String email, boolean enabled) {
         this.username = username;
         this.password = password;
+        this.email = email;
         this.enabled = enabled;
     }
 
-    public User(String username, String password, boolean enabled, Set<Authorities> authorities) {
+    public User(String username, String password, String email, boolean enabled, Set<Authorities> authorities) {
         this.username = username;
         this.password = password;
+        this.email = email;
         this.enabled = enabled;
         this.authorities = authorities;
     }
@@ -56,6 +62,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public boolean isEnabled() {

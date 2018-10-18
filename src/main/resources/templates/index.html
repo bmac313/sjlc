@@ -10,8 +10,6 @@
 
     <main class="container main-column">
 
-        <div th:class="${alertClass}" th:text="${alert}"></div>
-
         <section class="row" id="contact-info">
             <div class="col col-lg-12 col-md-12 col-sm-12">
                 <h3>St. John's Lutheran Church</h3>
@@ -20,10 +18,8 @@
         </section>
 
         <section th:if="${featuredPost}" class="jumbotron jumbotron-fluid">
-            <p>
-                <span class="h2">Message of the Day:</span>
-                <span class="h4" th:text="${featuredPost.title}"></span>
-            </p>
+            <h2>Message of the Day:</h2>
+            <h4 th:text="${featuredPost.title}"></h4>
             <p class="lead">
                 <a class="btn btn-primary" th:href="@{'/news/viewpost/' + ${featuredPost.id}}">Read More</a>
             </p>

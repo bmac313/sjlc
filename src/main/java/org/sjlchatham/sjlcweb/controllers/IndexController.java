@@ -13,13 +13,17 @@ public class IndexController {
     private PostDao postDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String index(@RequestParam(defaultValue = "false") boolean justLoggedIn,
-                        @RequestParam(defaultValue = "false") boolean justSignedUp,
+    public String index(@RequestParam(defaultValue = "false") boolean passChanged,
                         Model model) {
 
         model.addAttribute("title", "St. John's Lutheran Church");
         model.addAttribute("homeActiveStatus", "active");
         model.addAttribute("featuredPost", postDao.findFirstByOrderByTimeStampDesc());
+
+        if (passChanged) {
+            model.addAttribute("alertClass", "alert alert-success");
+            model.addAttribute("alert", "Password changed successfully!");
+        }
 
         return "index";
     }
