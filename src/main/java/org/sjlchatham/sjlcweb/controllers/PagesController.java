@@ -158,4 +158,19 @@ public class PagesController {
         return "page_generic";
     }
 
+    @RequestMapping(value = "/events/register", method = RequestMethod.GET)
+    public String showEventRegPage(Model model) {
+
+        String[] sideBarImagePaths = {"/img/altar.png", "/img/piano.png", "/img/aisle.png"};
+
+        model.addAttribute("sideBarImagePaths", sideBarImagePaths);
+        model.addAttribute("headerImagePath", "/img/altar_wide.png");
+        model.addAttribute("title", "SJLC Event Signup Form | St. John's Lutheran Church");
+        model.addAttribute("header", "Event Signup");
+        model.addAttribute("optionalClass", "alt");
+        model.addAttribute("pageBodyText", "event-register-page-body");
+
+        return "page_generic";
+    }
+
 }

@@ -60,7 +60,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/news",
                             "/news/viewpost/*",
                             "/links",
-                            "/downloads/**").permitAll()
+                            "/downloads/**",
+                            "/events/**").permitAll()
                     .antMatchers(
                             "/login/resetpass/resetforuser"
                     ).hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
