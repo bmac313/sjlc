@@ -8,5 +8,5 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface EventRegistrationDao extends CrudRepository<Attendee, Integer> {
+public interface AttendeeDao extends CrudRepository<Attendee, Integer> {
 }

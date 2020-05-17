@@ -1,5 +1,8 @@
 package org.sjlchatham.sjlcweb.controllers;
 
+import org.sjlchatham.sjlcweb.data.AttendeeDao;
+import org.sjlchatham.sjlcweb.data.ChurchEventDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class PagesController {
+
+    @Autowired
+    private ChurchEventDao churchEventDao;
+
+    @Autowired
+    private AttendeeDao attendeeDao;
+
 
     @RequestMapping(value = "/about", method = RequestMethod.GET)
     public String handleAboutRequest() {  // Handle a request to /about if a user manually types it in (this is also done with similar paths below).
