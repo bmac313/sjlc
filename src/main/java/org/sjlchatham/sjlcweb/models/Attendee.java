@@ -4,7 +4,8 @@
 package org.sjlchatham.sjlcweb.models;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Attendee {
@@ -14,7 +15,7 @@ public class Attendee {
     @GeneratedValue
     private int id;
 
-    private Date regDateTime;     // stores the date and time this registration was made.
+    private final String regDateTime;     // stores the date and time this registration was made.
 
     private String firstName;
     private String mi;
@@ -26,10 +27,12 @@ public class Attendee {
     private ChurchEvent event;     // stores the event corresponding to this registration
 
     //Constructors
-    public Attendee(){}
+    public Attendee(){
+        this.regDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+    }
 
-    public Attendee(Date regDateTime, String firstName, String mi, String lastName, String email, ChurchEvent event) {
-        this.regDateTime = regDateTime;
+    public Attendee(String firstName, String mi, String lastName, String email, ChurchEvent event) {
+        this();
         this.firstName = firstName;
         this.mi = mi;
         this.lastName = lastName;
@@ -41,12 +44,8 @@ public class Attendee {
         return id;
     }
 
-    public Date getRegDateTime() {
+    public String getRegDateTime() {
         return regDateTime;
-    }
-
-    public void setRegDateTime(Date regDateTime) {
-        this.regDateTime = regDateTime;
     }
 
     public String getFirstName() {
