@@ -318,7 +318,42 @@
 
     <h2 th:text="${header}"></h2> <!-- header == "Newsletter Archives; to change, set value in PagesController" -->
     <h3></h3>
-    <form>
+    <form th:object="${attendee}" method="post">
+
+        <div class="form-group row">
+            <label th:for="firstName" class="col-sm-2 col-form-label">First Name*</label>
+            <div class="col-sm-7">
+                <input th:field="*{firstName}" class="form-control input-lg" />
+            </div>
+            <span th:errors="*{firstName}" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <label th:for="mi" class="col-sm-2 col-form-label">MI</label>
+            <div class="col-sm-7">
+                <input th:field="*{mi}" class="form-control input-lg" />
+            </div>
+            <span th:errors="*{mi}" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <label th:for="lastName" class="col-sm-2 col-form-label">Last Name*</label>
+            <div class="col-sm-7">
+                <input th:field="*{lastName}" class="form-control input-lg" />
+            </div>
+            <span th:errors="*{lastName}" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <label th:for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-7">
+                <input th:field="*{email}" class="form-control input-lg" />
+            </div>
+            <span th:errors="*{email}" class="text-danger"></span>
+        </div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+        <input type="submit" value="Register" class="btn btn-primary" />
 
     </form>
 

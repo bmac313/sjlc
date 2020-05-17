@@ -2,6 +2,7 @@ package org.sjlchatham.sjlcweb.controllers;
 
 import org.sjlchatham.sjlcweb.data.AttendeeDao;
 import org.sjlchatham.sjlcweb.data.ChurchEventDao;
+import org.sjlchatham.sjlcweb.models.Attendee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -173,6 +174,7 @@ public class PagesController {
 
         String[] sideBarImagePaths = {"/img/altar.png", "/img/piano.png", "/img/aisle.png"};
 
+        model.addAttribute(new Attendee());
         model.addAttribute("sideBarImagePaths", sideBarImagePaths);
         model.addAttribute("headerImagePath", "/img/altar_wide.png");
         model.addAttribute("title", "SJLC Event Signup Form | St. John's Lutheran Church");
