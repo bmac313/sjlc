@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="container main-body">
+
+    <nav th:replace="fragments::navbar-main"></nav>
+
+    <main class="container main-column">
+
+        <!-- TODO: Alert for successful creation or deletion of a church event
+        <div th:class="${alertClass}" role="alert">
+            <span th:text="${alert}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        -->
+
+        <div class="row container">
+            <div sec:authorize="${isAuthenticated()}" class="col col-lg-12 col-md-12 col-sm-12">
+
+            </div>
+        </div>
+
+        <a class="btn btn-primary" th:href="@{/events/new-event}">Create a Church Event</a>
+
+        <article class="post" th:each="churchevent : ${churchevents}">
+
+            <a th:href="@{'/events/viewevent/' + ${churchevent.id}}">
+                <h2 th:text="${churchevent.name}"></h2>
+            </a>
+
+            <div class="row">
+
+                <div class="cells">
+                    <div class="col-lg-5 col-md-5 text-center post-cell-right">
+                        <i style="display:inline; color:#fff;" class="far fa-calendar-alt"></i><h3 th:text="${churchevent.dateTime}"></h3>
+                        <h3 th:text="'Attendees: ' + ${churchevent.attendees.size()} + '/' + ${churchevent.attendeeCapacity}"></h3>
+                        <a class="btn btn-success" th:href="@{'/events/' + ${churchevent.id} + '/register'}">Sign Up for This Event</a>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+
+        <nav aria-label="...">
+            <ul class="pager">
+                <li><a th:href="@{'/events?page=' + ${page - 1}}" th:class="${visibilityPrev}">Previous Page</a></li>
+                <li><a th:href="@{'/events?page=' + ${page + 1}}" th:class="${visibilityNext}">Next Page</a></li>
+            </ul>
+        </nav>
+
+        <footer th:replace="fragments::footer"></footer>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>
