@@ -316,8 +316,8 @@
 
 <div th:fragment="event-register-page-body">
 
-    <h2 th:text="${header}"></h2> <!-- header == "Newsletter Archives; to change, set value in PagesController" -->
-    <h3></h3>
+    <h2 th:text="${header}"></h2> <!-- header == "Event Signup"; to change, set value in PagesController" -->
+    <h3 th:text="${'Registering for: ' + churchEvent.name}" class="text-primary"></h3>
     <form th:object="${attendee}" method="post">
 
         <div class="form-group row">
