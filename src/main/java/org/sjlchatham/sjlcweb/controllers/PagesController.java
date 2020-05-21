@@ -2,12 +2,22 @@ package org.sjlchatham.sjlcweb.controllers;
 
 import org.sjlchatham.sjlcweb.data.AttendeeDao;
 import org.sjlchatham.sjlcweb.data.ChurchEventDao;
+import org.sjlchatham.sjlcweb.enums.ChurchEventType;
 import org.sjlchatham.sjlcweb.models.Attendee;
+import org.sjlchatham.sjlcweb.models.ChurchEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class PagesController {
@@ -165,22 +175,6 @@ public class PagesController {
         model.addAttribute("sermonsActiveStatus", "active");
         model.addAttribute("optionalClass", "alt");
         model.addAttribute("pageBodyText", "newsletter-page-body");
-
-        return "page_generic";
-    }
-
-    @RequestMapping(value = "/events/register", method = RequestMethod.GET)
-    public String showEventRegPage(Model model) {
-
-        String[] sideBarImagePaths = {"/img/altar.png", "/img/piano.png", "/img/aisle.png"};
-
-        model.addAttribute(new Attendee());
-        model.addAttribute("sideBarImagePaths", sideBarImagePaths);
-        model.addAttribute("headerImagePath", "/img/altar_wide.png");
-        model.addAttribute("title", "SJLC Event Signup Form | St. John's Lutheran Church");
-        model.addAttribute("header", "Event Signup");
-        model.addAttribute("optionalClass", "alt");
-        model.addAttribute("pageBodyText", "event-register-page-body");
 
         return "page_generic";
     }
