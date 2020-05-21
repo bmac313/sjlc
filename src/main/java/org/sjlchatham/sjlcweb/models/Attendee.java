@@ -4,6 +4,8 @@
 package org.sjlchatham.sjlcweb.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -17,13 +19,22 @@ public class Attendee {
 
     private final String regDateTime;     // stores the date and time this registration was made.
 
+    @NotNull
+    @Size(min = 1, max = 100)
     private String firstName;
+
+    @Size(max = 1)
     private String mi;
+
+    @NotNull
+    @Size(min = 1, max = 100)
     private String lastName;
+
+    @Size(max = 100)
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "attendee_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "church_event_id")
     private ChurchEvent event;     // stores the event corresponding to this registration
 
     //Constructors
