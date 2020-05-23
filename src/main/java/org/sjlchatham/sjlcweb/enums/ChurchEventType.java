@@ -2,10 +2,11 @@ package org.sjlchatham.sjlcweb.enums;
 
 
 public enum ChurchEventType {
-    CHURCH_ACTIVITY,
     CHURCH_SERVICE,
+    CHURCH_ACTIVITY,
     FELLOWSHIP,
     MISSION,
     VOLUNTEER,
-    YOUTH
+    YOUTH,
+    OTHER
 }
