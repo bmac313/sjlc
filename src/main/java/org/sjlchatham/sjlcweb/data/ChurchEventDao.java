@@ -11,5 +11,5 @@ import javax.transaction.Transactional;
 @Transactional
 public interface ChurchEventDao extends PagingAndSortingRepository<ChurchEvent, Integer> {
     ChurchEvent findFirstByOrderByIdDesc();
-    ChurchEvent findFirstByOrderByDateTimeDesc();
+    ChurchEvent findFirstByOrderByEventDateDesc();
 }
