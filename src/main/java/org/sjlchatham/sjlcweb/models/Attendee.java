@@ -20,14 +20,14 @@ public class Attendee {
     private final String regDateTime;     // stores the date and time this registration was made.
 
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 100, message = "First name must be between 1 and 100.")
     private String firstName;
 
     @Size(max = 1)
     private String mi;
 
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 100, message = "Last name must be between 1 and 100.")
     private String lastName;
 
     @Size(max = 100)

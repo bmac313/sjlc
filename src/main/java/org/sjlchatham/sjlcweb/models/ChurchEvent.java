@@ -3,8 +3,7 @@ package org.sjlchatham.sjlcweb.models;
 import org.sjlchatham.sjlcweb.enums.ChurchEventType;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,15 +16,18 @@ public class ChurchEvent {
     private int id;
 
     @NotNull
-    @Size(min = 1, max = 200)
+    @Size(min = 1, max = 200, message = "Name must be between 1 and 200 characters.")
     private String name;
 
     @NotNull
-    @Size(min = 1, max = 25)                 // 25 is the max as this is close the the max date format I want (mm/dd/yyyy hh:mm:ss TMZ)
-    private String dateTime;                 // The date and time is stored using a 24 hour clock for consistency.
+    @Size(min = 1, message = "Date cannot be empty.")
+    private String eventDate;
 
     @NotNull
-    @Size(max = 100)
+    @Size(min = 1, message = "Time cannot be empty.")
+    private String eventTime;
+
+    @NotNull
     private ChurchEventType churchEventType;
 
     // Join to Attendees table
@@ -33,15 +35,17 @@ public class ChurchEvent {
     private List<Attendee> attendees;        // Holds a list of registered attendees for the event.
 
     @NotNull
-    @Size(min = 1, max = 1000000)
+    @Min(value = 1, message = "Attendee capacity cannot be less than 1.")
+    @Max(value = 100000, message = "Attendee capacity currently cannot exceed 100,000 attendees.")
     private int attendeeCapacity;            // The maximum number of attendees allowed to register for the event.
 
     // Constructors
     public ChurchEvent(){}
 
-    public ChurchEvent(String name, String dateTime, ChurchEventType churchEventType, ArrayList<Attendee> attendees, int attendeeCapacity) {
+    public ChurchEvent(String name, String eventDate, String eventTime, ChurchEventType churchEventType, ArrayList<Attendee> attendees, int attendeeCapacity) {
         this.name = name;
-        this.dateTime = dateTime;
+        this.eventDate = eventDate;
+        this.eventTime = eventTime;
         this.churchEventType = churchEventType;
         this.attendees = attendees;
         this.attendeeCapacity = attendeeCapacity;
@@ -61,12 +65,20 @@ public class ChurchEvent {
         this.name = name;
     }
 
-    public String getDateTime() {
-        return this.dateTime;
+    public String getEventDate() {
+        return this.eventDate;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public String getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(String eventTime) {
+        this.eventTime = eventTime;
     }
 
     public ChurchEventType getChurchEventType() {
@@ -98,7 +110,7 @@ public class ChurchEvent {
         return "ChurchEvent{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", dateTime=" + dateTime +
+                ", eventDate=" + eventDate +
                 ", churchEventType=" + churchEventType +
                 ", attendees=" + attendees +
                 ", attendeeCapacity=" + attendeeCapacity +
