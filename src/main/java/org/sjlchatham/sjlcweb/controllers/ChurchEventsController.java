@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,7 +17,6 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("events")
 public class ChurchEventsController {
-
 
     @Autowired
     private ChurchEventDao churchEventDao;
@@ -32,7 +32,7 @@ public class ChurchEventsController {
         // (insert here)
 
         // Get the page request for paging and sorting the ChurchEvents and return pages
-        PageRequest pageRequest = new PageRequest(page-1, 10, Sort.Direction.DESC, "dateTime");
+        PageRequest pageRequest = new PageRequest(page-1, 10, Sort.Direction.DESC, "eventDate");
         int pages = churchEventDao.findAll(pageRequest).getTotalPages();
 
         // Hide "previous page" link if user is on first page
@@ -83,7 +83,29 @@ public class ChurchEventsController {
     @RequestMapping(value = "/{id}/register", method = RequestMethod.POST)
     public String registerForEvent(@PathVariable(name = "id") int id,
                                    @Valid @ModelAttribute Attendee newAttendee,
+                                   Errors errors,
                                    Model model) {
+
+        // TODO: Data validation and errors for new attendee
+        if (errors.hasErrors()) {
+
+            // Set sidebar images
+            String[] sideBarImagePaths = {"/img/altar.png", "/img/piano.png", "/img/aisle.png"};
+
+            // Rebind church event to model
+            ChurchEvent churchEvent = churchEventDao.findOne(id);
+
+            // Model attributes
+            model.addAttribute("churchEvent", churchEvent);
+            model.addAttribute("sideBarImagePaths", sideBarImagePaths);
+            model.addAttribute("headerImagePath", "/img/altar_wide.png");
+            model.addAttribute("title", "SJLC Event Signup Form | St. John's Lutheran Church");
+            model.addAttribute("header", "Event Signup");
+            model.addAttribute("optionalClass", "alt");
+            model.addAttribute("pageBodyText", "event-register-page-body");
+
+            return "page_generic";
+        }
 
         // Find the event by ID from the URL
         ChurchEvent churchEvent = churchEventDao.findOne(id);
@@ -99,7 +121,40 @@ public class ChurchEventsController {
         attendeeDao.save(newAttendee);
         churchEventDao.save(churchEvent);
 
-        return "redirect:../../";
+        return "redirect:../";
+    }
+
+    @RequestMapping(value = "/schedule", method = RequestMethod.GET)
+    public String showNewEventForm(Model model) {
+
+        // Add new ChurchEvent object to model
+        model.addAttribute(new ChurchEvent());
+
+        // Model attributes
+        model.addAttribute("title", "Schedule an Event | St. John's Lutheran Church");
+        model.addAttribute("header", "Schedule an Event");
+
+        return "churchevents/new-event";
+    }
+
+    @RequestMapping(value = "/schedule", method = RequestMethod.POST)
+    public String scheduleNewEvent(@Valid @ModelAttribute ChurchEvent newEvent,
+                                   Errors errors,
+                                   Model model) {
+
+        //TODO: Data validation and errors for new event
+        if (errors.hasErrors()) {
+
+            // Model attributes
+            model.addAttribute("title", "Schedule an Event | St. John's Lutheran Church");
+            model.addAttribute("header", "Schedule an Event");
+
+            return "churchevents/new-event";
+        }
+
+        churchEventDao.save(newEvent);
+
+        return "redirect:";
     }
 
 }
