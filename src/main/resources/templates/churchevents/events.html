@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <a class="btn btn-primary" th:href="@{/events/new-event}">Create a Church Event</a>
+        <a class="btn btn-primary" th:href="@{/events/schedule}">Schedule a Church Event</a>
 
         <article class="post" th:each="churchevent : ${churchevents}">
 
@@ -37,8 +37,10 @@
 
                 <div class="cells">
                     <div class="col-lg-5 col-md-5 text-center post-cell-right">
-                        <i style="display:inline; color:#fff;" class="far fa-calendar-alt"></i><h3 th:text="${churchevent.dateTime}"></h3>
+                        <i style="display:inline; color:#fff;" class="far fa-calendar-alt"></i><h3 th:text="${churchevent.eventDate} + ' @ ' + ${churchevent.eventTime}"></h3>
                         <h3 th:text="'Attendees: ' + ${churchevent.attendees.size()} + '/' + ${churchevent.attendeeCapacity}"></h3>
+
+                        <!--TODO: clicking this link when the event is full should display an alert telling them it is full, instead of leading to the signup form.-->
                         <a class="btn btn-success" th:href="@{'/events/' + ${churchevent.id} + '/register'}">Sign Up for This Event</a>
                     </div>
                 </div>
