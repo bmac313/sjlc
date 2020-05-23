@@ -61,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/news/viewpost/*",
                             "/links",
                             "/downloads/**",
+                            // TODO: ChurchEvent create/edit should be restricted to admins only
                             "/events/**").permitAll()
                     .antMatchers(
                             "/login/resetpass/resetforuser"
