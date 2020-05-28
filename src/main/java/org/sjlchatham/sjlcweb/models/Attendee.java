@@ -3,8 +3,12 @@
 
 package org.sjlchatham.sjlcweb.models;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,14 +27,15 @@ public class Attendee {
     @Size(min = 1, max = 100, message = "First name must be between 1 and 100.")
     private String firstName;
 
-    @Size(max = 1)
+    @Size(max = 1, message = "Middle initial cannot exceed 1 character.")
     private String mi;
 
     @NotNull
     @Size(min = 1, max = 100, message = "Last name must be between 1 and 100.")
     private String lastName;
 
-    @Size(max = 100)
+    @Size(min= 1, message = "Please fill out this field.")
+    @Pattern(regexp = "^\\w+[-\\w.]*@\\w+((-\\w+)|(\\w*))\\.[a-z]{2,3}$", message = "Please enter a valid email address.")
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY)
