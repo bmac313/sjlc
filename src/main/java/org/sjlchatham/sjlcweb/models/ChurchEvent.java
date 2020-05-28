@@ -16,15 +16,18 @@ public class ChurchEvent {
     private int id;
 
     @NotNull
+    private boolean openForRegistration;
+
+    @NotNull
     @Size(min = 1, max = 200, message = "Name must be between 1 and 200 characters.")
     private String name;
 
     @NotNull
-    @Size(min = 1, message = "Date cannot be empty.")
+    @Size(min= 1, message = "Date is empty or incomplete.")
     private String eventDate;
 
     @NotNull
-    @Size(min = 1, message = "Time cannot be empty.")
+    @Size(min= 1, message = "Time is empty or incomplete.")
     private String eventTime;
 
     @NotNull
@@ -40,7 +43,9 @@ public class ChurchEvent {
     private int attendeeCapacity;            // The maximum number of attendees allowed to register for the event.
 
     // Constructors
-    public ChurchEvent(){}
+    public ChurchEvent(){
+        this.openForRegistration = true;
+    }
 
     public ChurchEvent(String name, String eventDate, String eventTime, ChurchEventType churchEventType, ArrayList<Attendee> attendees, int attendeeCapacity) {
         this.name = name;
@@ -55,6 +60,14 @@ public class ChurchEvent {
     // Getters and Setters
     public int getId() {
         return this.id;
+    }
+
+    public boolean isOpenForRegistration() {
+        return openForRegistration;
+    }
+
+    public void setOpenForRegistration(boolean openForRegistration) {
+        this.openForRegistration = openForRegistration;
     }
 
     public String getName() {
