@@ -353,15 +353,14 @@ li.active a{
     height: 100%;
 }
 
-#facebook-icon{
+.social-icon{
 	color: #fff;
-	font-size: 10em;
-	position: relative;
-    top: -40px;
+	font-size: 9em;
+	padding: 2px;
 	transition: 0.2s;
     -webkit-transition: 0.2s;
 }
-#facebook-icon:hover{
+.social-icon:hover{
 	color: rgba(255, 255, 255, 0.4);
 	transition: 0.2s;
 	-webkit-transition: 0.2s;
@@ -376,7 +375,7 @@ li.active a{
 #contact-box a{
     color: #56ffdf;
 }
-#facebook-info{
+#social-info{
 	background-image: url('../img/checkered_pattern_@2X.png');
 	box-shadow: 0px 8px 0px #BCC8E8;
 	color: #fff;
@@ -467,6 +466,12 @@ li.active a{
     padding-left: 1em;
     padding-top: 0.5em;
 }
+.info-boxes article section {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
 .info-boxes img, info-boxes i {
     margin-bottom: 0.5em;
     width: 100%;
@@ -512,6 +517,10 @@ li.active a{
     float: left;
 }
 
+.right-align{
+    text-align: right;
+}
+
 /* Most pages use top padding to prevent the fixed navbar from covering page elements. This class is used to
  * override this padding for pages that don't have the fixed navbar.
  */
@@ -555,6 +564,9 @@ li.active a{
     .info-boxes div{
         height: 21.5em;
     }
+    .social-icon{
+        font-size: 7em;
+    }
     #header-scroll-btn{
         padding-right: 0.7em;
     }
@@ -597,8 +609,11 @@ li.active a{
     .info-boxes div{
         height: 20em;
     }
+    .social-icon{
+        font-size: 6em;
+    }
     #email-link{
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
 }
 
@@ -677,6 +692,12 @@ li.active a{
     }
     .info-boxes div{
         height: auto;
+    }
+    .social-icon{
+        font-size: 9em;
+    }
+    .info-boxes article section{
+        text-align: center;
     }
     #email-link{
         font-size: 1em;
