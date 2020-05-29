@@ -19,8 +19,6 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    // TODO: new roles for reset password paths
-
     @Bean(name = "passwordEncoder")
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -60,10 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/news",
                             "/news/viewpost/*",
                             "/links",
-                            "/downloads/**",
-                            "/events",
-                            "/events/register",
-                            "/events/register/**").permitAll()
+                            "/downloads/**").permitAll()
                     .antMatchers(
                             "/login/resetpass/resetforuser"
                     ).hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
@@ -78,6 +73,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/events/schedule/**",
                             "/events/deleteevent",
                             "/events/deleteevent/**",
+                            // TODO: The below three paths are authenticated for testing purposes. When testing is complete, move /events and /events/register to permitAll.
+                            "/events",
+                            "/events/register",
+                            "/events/register/**",
                             "/changepass",
                             "/changepass/**" ).hasRole("ADMIN")
                         .anyRequest().authenticated()
