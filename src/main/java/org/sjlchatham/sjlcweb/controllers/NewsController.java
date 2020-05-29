@@ -27,12 +27,22 @@ public class NewsController {
                                Model model) {
 
         if (alertActive) {
-            model.addAttribute("alertClass", "alert alert-success alert-dismissible");
+            switch (alertType) {
+                case "postCreateSuccess":
+                    model.addAttribute("alertClass", "alert alert-success alert-dismissible");
+                    model.addAttribute("alert", "The post was created successfully!");
+                    break;
+                case "postDeleteSuccess":
+                    model.addAttribute("alertClass", "alert alert-success alert-dismissible");
+                    model.addAttribute("alert", "The post was deleted successfully!");
+                    break;
+                default:
+                    model.addAttribute("alertClass", "");
+                    model.addAttribute("alert", "");
+                    break;
+            }
         } else {
             model.addAttribute("alertClass", "hidden");
-        }
-        if (alertType.equals("postDeleteSuccess")) {
-            model.addAttribute("alert", "The post was deleted successfully!");
         }
 
         PageRequest pageRequest = new PageRequest(page-1, 5, Sort.Direction.DESC, "timeStamp");
@@ -83,7 +93,7 @@ public class NewsController {
 
         postDao.save(postToAdd);
 
-        return "redirect:";
+        return "redirect:/news?alertActive=true&alertType=postCreateSuccess";
     }
 
     @RequestMapping(value = "viewpost/{id}", method = RequestMethod.GET)
@@ -168,7 +178,7 @@ public class NewsController {
 
         postDao.delete(postId);
 
-        return "redirect:?alertActive=true&alertType=postDeleteSuccess";
+        return "redirect:/news?alertActive=true&alertType=postDeleteSuccess";
     }
 
 }

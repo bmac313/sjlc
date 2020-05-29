@@ -1,12 +1,33 @@
 package org.sjlchatham.sjlcweb.controllers;
 
+import org.sjlchatham.sjlcweb.data.AttendeeDao;
+import org.sjlchatham.sjlcweb.data.ChurchEventDao;
+import org.sjlchatham.sjlcweb.enums.ChurchEventType;
+import org.sjlchatham.sjlcweb.models.Attendee;
+import org.sjlchatham.sjlcweb.models.ChurchEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 public class PagesController {
+
+    @Autowired
+    private ChurchEventDao churchEventDao;
+
+    @Autowired
+    private AttendeeDao attendeeDao;
+
 
     @RequestMapping(value = "/about", method = RequestMethod.GET)
     public String handleAboutRequest() {  // Handle a request to /about if a user manually types it in (this is also done with similar paths below).
