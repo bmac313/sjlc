@@ -58,7 +58,10 @@
                     <img alt="Close-up of a blue calendar" src="" th:src="@{/img/calendar.png}" />
                     <ul class="block-list hidden">
                         <li><a href="/news">News &amp; Updates</a></li>
-                        <li><a href="/events">Church Events</a></li>
+
+                        <!--TODO: Uncomment when this feature is ready to go live
+                        <li><a href="/events">Church Events</a></li>-->
+
                         <li><a href="/calendar">Calendar</a></li>
                         <li><a href="/links">Links</a></li>
                     </ul>
@@ -102,8 +105,14 @@
             <div class="col col-xs-12 col-sm-4 col-md-4">
                 <article id="social-info">
                     <h3>Find Us On Social Media</h3>
-                    <a target="_blank" href="https://www.facebook.com/StJohnsLutheranChurchAndPreschool/"><i class="fab fa-facebook social-icon"></i></a>
-                    <a target="_blank" href="https://www.youtube.com/channel/UC-rhLL6J8wZF7Cm3XSzZjcA"><i class="fab fa-youtube social-icon"></i></a>
+                    <section class="container-fluid">
+                        <section>
+                            <a target="_blank" href="https://www.facebook.com/StJohnsLutheranChurchAndPreschool/"><i class="fab fa-facebook social-icon"></i></a>
+                        </section>
+                        <section class="right-align">
+                            <a target="_blank" href="https://www.youtube.com/channel/UC-rhLL6J8wZF7Cm3XSzZjcA"><i class="fab fa-youtube social-icon"></i></a>
+                        </section>
+                    </section>
                 </article>
             </div>
         </section>
