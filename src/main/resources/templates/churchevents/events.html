@@ -33,8 +33,9 @@
 
                 <div class="cells">
                     <div class="col-lg-5 col-md-5 text-center post-cell-right">
-                        <i style="display:inline; color:#fff;" class="far fa-calendar-alt"></i><h3 th:text="${churchevent.eventDate} + ' @ ' + ${churchevent.eventTime}"></h3>
+                        <i class="far fa-calendar-alt inline">&nbsp;&nbsp;</i><h3 th:text="${churchevent.eventDate} + ' @ ' + ${churchevent.eventTime}" class="inline"></h3>
                         <h3 th:text="'Attendees: ' + ${churchevent.attendees.size()} + '/' + ${churchevent.attendeeCapacity}"></h3>
+                        <h4 th:text="${churchevent.churchEventType.getDisplayName()}"></h4>
                         <a class="btn btn-success" th:href="@{'/events/register/' + ${churchevent.id}}">Sign Up for This Event</a>
                     </div>
                 </div>
