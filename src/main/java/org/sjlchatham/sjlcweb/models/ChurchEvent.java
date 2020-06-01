@@ -23,7 +23,7 @@ public class ChurchEvent {
     private String name;
 
     @NotNull
-    @Size(max = 100000, message = "Description cannot exceed 100,000 characters.")
+    @Size(min = 1, max = 500, message = "Description must be between 1 and 500 characters.")
     private String description;
 
     @NotNull
