@@ -21,6 +21,7 @@
             <div class="post-signature">
                 <p th:text="'Attendees: ' + ${churchEvent.attendees.size()} + '/' + ${churchEvent.attendeeCapacity}"></p>
                 <p th:text="${churchEvent.eventDate} + ' @ ' + ${churchEvent.eventTime}"></p>
+                <a class="btn btn-success" th:href="@{'/events/register/' + ${churchEvent.id}}">Sign Up for This Event</a>
             </div>
 
             <div sec:authorize="${isAuthenticated()}" class="row">
