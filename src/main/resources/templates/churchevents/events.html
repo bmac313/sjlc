@@ -25,6 +25,8 @@
 
         <article class="post" th:each="churchevent : ${churchevents}">
 
+            <!-- TODO: Picture/icon corresponding to event type should be to the right of each box. -->
+
             <a th:href="@{'/events/viewevent/' + ${churchevent.id}}">
                 <h2 th:text="${churchevent.name}"></h2>
             </a>
