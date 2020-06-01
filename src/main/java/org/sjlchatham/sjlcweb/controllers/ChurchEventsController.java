@@ -204,16 +204,60 @@ public class ChurchEventsController {
         return "redirect:/events?alertActive=true&alertType=eventCreateSuccess";
     }
 
+    @RequestMapping(value = "/viewevent/{id}", method = RequestMethod.GET)
+    public String viewEventPage(@PathVariable(name = "id") int id,
+                                Model model) {
+
+        // Model attributes
+        model.addAttribute("title", "Event Details | St John's Lutheran Church");
+        model.addAttribute(churchEventDao.findOne(id));
+        model.addAttribute("id", id);
+
+        return "churchevents/view-event";
+    }
+
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editChurchEvent(@PathVariable(name = "id") int id,
+    public String showEditEventForm(@PathVariable(name = "id") int id,
                                   Model model) {
 
         // Find event to edit by id
-        ChurchEvent churchEvent = churchEventDao.findOne(id);
+        model.addAttribute(churchEventDao.findOne(id));
 
-        // TODO: Create template (churchevents/edit-event) and logic for editing an existing church event.
+        // Model attributes
+        model.addAttribute("title", "Edit Event | St. John's Lutheran Church");
+        model.addAttribute("header", "Edit Event");
 
         return "churchevents/edit-event";
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String editChurchEvent(@PathVariable(name = "id") int id,
+                                  @Valid @ModelAttribute ChurchEvent editedEvent,
+                                  Errors errors,
+                                  Model model) {
+
+        if (errors.hasErrors()) {
+
+            // Model attributes
+            model.addAttribute("title", "Edit Event | St. John's Lutheran Church");
+            model.addAttribute("header", "Edit Event");
+
+            return "churchevents/edit-event";
+        }
+
+        ChurchEvent eventToEdit = churchEventDao.findOne(id);
+
+        eventToEdit.setOpenForRegistration(editedEvent.isOpenForRegistration());
+        eventToEdit.setName(editedEvent.getName());
+        eventToEdit.setDescription(editedEvent.getDescription());
+        eventToEdit.setEventDate(editedEvent.getEventDate());
+        eventToEdit.setEventTime(editedEvent.getEventTime());
+        eventToEdit.setChurchEventType(editedEvent.getChurchEventType());
+        eventToEdit.setAttendeeCapacity(editedEvent.getAttendeeCapacity());
+
+        churchEventDao.save(eventToEdit);
+
+        return "redirect:/events/viewevent/{id}";
     }
 
     // For safety, a redirect is declared explicitly. Deleting from the database is a potentially dangerous feature.
@@ -224,11 +268,11 @@ public class ChurchEventsController {
 
     // This path is protected by the security config so that only admins can send requests to it.
     @RequestMapping(value = "deleteevent", method = RequestMethod.POST)
-    public String deleteEventById(@RequestParam int churchEventId) {
+    public String deleteEventById(@RequestParam int id) {
 
         // TODO: Consider using the DELETE request method to further protect this as well as News Posts.
 
-        churchEventDao.delete(churchEventId);
+        churchEventDao.delete(churchEventDao.findOne(id));
 
         return "redirect:/events?alertActive=true&alertType=eventDeleteSuccess";
     }
