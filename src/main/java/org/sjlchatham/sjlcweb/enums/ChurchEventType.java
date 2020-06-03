@@ -6,6 +6,7 @@ public enum ChurchEventType {
     CHURCH_SERVICE("Church Service"),
     CHURCH_ACTIVITY("Church Activity"),
     FELLOWSHIP("Fellowship"),
+    FUNERAL("Funeral"),
     MISSION("Mission"),
     VOLUNTEER("Volunteer"),
     YOUTH("Youth"),
