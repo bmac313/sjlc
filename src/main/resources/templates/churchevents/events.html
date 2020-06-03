@@ -25,6 +25,8 @@
 
         <article class="post" th:each="churchevent : ${churchevents}">
 
+            <!-- TODO: Picture/icon corresponding to event type should be to the right of each box. -->
+
             <a th:href="@{'/events/viewevent/' + ${churchevent.id}}">
                 <h2 th:text="${churchevent.name}"></h2>
             </a>
@@ -33,8 +35,12 @@
 
                 <div class="cells">
                     <div class="col-lg-5 col-md-5 text-center post-cell-right">
-                        <i style="display:inline; color:#fff;" class="far fa-calendar-alt"></i><h3 th:text="${churchevent.eventDate} + ' @ ' + ${churchevent.eventTime}"></h3>
+
+                        <!-- TODO: Date should be formatted according to a 12-hour clock -->
+                        <i class="far fa-calendar-alt inline">&nbsp;&nbsp;</i><h3 th:text="${churchevent.eventDate} + ' @ ' + ${churchevent.eventTime}" class="inline"></h3>
+
                         <h3 th:text="'Attendees: ' + ${churchevent.attendees.size()} + '/' + ${churchevent.attendeeCapacity}"></h3>
+                        <h4 th:text="${churchevent.churchEventType.getDisplayName()}"></h4>
                         <a class="btn btn-success" th:href="@{'/events/register/' + ${churchevent.id}}">Sign Up for This Event</a>
                     </div>
                 </div>

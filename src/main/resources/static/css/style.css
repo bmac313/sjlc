@@ -22,6 +22,11 @@ p, a, label, span, button, {
 input, ul, .alert {
     font-family: Lato, sans-serif;
 }
+form .textarea {
+    height          : 5em;
+    width           : 100%
+    resize          : none;
+}
 
 .btn-primary, .btn-dark, .btn-default, .btn-danger {
     border-radius   : 0px;

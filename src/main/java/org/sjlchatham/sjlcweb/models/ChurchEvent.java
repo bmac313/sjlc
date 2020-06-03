@@ -23,6 +23,10 @@ public class ChurchEvent {
     private String name;
 
     @NotNull
+    @Size(min = 1, max = 500, message = "Description must be between 1 and 500 characters.")
+    private String description;
+
+    @NotNull
     @Size(min= 1, message = "Date is empty or incomplete.")
     private String eventDate;
 
@@ -47,8 +51,9 @@ public class ChurchEvent {
         this.openForRegistration = true;
     }
 
-    public ChurchEvent(String name, String eventDate, String eventTime, ChurchEventType churchEventType, ArrayList<Attendee> attendees, int attendeeCapacity) {
+    public ChurchEvent(String name, String description, String eventDate, String eventTime, ChurchEventType churchEventType, ArrayList<Attendee> attendees, int attendeeCapacity) {
         this.name = name;
+        this.description = description;
         this.eventDate = eventDate;
         this.eventTime = eventTime;
         this.churchEventType = churchEventType;
@@ -76,6 +81,14 @@ public class ChurchEvent {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getEventDate() {
