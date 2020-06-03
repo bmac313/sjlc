@@ -58,7 +58,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/news",
                             "/news/viewpost/*",
                             "/links",
-                            "/downloads/**").permitAll()
+                            "/downloads/**",
+                            "/events",
+                            "/events/register",
+                            "/events/register/**",
+                            "/events/viewevent",
+                            "/events/viewevent/**").permitAll()
                     .antMatchers(
                             "/login/resetpass/resetforuser"
                     ).hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
@@ -73,10 +78,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/events/schedule/**",
                             "/events/deleteevent",
                             "/events/deleteevent/**",
-                            // TODO: The below three paths are authenticated for testing purposes. When testing is complete, move /events and /events/register to permitAll.
-                            "/events",
-                            "/events/register",
-                            "/events/register/**",
                             "/changepass",
                             "/changepass/**" ).hasRole("ADMIN")
                         .anyRequest().authenticated()
