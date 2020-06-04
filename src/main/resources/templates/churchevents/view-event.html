@@ -20,24 +20,33 @@
             </div>
             <div class="post-signature">
                 <p th:text="'Attendees: ' + ${churchEvent.attendees.size()} + '/' + ${churchEvent.attendeeCapacity}"></p>
-                <p th:text="${churchEvent.eventDate} + ' @ ' + ${churchEvent.eventTime}"></p>
-                <a class="btn btn-success" th:href="@{'/events/register/' + ${churchEvent.id}}">Sign Up for This Event</a>
+                <p th:text="${churchEvent.getTimeStamp()}"></p>
+                <a class="btn btn-success" th:href="@{'/events/register/' + ${churchEvent.id}}">
+                    Sign Up for This Event
+                </a>
+                <button sec:authorize="isAnonymous()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#showAttendeesModal">
+                    View Attendees
+                </button>
+                <button sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#showAttendeesModal">
+                    View/Edit Attendees
+                </button>
             </div>
 
-            <div sec:authorize="${isAuthenticated()}" class="row">
+            <div sec:authorize="${hasRole('ROLE_ADMIN')}" class="row">
                 <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-5">
                     <a th:href="@{'/events/edit/' + ${churchEvent.id}}" class="btn btn-primary">Edit Event</a>
                 </div>
                 <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-5">
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eventDeleteModal">
                         Delete Event
                     </button>
                 </div>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                <div class="modal fade" id="eventDeleteModal" tabindex="-1" role="dialog" aria-labelledby="eventDeleteModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title text-danger" id="exampleModalLabel">WARNING!</h4>
+                                <h4 class="modal-title text-danger" id="eventDeleteModalLabel">WARNING!</h4>
                             </div>
                             <div class="modal-body">
                                 <p>Are you sure you want to delete this event? This <strong>cannot</strong> be undone.</p>
@@ -60,7 +69,63 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+
+            <div class="modal fade" id="showAttendeesModal" tabindex="-1" role="dialog" aria-labelledby="showAttendeesModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title text-primary" id="showAttendeesModalLabel" th:text="'Attendees for ' + ${churchEvent.name}"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <section class="container-fluid">
+                                <div class="row">
+                                    <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                        <h5>Last Name</h5>
+                                    </div>
+                                    <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                        <h5>First Name</h5>
+                                    </div>
+                                    <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        <h5>MI</h5>
+                                    </div>
+                                    <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                        <h5>Email</h5>
+                                    </div>
+                                    <div sec:authorize="${hasRole('ROLE_ADMIN')}" class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        <!-- This div is used to secure the column position for the 'x' if an admin is logged in -->
+                                    </div>
+                                </div>
+                                <div class="row" th:each="attendee : ${churchEvent.getAttendees()}">
+                                    <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                        <p th:text="${attendee.lastName}"></p>
+                                    </div>
+                                    <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                        <p th:text="${attendee.firstName}"></p>
+                                    </div>
+                                    <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        <p th:text="${attendee.mi}"></p>
+                                    </div>
+                                    <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                        <p th:text="${attendee.email}"></p>
+                                    </div>
+                                    <div sec:authorize="hasRole('ROLE_ADMIN')" class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        <p>
+                                            <!-- TODO: 'x' should delete the attendee from the attendee list -->
+                                            <a href="" ><i class="fas fa-times inline"></i></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </article>
 
         <footer th:replace="fragments::footer"></footer>
