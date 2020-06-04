@@ -13,6 +13,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collections;
 
 @Controller
 @RequestMapping("events")
@@ -207,6 +208,9 @@ public class ChurchEventsController {
     @RequestMapping(value = "/viewevent/{id}", method = RequestMethod.GET)
     public String viewEventPage(@PathVariable(name = "id") int id,
                                 Model model) {
+
+        // TODO: priority 1 User should be able to remove attendee from list of attendees; this should update the ArrayList.
+        // TODO: priority 2 Sort list of attendees ascending by lastName.
 
         // Model attributes
         model.addAttribute("title", "Event Details | St John's Lutheran Church");
