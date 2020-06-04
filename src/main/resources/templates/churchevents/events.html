@@ -17,13 +17,13 @@
             </button>
         </div>
 
+        <p class="text-danger"><span class="font-weight-bold">Important note:</span> This feature is currently being tested; all of the events below have been created for testing purposes only and do not constitute actual scheduled events.</p>
+
         <div class="row container">
             <div sec:authorize="${hasRole('ROLE_ADMIN')}" class="col col-lg-12 col-md-12 col-sm-12">
                 <a class="btn btn-primary" th:href="@{/events/schedule}">Schedule a Church Event</a>
             </div>
         </div>
-
-        <p class="text-danger"><span class="font-weight-bold">Important note:</span> This feature is currently being tested; all of the events below have been created for testing purposes only and do not constitute actual scheduled events.</p>
 
         <article class="post" th:each="churchevent : ${churchevents}">
 
