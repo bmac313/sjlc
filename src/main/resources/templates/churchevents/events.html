@@ -18,7 +18,7 @@
         </div>
 
         <div class="row container">
-            <div sec:authorize="${isAuthenticated()}" class="col col-lg-12 col-md-12 col-sm-12">
+            <div sec:authorize="${hasRole('ROLE_ADMIN')}" class="col col-lg-12 col-md-12 col-sm-12">
                 <a class="btn btn-primary" th:href="@{/events/schedule}">Schedule a Church Event</a>
             </div>
         </div>
@@ -37,10 +37,7 @@
 
                 <div class="cells">
                     <div class="col-lg-5 col-md-5 text-center post-cell-right">
-
-                        <!-- TODO: Date should be formatted according to a 12-hour clock -->
-                        <i class="far fa-calendar-alt inline">&nbsp;&nbsp;</i><h3 th:text="${churchevent.eventDate} + ' @ ' + ${churchevent.eventTime}" class="inline"></h3>
-
+                        <i class="far fa-calendar-alt inline">&nbsp;&nbsp;</i><h3 th:text="${churchevent.getTimeStamp()}" class="inline"></h3>
                         <h3 th:text="'Attendees: ' + ${churchevent.attendees.size()} + '/' + ${churchevent.attendeeCapacity}"></h3>
                         <h4 th:text="${churchevent.churchEventType.getDisplayName()}"></h4>
                         <a class="btn btn-success" th:href="@{'/events/register/' + ${churchevent.id}}">Sign Up for This Event</a>
