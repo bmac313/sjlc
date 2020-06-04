@@ -135,10 +135,10 @@ public class ChurchEvent {
     }
 
     // Helper Methods
-    public LocalDateTime getTimeStamp() {
+    public String getTimeStamp() {
         // TODO: should be formatted according to a 12-hour clock
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return LocalDateTime.parse(this.eventDate + " " + this.eventTime, dateTimeFormatter);
+        return LocalDateTime.parse(this.eventDate + " " + this.eventTime, dateTimeFormatter).toString().replace("T", " @ ");
     }
 
     @Override
