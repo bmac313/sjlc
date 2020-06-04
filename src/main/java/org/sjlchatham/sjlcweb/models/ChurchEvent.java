@@ -1,11 +1,14 @@
 package org.sjlchatham.sjlcweb.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.sjlchatham.sjlcweb.enums.ChurchEventType;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Entity
 public class ChurchEvent {
@@ -129,6 +132,13 @@ public class ChurchEvent {
 
     public void setAttendeeCapacity(int attendeeCapacity) {
         this.attendeeCapacity = attendeeCapacity;
+    }
+
+    // Helper Methods
+    public LocalDateTime getTimeStamp() {
+        // TODO: should be formatted according to a 12-hour clock
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return LocalDateTime.parse(this.eventDate + " " + this.eventTime, dateTimeFormatter);
     }
 
     @Override
