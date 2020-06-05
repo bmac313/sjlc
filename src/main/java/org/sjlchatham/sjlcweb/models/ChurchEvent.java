@@ -1,11 +1,10 @@
 package org.sjlchatham.sjlcweb.models;
 
 import org.sjlchatham.sjlcweb.enums.ChurchEventType;
+import org.sjlchatham.sjlcweb.helpers.MilitaryStandardTimes;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Entity
@@ -134,14 +133,31 @@ public class ChurchEvent {
 
     // Helper Methods
     public String getTimeStamp() {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return LocalDateTime.parse(this.eventDate + " " + this.eventTime, dateTimeFormatter).toString().replace("T", " @ ");
+        System.out.println(convertMilToStandardTime(this.eventTime));
+        return this.eventDate + " @ " + convertMilToStandardTime(this.eventTime) + " CST";
     }
 
-    // TODO: convert to standard time using new class in helpers package
-//    public String convertMilitaryTimeToStandardTime(String t) {
-//
-//    }
+    private String convertMilToStandardTime(String t) {
+
+        // Init AM/PM variable
+        String amPM = "";
+
+        // Get the hour in military time (i.e. the two characters before the colon symbol)
+        String hourInMil = t.substring(0, t.indexOf(":"));
+
+        // Determine AM/PM of hourInMil (hour is AM if less than or equal to 12:00; PM if greater than 12:00
+        if (Integer.parseInt(hourInMil) < 12) {
+            amPM = "AM";
+        } else if (Integer.parseInt(hourInMil) >= 12) {
+            amPM = "PM";
+        }
+
+        // Match with the equivalent standard hour in the map, build new string, and return
+        return MilitaryStandardTimes.getHours().get(hourInMil)     // Get the equivalent standard hour in the map
+                + t.substring(t.indexOf(":"), t.length())          // Get the minutes of the hour
+                + " "
+                + amPM;                                            // Add AM/PM marker
+    }
 
     @Override
     public String toString() {
