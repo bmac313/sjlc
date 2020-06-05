@@ -245,6 +245,9 @@ public class ChurchEventsController {
         // Open attendee modal if activated
         model.addAttribute("attendeeModalActive", attendeeModalActive);
 
+        // Look up list of attendees that have an event.id equal to the PathVariable (event) id; add to model
+        model.addAttribute("attendeesForEvent", attendeeDao.findByEventIdOrderByLastNameAsc(id));
+
         // Model attributes
         model.addAttribute("title", "Event Details | St John's Lutheran Church");
         model.addAttribute(churchEventDao.findOne(id));
