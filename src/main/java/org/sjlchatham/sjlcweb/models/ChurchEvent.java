@@ -133,7 +133,6 @@ public class ChurchEvent {
 
     // Helper Methods
     public String getTimeStamp() {
-        System.out.println(convertMilToStandardTime(this.eventTime));
         return this.eventDate + " @ " + convertMilToStandardTime(this.eventTime) + " CST";
     }
 
