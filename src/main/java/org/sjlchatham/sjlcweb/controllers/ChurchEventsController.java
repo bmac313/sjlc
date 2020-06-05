@@ -13,7 +13,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequestMapping("events")
@@ -29,6 +29,7 @@ public class ChurchEventsController {
     public String showChurchEventsPage(@RequestParam(defaultValue = "1") int page,
                                        @RequestParam(defaultValue = "false") boolean alertActive,
                                        @RequestParam(defaultValue = "") String alertType,
+                                       @RequestParam(defaultValue = "") String eventName,
                                        Model model) {
 
         // Handle event page alerts;
@@ -36,27 +37,27 @@ public class ChurchEventsController {
             switch (alertType) {
                 case "eventRegisterSuccess":
                     model.addAttribute("alertClass", "alert alert-success alert dismissible");
-                    model.addAttribute("alert", "The registration was successful. We'll see you there!");
+                    model.addAttribute("alert", "Your registration for <strong>" + eventName + "</strong> was successful. We'll see you there!");
                     break;
                 case "eventOverCapacityError":
                     model.addAttribute("alertClass", "alert alert-danger alert-dismissible");
-                    model.addAttribute("alert", "This event is full and is no longer open to registration.");
+                    model.addAttribute("alert", "<strong>" + eventName + "</strong> is full and is no longer open to registration.");
                     break;
                 case "eventClosedForRegError":
                     model.addAttribute("alertClass", "alert alert-danger alert-dismissible");
-                    model.addAttribute("alert", "This event is currently closed for registration. If you have any questions, please contact the church office.");
+                    model.addAttribute("alert", "<strong>" + eventName + "</strong> is currently closed for registration. If you have any questions, please contact the church office.");
                     break;
                 case "eventCreateSuccess":
                     model.addAttribute("alertClass", "alert alert-success alert-dismissible");
-                    model.addAttribute("alert", "Event created successfully!");
+                    model.addAttribute("alert", "Event <strong>" + eventName + "</strong> created successfully!");
                     break;
                 case "eventEditSuccess":
                     model.addAttribute("alertClass", "alert alert-success alert-dismissible");
-                    model.addAttribute("alert", "Event edited successfully!");
+                    model.addAttribute("alert", "Event <strong>" + eventName + "</strong> edited successfully!");
                     break;
                 case "eventDeleteSuccess":
                     model.addAttribute("alertClass", "alert alert-success alert dismissible");
-                    model.addAttribute("alert", "Event deleted successfully.");
+                    model.addAttribute("alert", "Event <strong>" + eventName + "</strong> deleted successfully.");
                     break;
                 default:
                     model.addAttribute("alertClass", "");
@@ -100,9 +101,9 @@ public class ChurchEventsController {
 
         // Redirect to the events page with an alert if the event's capacity is full or it is closed for registration
         if (churchEvent.getAttendees().size() >= churchEvent.getAttendeeCapacity()) {
-            return "redirect:/events?alertActive=true&alertType=eventOverCapacityError";
+            return "redirect:/events?alertActive=true&alertType=eventOverCapacityError&eventName=" + churchEvent.getName();
         } else if (!churchEvent.isOpenForRegistration()){  // If the event is not full, but closed for registration, do the same.
-            return "redirect:/events?alertActive=true&alertType=eventClosedForRegError";
+            return "redirect:/events?alertActive=true&alertType=eventClosedForRegError&eventName=" + churchEvent.getName();
         }
 
         // Set sidebar images
@@ -154,23 +155,29 @@ public class ChurchEventsController {
 
         // Redirect to the events page with an alert if the event's capacity is full or it is closed for registration
         if (churchEvent.getAttendees().size() >= churchEvent.getAttendeeCapacity()) {
-            return "redirect:/events?alertActive=true&alertType=eventOverCapacityError";
+            return "redirect:/events?alertActive=true&alertType=eventOverCapacityError&eventName=" + churchEvent.getName();
         } else if (!churchEvent.isOpenForRegistration()){  // If the event is not full, but closed for registration, do the same.
-            return "redirect:/events?alertActive=true&alertType=eventClosedForRegError";
+            return "redirect:/events?alertActive=true&alertType=eventClosedForRegError&eventName=" + churchEvent.getName();
         }
+
+        // Get the list of attendees
+        List<Attendee> attendees = churchEvent.getAttendees();
 
         // Store the event in the Event field of the new Attendee
         newAttendee.setEvent(churchEvent);
 
-
         // Add the new attendee to the list of attendees for the event.
-        churchEvent.getAttendees().add(newAttendee);
+        attendees.add(newAttendee);
+
+        // TODO: Sort isn't working, fix
+        // Sort the attendee list by last name
+        attendees.sort(Attendee::compareTo);
 
         // Save objects in database
         attendeeDao.save(newAttendee);
         churchEventDao.save(churchEvent);
 
-        return "redirect:/events?alertActive=true&alertType=eventRegisterSuccess";
+        return "redirect:/events?alertActive=true&alertType=eventRegisterSuccess&eventName=" + churchEvent.getName();
     }
 
     @RequestMapping(value = "/schedule", method = RequestMethod.GET)
@@ -200,17 +207,43 @@ public class ChurchEventsController {
             return "churchevents/new-event";
         }
 
+        // Save the event
         churchEventDao.save(newEvent);
 
-        return "redirect:/events?alertActive=true&alertType=eventCreateSuccess";
+        return "redirect:/events?alertActive=true&alertType=eventCreateSuccess&eventName=" + newEvent.getName();
     }
 
     @RequestMapping(value = "/viewevent/{id}", method = RequestMethod.GET)
     public String viewEventPage(@PathVariable(name = "id") int id,
+                                @RequestParam(defaultValue = "false") boolean alertActive,
+                                @RequestParam(defaultValue = "") String alertType,
+                                @RequestParam(name = "attendeeModalActive", defaultValue = "false") boolean attendeeModalActive,
                                 Model model) {
 
-        // TODO: priority 1 User should be able to remove attendee from list of attendees; this should update the ArrayList.
-        // TODO: priority 2 Sort list of attendees ascending by lastName.
+        // Get the event + event name
+        ChurchEvent churchEvent = churchEventDao.findOne(id);
+        String eventName = churchEvent.getName();
+
+        // Page alerts
+        if (alertActive) {
+            switch (alertType) {
+                case "eventOverCapacityError":
+                    model.addAttribute("alertClass", "alert alert-danger alert-dismissible");
+                    model.addAttribute("alert", "<strong>" + eventName + "</strong> is full and is no longer open to registration.");
+                    break;
+                case "eventClosedForRegError":
+                    model.addAttribute("alertClass", "alert alert-danger alert-dismissible");
+                    model.addAttribute("alert", "<strong>" + eventName + "</strong> is currently closed for registration. If you have any questions, please contact the church office.");
+                    break;
+                default:
+                    model.addAttribute("alertClass", "");
+                    model.addAttribute("alert", "");
+                    break;
+            }
+        }
+
+        // Open attendee modal if activated
+        model.addAttribute("attendeeModalActive", attendeeModalActive);
 
         // Model attributes
         model.addAttribute("title", "Event Details | St John's Lutheran Church");
@@ -265,8 +298,36 @@ public class ChurchEventsController {
     }
 
     // For safety, a redirect is declared explicitly. Deleting from the database is a potentially dangerous feature.
+    @RequestMapping(value = "removeattendee", method = RequestMethod.GET)
+    public String redirectGetRemoveAttendee() {
+        return "redirect:";
+    }
+
+    // This path is protected by the security config so that only admins can send requests to it.
+    @RequestMapping(value = "removeattendee", method = RequestMethod.POST)
+    public String removeAttendeeById(@RequestParam int attendeeListIdx,
+                                     @RequestParam int attendeeId,
+                                     @RequestParam int eventId) {
+
+        // Get event and attendee list
+        ChurchEvent churchEvent = churchEventDao.findOne(eventId);
+        List<Attendee> attendees = churchEvent.getAttendees();
+
+        // Remove attendee from list at provided index
+        attendees.remove(attendeeListIdx);
+
+        // Delete the attendee from the database
+        attendeeDao.delete(attendeeDao.findOne(attendeeId));
+
+        // Save the event object
+        churchEventDao.save(churchEvent);
+
+        return "redirect:/events/viewevent/" + eventId + "?attendeeModalActive=true";
+    }
+
+    // For safety, a redirect is declared explicitly. Deleting from the database is a potentially dangerous feature.
     @RequestMapping(value = "deleteevent", method = RequestMethod.GET)
-    public String redirectGet() {
+    public String redirectGetDeleteEvent() {
         return "redirect:";
     }
 
@@ -274,11 +335,10 @@ public class ChurchEventsController {
     @RequestMapping(value = "deleteevent", method = RequestMethod.POST)
     public String deleteEventById(@RequestParam int id) {
 
-        // TODO: Consider using the DELETE request method to further protect this as well as News Posts.
-
+        String eventName = churchEventDao.findOne(id).getName();
         churchEventDao.delete(churchEventDao.findOne(id));
 
-        return "redirect:/events?alertActive=true&alertType=eventDeleteSuccess";
+        return "redirect:/events?alertActive=true&alertType=eventDeleteSuccess&eventName=" + eventName;
     }
 
 }
