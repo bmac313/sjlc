@@ -60,6 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/links",
                             "/downloads/**",
                             "/events",
+                            "/events/",
                             "/events/register",
                             "/events/register/**",
                             "/events/viewevent",
@@ -78,6 +79,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/events/schedule/**",
                             "/events/deleteevent",
                             "/events/deleteevent/**",
+                            "/events/removeattendee",
+                            "/events/removeattendee/**",
                             "/changepass",
                             "/changepass/**" ).hasRole("ADMIN")
                         .anyRequest().authenticated()
