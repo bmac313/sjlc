@@ -121,6 +121,7 @@ public class Attendee implements Comparable<Attendee> {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", event=" + event +
+                ", eventId=" + event.getId() +
                 '}';
     }
 }
