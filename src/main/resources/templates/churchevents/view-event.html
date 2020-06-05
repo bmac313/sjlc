@@ -111,7 +111,7 @@
                                         <!-- This div is used to secure the column position for the 'x' if an admin is logged in -->
                                     </div>
                                 </div>
-                                <div class="row" th:each="attendee : ${churchEvent.getAttendees()}">
+                                <div class="row" th:each="attendee : ${attendeesForEvent}">
                                     <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                         <p th:text="${attendee.lastName}"></p>
                                     </div>
