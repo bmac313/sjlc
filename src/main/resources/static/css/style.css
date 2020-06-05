@@ -78,6 +78,10 @@ form .textarea {
     -webkit-transition: 0.2s;
 }
 
+.alert-icon{
+    font-size         : 5em;
+}
+
 .center-block {
     display           : table;
     margin            : 0 auto;
