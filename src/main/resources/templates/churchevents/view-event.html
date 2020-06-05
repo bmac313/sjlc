@@ -136,7 +136,7 @@
                                                     <h4 class="modal-title text-danger" th:id="'attendeeDeleteConfirmLabel' + ${churchEvent.getAttendees().indexOf(attendee)}">WARNING!</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Are you sure you want to delete this event? This <strong>cannot</strong> be undone.</p>
+                                                    <p>Are you sure you want to remove this attendee? This <strong>cannot</strong> be undone.</p>
                                                     <div class="row">
                                                         <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                             <form action="/events/removeattendee" method="post">
