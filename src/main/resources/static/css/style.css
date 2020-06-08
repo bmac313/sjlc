@@ -218,6 +218,9 @@ li.active a{
     box-shadow: rgb(188, 200, 232) 0px 8px 0px;
     padding-bottom: 1em;
 }
+.post-cell-right i, .post-cell-right h4 {
+    color: #fff;
+}
 
 .post-cell-right-bottom {
     padding-top:0px;
@@ -424,6 +427,10 @@ li.active a{
     padding-right: 1.5em;
     width: 70%;
 }
+.page-body-fullwidth{
+    padding-left: 1em;
+    padding-right: 1em;
+}
 
 .page-item{
     margin-bottom: 1.4em;
@@ -532,10 +539,6 @@ li.active a{
 .left{
     float: left;
 }
-/* Apply this rule when you want an element to float right, but stop floating on mobile screen sizes */
-.right-except-mobile{
-    float: right;
-}
 
 .right-align{
     text-align: right;
@@ -627,7 +630,7 @@ li.active a{
         font-size: 0.9em;
     }
     .info-boxes div{
-        height: 20em;
+        height: 21em;
     }
     .social-icon{
         font-size: 6em;
@@ -729,6 +732,15 @@ li.active a{
         text-align: center;
     }
     .right-except-mobile{
+        float: none;
+    }
+    .left-except-mobile{
+        float:none;
+    }
+    .info-boxes ul li a {
+        text-align: center;
+    }
+    .info-boxes ul li a > *{  /* All child elements stop floating */
         float: none;
     }
 }

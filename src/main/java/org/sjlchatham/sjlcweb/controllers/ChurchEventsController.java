@@ -87,6 +87,7 @@ public class ChurchEventsController {
 
         // Model attributes
         model.addAttribute("title", "Church Events | St. John's Lutheran Church");
+        model.addAttribute("header", "Church Events");
         model.addAttribute("page", page);
 
         return "churchevents/events";

@@ -59,6 +59,7 @@ public class NewsController {
         model.addAttribute("newsActiveStatus", "active");
         model.addAttribute("posts", postDao.findAll(pageRequest));
         model.addAttribute("title", "Latest News and Updates | St. John's Lutheran Church");
+        model.addAttribute("header", "Latest News and Updates");
 
         model.addAttribute("page", page);
 

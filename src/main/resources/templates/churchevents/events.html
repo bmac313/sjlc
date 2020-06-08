@@ -17,33 +17,47 @@
             </button>
         </div>
 
-        <div class="row container">
-            <div sec:authorize="${hasRole('ROLE_ADMIN')}" class="col col-lg-12 col-md-12 col-sm-12">
-                <a class="btn btn-primary" th:href="@{/events/schedule}">Schedule a Church Event</a>
-            </div>
-        </div>
+        <section class="page-body-fullwidth">
 
-        <article class="post" th:each="churchevent : ${churchevents}">
+            <section class="row container">
+                <h1 th:text="${header}"></h1>
+                <p>
+                    To sign up for an event, click the "Event Info/Signup" button below the event title, or simply click the event
+                    title, then click "Sign up for this Event." <strong>If you sign up for an event by accident, or if you will no
+                    longer be attending:</strong> please notify the church office at
+                    <strong><a href="mailto:stjohnsoffice@comcast.net"> stjohnsoffice@comcast.net</a></strong> as soon as possible.
+                </p>
+            </section>
 
-            <!-- TODO: Picture/icon corresponding to event type should be to the right of each box. -->
+            <section class="row container">
+                <div sec:authorize="${hasRole('ROLE_ADMIN')}" class="col col-lg-12 col-md-12 col-sm-12">
+                    <a class="btn btn-primary" th:href="@{/events/schedule}">Schedule a Church Event</a>
+                </div>
+            </section>
 
-            <a th:href="@{'/events/viewevent/' + ${churchevent.id}}">
-                <h2 th:text="${churchevent.name}"></h2>
-            </a>
+            <article class="post" th:each="churchevent : ${churchevents}">
 
-            <div class="row">
+                <!-- TODO: Picture/icon corresponding to event type should be to the right of each box. -->
 
-                <div class="cells">
-                    <div class="col-lg-5 col-md-5 text-center post-cell-right">
-                        <i class="far fa-calendar-alt inline">&nbsp;&nbsp;</i><h3 th:text="${churchevent.getTimeStamp()}" class="inline"></h3>
-                        <h3 th:text="'Attendees: ' + ${churchevent.attendees.size()} + '/' + ${churchevent.attendeeCapacity}"></h3>
-                        <h4 th:text="${churchevent.churchEventType.getDisplayName()}"></h4>
-                        <a class="btn btn-success" th:href="@{'/events/viewevent/' + ${churchevent.id}}">Event Info/Signup</a>
+                <a th:href="@{'/events/viewevent/' + ${churchevent.id}}">
+                    <h2 th:text="${churchevent.name}"></h2>
+                </a>
+
+                <div class="row">
+
+                    <div class="cells">
+                        <div class="col-lg-5 col-md-5 text-center post-cell-right">
+                            <i class="far fa-calendar-alt inline">&nbsp;&nbsp;</i><h3 th:text="${churchevent.getTimeStamp()}" class="inline"></h3>
+                            <h3 th:text="'Attendees: ' + ${churchevent.attendees.size()} + '/' + ${churchevent.attendeeCapacity}"></h3>
+                            <h4 th:text="${churchevent.churchEventType.getDisplayName()}"></h4>
+                            <a class="btn btn-success" th:href="@{'/events/viewevent/' + ${churchevent.id}}">Event Info/Signup</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </article>
+            </article>
+
+        </section>
 
         <nav aria-label="...">
             <ul class="pager">
