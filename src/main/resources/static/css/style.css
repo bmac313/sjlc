@@ -721,6 +721,9 @@ li.active a{
     .table-two-col tr td{
         display: block;
     }
+    .alert {
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 618px) {

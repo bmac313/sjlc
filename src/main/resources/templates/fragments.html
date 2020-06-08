@@ -319,6 +319,16 @@
 
     <h2 th:text="${header}"></h2> <!-- header == "Event Signup"; to change, set value in PagesController" -->
     <h3 th:text="${'Registering for: ' + churchEvent.name}" class="text-primary"></h3>
+    <section class="alert alert-info">
+        <div class="row container-fluid">
+            <div class="col col-lg-2 col-md-2 col-sm-2">
+                <i class="fas fa-info-circle alert-icon"></i>
+            </div>
+            <div class="col col-lg-10 col-md-10 col-sm-10">
+                <p class="text-info">Fields marked with an <strong>asterisk (*)</strong> are required.</p>
+            </div>
+        </div>
+    </section>
     <form th:object="${attendee}" method="post">
 
         <div class="form-group row">
