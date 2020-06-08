@@ -169,10 +169,6 @@ public class ChurchEventsController {
         // Add the new attendee to the list of attendees for the event.
         attendees.add(newAttendee);
 
-        // TODO: Sort isn't working, fix
-        // Sort the attendee list by last name
-        attendees.sort(Attendee::compareTo);
-
         // Save objects in database
         attendeeDao.save(newAttendee);
         churchEventDao.save(churchEvent);
@@ -246,7 +242,7 @@ public class ChurchEventsController {
         model.addAttribute("attendeeModalActive", attendeeModalActive);
 
         // Look up list of attendees that have an event.id equal to the PathVariable (event) id; add to model
-        model.addAttribute("attendeesForEvent", attendeeDao.findByEventIdOrderByLastNameAsc(id));
+        model.addAttribute("attendeesForEvent", attendeeDao.findByEventIdOrderByLastNameAscFirstNameAscMiAscEmailAsc(id));
 
         // Model attributes
         model.addAttribute("title", "Event Details | St John's Lutheran Church");

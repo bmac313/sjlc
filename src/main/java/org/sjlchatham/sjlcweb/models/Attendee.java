@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Entity
-public class Attendee implements Comparable<Attendee> {
+public class Attendee {
 
     //Properties
     @Id
@@ -103,14 +103,6 @@ public class Attendee implements Comparable<Attendee> {
 
 
     // Helper methods
-    @Override
-    public int compareTo(Attendee a) {
-        if (this.getLastName()==null || a.getLastName()==null) {
-            return 0;
-        }
-        return this.getLastName().compareTo(a.getLastName());
-    }
-
     @Override
     public String toString() {
         return "Attendee{" +
