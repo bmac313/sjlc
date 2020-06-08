@@ -11,4 +11,5 @@ import java.util.List;
 @Transactional
 public interface AttendeeDao extends CrudRepository<Attendee, Integer> {
     List<Attendee> findByEventIdOrderByLastNameAsc(int eventId);
+    List<Attendee> findByEventIdOrderByLastNameAscFirstNameAscMiAscEmailAsc(int eventId);
 }
