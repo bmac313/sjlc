@@ -17,33 +17,44 @@
             </button>
         </div>
 
-        <div class="row container">
-            <div sec:authorize="${isAuthenticated()}" class="col col-lg-12 col-md-12 col-sm-12">
-                <a class="btn btn-primary" th:href="@{/news/new-post}">Create a News Item</a>
-            </div>
-        </div>
+        <section class="page-body-fullwidth">
 
-        <article class="post" th:each="post : ${posts}">
+            <section class="row container">
+                <h1 th:text="${header}"></h1>
+                <p>
+                    Missed a Message of the Day? Browse for it here.
+                </p>
+            </section>
 
-            <a th:href="@{'/news/viewpost/' + ${post.id}}">
-                <h2 th:text="${post.title}"></h2>
-            </a>
-
-            <div class="row">
-
-                <div class="cells">
-                    <div class="col-lg-5 col-md-5 post-cell-left">
-                        <img th:src="${post.imgUrl} ? ${post.imgUrl} : '/img/wittenberg_church.jpg/'" src="" class="img-responsive img-rounded" />
-                    </div>
-
-                    <div class="col-lg-5 col-md-5 text-center post-cell-right">
-                        <h3 th:text="'Posted by ' + ${post.author}"></h3>
-                        <span class="lead" th:text="'at: ' + ${post.timeStamp}"></span>
-                    </div>
+            <div class="row container">
+                <div sec:authorize="${isAuthenticated()}" class="col col-lg-12 col-md-12 col-sm-12">
+                    <a class="btn btn-primary" th:href="@{/news/new-post}">Create a News Item</a>
                 </div>
             </div>
 
-        </article>
+            <article class="post" th:each="post : ${posts}">
+
+                <a th:href="@{'/news/viewpost/' + ${post.id}}">
+                    <h2 th:text="${post.title}"></h2>
+                </a>
+
+                <div class="row">
+
+                    <div class="cells">
+                        <div class="col-lg-5 col-md-5 post-cell-left">
+                            <img th:src="${post.imgUrl} ? ${post.imgUrl} : '/img/wittenberg_church.jpg/'" src="" class="img-responsive img-rounded" />
+                        </div>
+
+                        <div class="col-lg-5 col-md-5 text-center post-cell-right">
+                            <h3 th:text="'Posted by ' + ${post.author}"></h3>
+                            <span class="lead" th:text="'at: ' + ${post.timeStamp}"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+
+        </section>
 
         <nav aria-label="...">
             <ul class="pager">
