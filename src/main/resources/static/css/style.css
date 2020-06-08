@@ -532,6 +532,10 @@ li.active a{
 .left{
     float: left;
 }
+/* Apply this rule when you want an element to float right, but stop floating on mobile screen sizes */
+.right-except-mobile{
+    float: right;
+}
 
 .right-align{
     text-align: right;
@@ -723,6 +727,9 @@ li.active a{
     }
     .alert {
         text-align: center;
+    }
+    .right-except-mobile{
+        float: none;
     }
 }
 
