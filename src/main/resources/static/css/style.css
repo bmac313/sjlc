@@ -344,7 +344,7 @@ li.active a{
     -webkit-transition: 0.2s;
     width: 100%;
 }
-.block-list li a:hover{
+.block-list li a:hover, #social-info a:hover{
     background-color: #E4F8F6;
     color: #2e9b87;
     transition: 0.2s;
@@ -373,16 +373,8 @@ li.active a{
 }
 
 .social-icon{
-	color: #fff;
 	font-size: 9em;
 	padding: 2px;
-	transition: 0.2s;
-    -webkit-transition: 0.2s;
-}
-.social-icon:hover{
-	color: rgba(255, 255, 255, 0.4);
-	transition: 0.2s;
-	-webkit-transition: 0.2s;
 }
 
 #contact-box{
@@ -391,14 +383,14 @@ li.active a{
 	box-shadow: 0px 8px 0px #B4E4DF;
 	height: 100%;
 }
-#contact-box a{
-    color: #56ffdf;
-}
 #social-info{
 	background-image: url('../img/checkered_pattern_@2X.png');
 	box-shadow: 0px 8px 0px #BCC8E8;
 	color: #fff;
 	height: 100%;
+}
+#social-info a{
+    color: #fff;
 }
 
 .page-sidebar, .page-body{
@@ -482,6 +474,9 @@ li.active a{
     margin-right: 0;
 }
 
+.info-boxes a{
+    color: #56ffdf;
+}
 .info-boxes article {
     background-color: #6276AC;
     height: 25em;
@@ -585,7 +580,7 @@ li.active a{
 
 @media screen and (max-width: 1199px){
     .info-boxes div{
-        height: 21.5em;
+        height: 23em;
     }
     .social-icon{
         font-size: 7em;
