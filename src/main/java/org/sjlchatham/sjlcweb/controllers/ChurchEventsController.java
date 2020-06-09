@@ -47,6 +47,9 @@ public class ChurchEventsController {
                     model.addAttribute("alertClass", "alert alert-danger alert-dismissible");
                     model.addAttribute("alert", "<strong>" + eventName + "</strong> is currently closed for registration. If you have any questions, please contact the church office.");
                     break;
+                case "duplicateSignupError":
+                    model.addAttribute("alertClass", "alert alert-danger alert-dismissible");
+                    model.addAttribute("alert", "There is already a registration on file for <strong>" + eventName + "</strong> matching the information you entered. Please check the list of attendees or try again.");
                 case "eventCreateSuccess":
                     model.addAttribute("alertClass", "alert alert-success alert-dismissible");
                     model.addAttribute("alert", "Event <strong>" + eventName + "</strong> created successfully!");
@@ -164,6 +167,18 @@ public class ChurchEventsController {
         // Get the list of attendees
         List<Attendee> attendees = churchEvent.getAttendees();
 
+        // Check if an attendee with the same firstName, lastName, mi, and email
+        // already exists in the attendee list. If so, reject signup and redirect to /events page.
+        /* // TODO: checking against null causes runtime error, fix.
+            if (attendeeDao.findByLastNameAndFirstNameAndMiAndEmailIn(
+                newAttendee.getLastName(),
+                newAttendee.getFirstName(),
+                newAttendee.getMi(),
+                newAttendee.getEmail(),
+                attendees) != null) {
+            return "redirect:/events?alertActive=true&alertType=duplicateSignupError&eventName=" + churchEvent.getName();
+        } */
+
         // Store the event in the Event field of the new Attendee
         newAttendee.setEvent(churchEvent);
 
@@ -243,7 +258,7 @@ public class ChurchEventsController {
         model.addAttribute("attendeeModalActive", attendeeModalActive);
 
         // Look up list of attendees that have an event.id equal to the PathVariable (event) id; add to model
-        model.addAttribute("attendeesForEvent", attendeeDao.findByEventIdOrderByLastNameAscFirstNameAscMiAscEmailAsc(id));
+        model.addAttribute("attendeesForEvent", attendeeDao.findByEventIdOrderByLastNameAscFirstNameAscSuffixAscMiAscEmailAsc(id));
 
         // Model attributes
         model.addAttribute("title", "Event Details | St John's Lutheran Church");
