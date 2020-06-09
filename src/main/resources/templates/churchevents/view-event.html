@@ -26,9 +26,6 @@
         <article class="post" style="max-width:45em; margin:auto;">
             <h2 th:text="${churchEvent.name}"></h2>
 
-            <!--TODO: display image corresponding to event type
-            <img th:src="" src="" style="max-width:100%;" /> -->
-
             <div class="container-fluid">
                 <p th:text="${churchEvent.description}"></p>
             </div>
@@ -102,6 +99,9 @@
                                         <h5>First Name</h5>
                                     </div>
                                     <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        <h5>Suffix</h5>
+                                    </div>
+                                    <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
                                         <h5>MI</h5>
                                     </div>
                                     <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -111,12 +111,17 @@
                                         <!-- This div is used to secure the column position for the 'x' if an admin is logged in -->
                                     </div>
                                 </div>
+
+                                <!-- TODO: modal layout breaks on mobile, fix. -->
                                 <div class="row" th:each="attendee : ${attendeesForEvent}">
                                     <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                         <p th:text="${attendee.lastName}"></p>
                                     </div>
                                     <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                         <p th:text="${attendee.firstName}"></p>
+                                    </div>
+                                    <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        <p th:text="${attendee.suffix}"></p>
                                     </div>
                                     <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
                                         <p th:text="${attendee.mi}"></p>
