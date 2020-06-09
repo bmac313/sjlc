@@ -341,7 +341,7 @@
 
         <div class="form-group row">
             <label th:for="mi" class="col-sm-2 col-form-label">MI</label>
-            <div class="col-sm-7">
+            <div class="col-lg-2 col-md-2 col-sm-7">
                 <input th:field="*{mi}" class="form-control input-lg" />
             </div>
             <span th:errors="*{mi}" class="text-danger"></span>
@@ -353,6 +353,18 @@
                 <input th:field="*{lastName}" class="form-control input-lg" />
             </div>
             <span th:errors="*{lastName}" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <label th:for="suffix"  class="col-sm-2 col-form-label">Suffix
+                <a href="#" data-toggle="tooltip" title="e.g. Jr, Sr, III, etc.">
+                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                </a>
+            </label>
+            <div class="col-lg-2 col-md-2 col-sm-7">
+                <input th:field="*{suffix}" class="form-control input-lg" />
+            </div>
+            <span th:errors="*{suffix}" class="text-danger col-sm-3"></span>
         </div>
 
         <div class="form-group row">
