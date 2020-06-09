@@ -515,6 +515,8 @@ li.active a{
     text-align: center;
 }
 
+
+/* GENERIC LAYOUT/FORMATTING RULES */
 .emphasis{
     font-weight: bold;
 }
@@ -583,7 +585,7 @@ li.active a{
     width: 100%;
 }
 
-
+/* MEDIA QUERIES */
 @media screen and (max-width: 1199px){
     .info-boxes div{
         height: 23em;
