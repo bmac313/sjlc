@@ -746,6 +746,9 @@ li.active a{
     .info-boxes ul li a > *{  /* All child elements stop floating */
         float: none;
     }
+    .post-signature{
+        width: 100%
+    }
 }
 
 @media screen and (max-width: 618px) {
