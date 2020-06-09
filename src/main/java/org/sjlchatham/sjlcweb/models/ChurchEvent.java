@@ -158,6 +158,21 @@ public class ChurchEvent {
                 + amPM;                                            // Add AM/PM marker
     }
 
+    // This method returns a string containing the CSS class for an icon corresponding to the event type.
+    public String getCssIconClass() {
+        switch (this.churchEventType) {
+            case CHURCH_SERVICE: return "fas fa-church";
+            case CHURCH_ACTIVITY: return "fas fa-bible";
+            case FELLOWSHIP: return "fas fa-users";
+            case FUNERAL: return "fas fa-cross";
+            case MISSION: return "fas fa-globe-africa";
+            case VOLUNTEER: return "fas fa-hands-helping";
+            case YOUTH: return "fas fa-seedling";
+            case OTHER: return "fas fa-icons";
+            default: return "fas fa-icons";
+        }
+    }
+
     @Override
     public String toString() {
         return "ChurchEvent{" +
