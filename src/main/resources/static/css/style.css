@@ -236,6 +236,12 @@ li.active a{
 .post-cell-right span, .post-signature span{
     color: #fff;
 }
+.event-icon-box {
+    text-align: center;
+}
+.event-icon-box i {
+    font-size: 7em;
+}
 
 .post-signature {
     background-image: url(../img/checkered_pattern.png);
