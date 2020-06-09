@@ -167,17 +167,10 @@ public class ChurchEventsController {
         // Get the list of attendees
         List<Attendee> attendees = churchEvent.getAttendees();
 
-        // Check if an attendee with the same firstName, lastName, mi, and email
-        // already exists in the attendee list. If so, reject signup and redirect to /events page.
-        /* // TODO: checking against null causes runtime error, fix.
-            if (attendeeDao.findByLastNameAndFirstNameAndMiAndEmailIn(
-                newAttendee.getLastName(),
-                newAttendee.getFirstName(),
-                newAttendee.getMi(),
-                newAttendee.getEmail(),
-                attendees) != null) {
-            return "redirect:/events?alertActive=true&alertType=duplicateSignupError&eventName=" + churchEvent.getName();
-        } */
+        /* TODO: Check if an attendee with the same firstName, lastName, mi, suffix, and email...
+         * already exists in the attendee list. If so, reject signup and redirect to /events page.
+         */
+
 
         // Store the event in the Event field of the new Attendee
         newAttendee.setEvent(churchEvent);
