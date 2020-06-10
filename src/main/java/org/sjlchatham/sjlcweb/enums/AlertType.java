@@ -1,0 +1,11 @@
+package org.sjlchatham.sjlcweb.enums;
+
+public enum AlertType {
+    EVENT_REGISTER_SUCCESS,
+    EVENT_OVER_CAPACITY_ERROR,
+    EVENT_CLOSED_FOR_REG_ERROR,
+    DUPLICATE_SIGNUP_ERROR,
+    EVENT_CREATE_SUCCESS,
+    EVENT_EDIT_SUCCESS,
+    EVENT_DELETE_SUCCESS
+}
