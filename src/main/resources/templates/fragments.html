@@ -377,7 +377,7 @@
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
         <input type="submit" value="Register" class="btn btn-primary" />
-        <a th:href="@{'/events/viewevent/' + ${churchEvent.id}}" class="btn btn-danger">Cancel</a>
+        <a th:href="@{'/events/viewevent/' + ${id}}" class="btn btn-danger">Cancel</a>
 
     </form>
 

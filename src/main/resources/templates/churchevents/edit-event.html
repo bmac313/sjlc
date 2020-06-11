@@ -68,7 +68,6 @@
                 <span th:errors="*{churchEventType}" class="text-danger col-sm-3"></span>
             </div>
 
-            <!-- TODO: Forbid changing the attendee capacity to a number less than the current # of attendees -->
             <div class="form-group row">
                 <label th:for="attendeeCapacity"  class="col-sm-2 col-form-label">Maximum Number of Attendees*
                     <a href="#" data-toggle="tooltip" title="Set the maximum number of people allowed to register for this event (you can change this later).">
@@ -79,6 +78,7 @@
                     <input th:field="*{attendeeCapacity}" type="number" min="0" max="100000" class="form-control input-lg" />
                 </div>
                 <span th:errors="*{attendeeCapacity}" class="text-danger col-sm-3"></span>
+                <span th:text="${invalidCapacityError}" class="text-danger col-sm-3"></span>
             </div>
 
             <div class="form-check row">
@@ -94,10 +94,11 @@
             </div>
 
             <div class="form-group row">
+                <input type="hidden" name="currNumAttendees" th:value="${currNumAttendees}" />
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                     <input type="submit" value="Update" class="btn btn-primary" />
-                    <a th:href="@{'/events/viewevent/' + ${churchEvent.getId()}}" class="btn btn-danger">Cancel</a>
+                    <a th:href="@{'/events/viewevent/' + ${id}}" class="btn btn-danger">Cancel</a>
                 </div>
             </div>
 
