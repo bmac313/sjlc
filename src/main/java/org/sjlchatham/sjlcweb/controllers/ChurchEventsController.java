@@ -69,7 +69,7 @@ public class ChurchEventsController {
     }
 
     @RequestMapping(value = "/register/{id}", method = RequestMethod.GET)
-    public String showEventRegPage(@PathVariable(value = "id") int id,
+    public String showEventRegPage(@PathVariable(value = "id") @ModelAttribute int id,
                                    Model model) {
 
         // Find the ChurchEvent for which the user is registering by ID based on the URL.
@@ -101,7 +101,7 @@ public class ChurchEventsController {
     }
 
     @RequestMapping(value = "/register/{id}", method = RequestMethod.POST)
-    public String registerForEvent(@PathVariable(name = "id") int id,
+    public String registerForEvent(@PathVariable(name = "id") @ModelAttribute int id,
                                    @Valid @ModelAttribute Attendee newAttendee,
                                    Errors errors,
                                    Model model) {
@@ -194,7 +194,7 @@ public class ChurchEventsController {
     }
 
     @RequestMapping(value = "/viewevent/{id}", method = RequestMethod.GET)
-    public String viewEventPage(@PathVariable(name = "id") int id,
+    public String viewEventPage(@PathVariable(name = "id") @ModelAttribute int id,
                                 @RequestParam(defaultValue = "false") boolean alertActive,
                                 @RequestParam(defaultValue = "") String alertType,
                                 @RequestParam(name = "attendeeModalActive", defaultValue = "false") boolean attendeeModalActive,
@@ -216,13 +216,12 @@ public class ChurchEventsController {
         // Model attributes
         model.addAttribute("title", "Event Details | St John's Lutheran Church");
         model.addAttribute(churchEventDao.findOne(id));
-        model.addAttribute("id", id);
 
         return "churchevents/view-event";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String showEditEventForm(@PathVariable(name = "id") int id,
+    public String showEditEventForm(@PathVariable(name = "id") @ModelAttribute int id,
                                   Model model) {
 
         // Find event to edit by id
@@ -236,21 +235,36 @@ public class ChurchEventsController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String editChurchEvent(@PathVariable(name = "id") int id,
+    public String editChurchEvent(@PathVariable(name = "id") @ModelAttribute int id,
                                   @Valid @ModelAttribute ChurchEvent editedEvent,
                                   Errors errors,
                                   Model model) {
 
+        ChurchEvent eventToEdit = churchEventDao.findOne(id);
+
+        // Check for JPA validation errors and custom errors
         if (errors.hasErrors()) {
 
             // Model attributes
             model.addAttribute("title", "Edit Event | St. John's Lutheran Church");
             model.addAttribute("header", "Edit Event");
 
+            // Check for custom error in addition to JPA
+            if (!attendeeCapacityValid(editedEvent, eventToEdit))
+                model.addAttribute("invalidCapacityError", "The attendee capacity cannot be less than the number of registered attendees.");
+
             return "churchevents/edit-event";
         }
+        // If no JPA errors, check for custom error alone.
+        if (!attendeeCapacityValid(editedEvent, eventToEdit)) {
 
-        ChurchEvent eventToEdit = churchEventDao.findOne(id);
+            // Model attributes
+            model.addAttribute("title", "Edit Event | St. John's Lutheran Church");
+            model.addAttribute("header", "Edit Event");
+            model.addAttribute("invalidCapacityError", "The attendee capacity cannot be less than the number of registered attendees.");
+
+            return "churchevents/edit-event";
+        }
 
         eventToEdit.setOpenForRegistration(editedEvent.isOpenForRegistration());
         eventToEdit.setName(editedEvent.getName());
@@ -332,6 +346,14 @@ public class ChurchEventsController {
             System.out.println("Attendee not found. Created new entry for Attendee.");
             return false;
         }
+    }
+
+    /* This method takes the original and edited ChurchEvents and returns whether the latter's
+     * attendeeCapacity is valid. A valid attendee capacity is one that does not exceed the
+     * current number of registered attendees.
+     */
+    private boolean attendeeCapacityValid(ChurchEvent editedEvent, ChurchEvent origEvent) {
+        return editedEvent.getAttendeeCapacity() >= origEvent.getAttendees().size();
     }
 
 }
