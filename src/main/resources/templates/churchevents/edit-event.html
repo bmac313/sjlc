@@ -61,13 +61,14 @@
                     <select th:field="*{churchEventType}" class="form-control input-lg">
                         <option th:each="type : ${T(org.sjlchatham.sjlcweb.enums.ChurchEventType).values()}"
                                 th:value="${type.getPropertyName()}"
-                                th:text="${type}">
+                                th:text="${type.getDisplayName()}">
                         </option>
                     </select>
                 </div>
                 <span th:errors="*{churchEventType}" class="text-danger col-sm-3"></span>
             </div>
 
+            <!-- TODO: Forbid changing the attendee capacity to a number less than the current # of attendees -->
             <div class="form-group row">
                 <label th:for="attendeeCapacity"  class="col-sm-2 col-form-label">Maximum Number of Attendees*
                     <a href="#" data-toggle="tooltip" title="Set the maximum number of people allowed to register for this event (you can change this later).">
