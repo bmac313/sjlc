@@ -2,6 +2,7 @@ package org.sjlchatham.sjlcweb.controllers;
 
 import org.sjlchatham.sjlcweb.data.AttendeeDao;
 import org.sjlchatham.sjlcweb.data.ChurchEventDao;
+import org.sjlchatham.sjlcweb.helpers.Alert;
 import org.sjlchatham.sjlcweb.models.Attendee;
 import org.sjlchatham.sjlcweb.models.ChurchEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Controller
 @RequestMapping("events")
@@ -29,44 +31,14 @@ public class ChurchEventsController {
     public String showChurchEventsPage(@RequestParam(defaultValue = "1") int page,
                                        @RequestParam(defaultValue = "false") boolean alertActive,
                                        @RequestParam(defaultValue = "") String alertType,
-                                       @RequestParam(defaultValue = "") String eventName,
+                                       @RequestParam(defaultValue = "-1") int eventId,
                                        Model model) {
 
-        // Handle event page alerts;
+        // If alerts are set to active, create page alert and add to model
         if (alertActive) {
-            switch (alertType) {
-                case "eventRegisterSuccess":
-                    model.addAttribute("alertClass", "alert alert-success alert dismissible");
-                    model.addAttribute("alert", "Your registration for <strong>" + eventName + "</strong> was successful. We'll see you there!");
-                    break;
-                case "eventOverCapacityError":
-                    model.addAttribute("alertClass", "alert alert-danger alert-dismissible");
-                    model.addAttribute("alert", "<strong>" + eventName + "</strong> is full and is no longer open to registration.");
-                    break;
-                case "eventClosedForRegError":
-                    model.addAttribute("alertClass", "alert alert-danger alert-dismissible");
-                    model.addAttribute("alert", "<strong>" + eventName + "</strong> is currently closed for registration. If you have any questions, please contact the church office.");
-                    break;
-                case "duplicateSignupError":
-                    model.addAttribute("alertClass", "alert alert-danger alert-dismissible");
-                    model.addAttribute("alert", "There is already a registration on file for <strong>" + eventName + "</strong> matching the information you entered. Please check the list of attendees or try again.");
-                case "eventCreateSuccess":
-                    model.addAttribute("alertClass", "alert alert-success alert-dismissible");
-                    model.addAttribute("alert", "Event <strong>" + eventName + "</strong> created successfully!");
-                    break;
-                case "eventEditSuccess":
-                    model.addAttribute("alertClass", "alert alert-success alert-dismissible");
-                    model.addAttribute("alert", "Event <strong>" + eventName + "</strong> edited successfully!");
-                    break;
-                case "eventDeleteSuccess":
-                    model.addAttribute("alertClass", "alert alert-success alert dismissible");
-                    model.addAttribute("alert", "Event <strong>" + eventName + "</strong> deleted successfully.");
-                    break;
-                default:
-                    model.addAttribute("alertClass", "");
-                    model.addAttribute("alert", "");
-                    break;
-            }
+            Alert alert = new Alert(alertType);
+            model.addAttribute("alertClass", alert.getCssClass());
+            model.addAttribute("alert", alert.getAlertTextForEvent(churchEventDao.findOne(eventId)));
         } else {
             model.addAttribute("alertClass", "hidden");
         }
@@ -105,9 +77,9 @@ public class ChurchEventsController {
 
         // Redirect to the events page with an alert if the event's capacity is full or it is closed for registration
         if (churchEvent.getAttendees().size() >= churchEvent.getAttendeeCapacity()) {
-            return "redirect:/events?alertActive=true&alertType=eventOverCapacityError&eventName=" + churchEvent.getName();
+            return "redirect:/events/viewevent/{id}?alertActive=true&alertType=eventOverCapacityError&eventId=" + churchEvent.getId();
         } else if (!churchEvent.isOpenForRegistration()){  // If the event is not full, but closed for registration, do the same.
-            return "redirect:/events?alertActive=true&alertType=eventClosedForRegError&eventName=" + churchEvent.getName();
+            return "redirect:/events/viewevent/{id}?alertActive=true&alertType=eventClosedForRegError&eventId=" + churchEvent.getId();
         }
 
         // Set sidebar images
@@ -159,18 +131,21 @@ public class ChurchEventsController {
 
         // Redirect to the events page with an alert if the event's capacity is full or it is closed for registration
         if (churchEvent.getAttendees().size() >= churchEvent.getAttendeeCapacity()) {
-            return "redirect:/events?alertActive=true&alertType=eventOverCapacityError&eventName=" + churchEvent.getName();
+            return "redirect:/events/viewevent/{id}?alertActive=true&alertType=eventOverCapacityError&eventId=" + id;
         } else if (!churchEvent.isOpenForRegistration()){  // If the event is not full, but closed for registration, do the same.
-            return "redirect:/events?alertActive=true&alertType=eventClosedForRegError&eventName=" + churchEvent.getName();
+            return "redirect:/events/viewevent/{id}?alertActive=true&alertType=eventClosedForRegError&eventId=" + id;
         }
 
         // Get the list of attendees
         List<Attendee> attendees = churchEvent.getAttendees();
 
-        /* TODO: Check if an attendee with the same firstName, lastName, mi, suffix, and email...
-         * already exists in the attendee list. If so, reject signup and redirect to /events page.
+        /* Check if an attendee with the same firstName, lastName, mi, suffix, and email
+         * already exists in the attendee list. If so, reject signup and redirect to the event
+         * info page with an error.
          */
-
+        if (isDuplicateRegistration(newAttendee, id)){
+            return "redirect:/events/viewevent/{id}?alertActive=true&alertType=duplicateSignupError";
+        }
 
         // Store the event in the Event field of the new Attendee
         newAttendee.setEvent(churchEvent);
@@ -182,7 +157,7 @@ public class ChurchEventsController {
         attendeeDao.save(newAttendee);
         churchEventDao.save(churchEvent);
 
-        return "redirect:/events?alertActive=true&alertType=eventRegisterSuccess&eventName=" + churchEvent.getName();
+        return "redirect:/events?alertActive=true&alertType=eventRegisterSuccess&eventId=" + id;
     }
 
     @RequestMapping(value = "/schedule", method = RequestMethod.GET)
@@ -215,7 +190,7 @@ public class ChurchEventsController {
         // Save the event
         churchEventDao.save(newEvent);
 
-        return "redirect:/events?alertActive=true&alertType=eventCreateSuccess&eventName=" + newEvent.getName();
+        return "redirect:/events?alertActive=true&alertType=eventCreateSuccess&eventId=" + newEvent.getId();
     }
 
     @RequestMapping(value = "/viewevent/{id}", method = RequestMethod.GET)
@@ -225,26 +200,11 @@ public class ChurchEventsController {
                                 @RequestParam(name = "attendeeModalActive", defaultValue = "false") boolean attendeeModalActive,
                                 Model model) {
 
-        // Get the event + event name
-        ChurchEvent churchEvent = churchEventDao.findOne(id);
-        String eventName = churchEvent.getName();
-
-        // Page alerts
+        // Create alert if set to active
         if (alertActive) {
-            switch (alertType) {
-                case "eventOverCapacityError":
-                    model.addAttribute("alertClass", "alert alert-danger alert-dismissible");
-                    model.addAttribute("alert", "<strong>" + eventName + "</strong> is full and is no longer open to registration.");
-                    break;
-                case "eventClosedForRegError":
-                    model.addAttribute("alertClass", "alert alert-danger alert-dismissible");
-                    model.addAttribute("alert", "<strong>" + eventName + "</strong> is currently closed for registration. If you have any questions, please contact the church office.");
-                    break;
-                default:
-                    model.addAttribute("alertClass", "");
-                    model.addAttribute("alert", "");
-                    break;
-            }
+            Alert alert = new Alert(alertType);
+            model.addAttribute("alertClass", alert.getCssClass());
+            model.addAttribute("alert", alert.getAlertTextForEvent(churchEventDao.findOne(id)));
         }
 
         // Open attendee modal if activated
@@ -302,7 +262,7 @@ public class ChurchEventsController {
 
         churchEventDao.save(eventToEdit);
 
-        return "redirect:/events/viewevent/{id}";
+        return "redirect:/events/viewevent/{id}?alertActive=true&alertType=eventEditSuccess&eventId=" + id;
     }
 
     // For safety, a redirect is declared explicitly. Deleting from the database is a potentially dangerous feature.
@@ -343,10 +303,35 @@ public class ChurchEventsController {
     @RequestMapping(value = "deleteevent", method = RequestMethod.POST)
     public String deleteEventById(@RequestParam int id) {
 
-        String eventName = churchEventDao.findOne(id).getName();
         churchEventDao.delete(churchEventDao.findOne(id));
 
-        return "redirect:/events?alertActive=true&alertType=eventDeleteSuccess&eventName=" + eventName;
+        return "redirect:/events?alertActive=true&alertType=eventDeleteSuccess&eventId=" + id;
+    }
+
+    // HELPER METHODS
+
+    /* This method takes in an event ID and an attendee to be registered for that event,
+     * then returns true or false based on whether an attendee with the same firstName, lastName,
+     * mi, suffix, and email exists for that event.
+     */
+    private boolean isDuplicateRegistration(Attendee newAttendee, int eventId) {
+        try {
+            Attendee attendeeLookup =
+                    attendeeDao.findByEventIdAndLastNameAndFirstNameAndMiAndSuffixAndEmail(
+                            eventId,
+                            newAttendee.getLastName(),
+                            newAttendee.getFirstName(),
+                            newAttendee.getMi(),
+                            newAttendee.getSuffix(),
+                            newAttendee.getEmail()
+                    );
+
+            System.out.println("Attendee already exists: " + attendeeLookup.getId());
+            return true;
+        } catch (NoSuchElementException | NullPointerException ex) {
+            System.out.println("Attendee not found. Created new entry for Attendee.");
+            return false;
+        }
     }
 
 }
