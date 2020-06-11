@@ -12,5 +12,12 @@ import java.util.List;
 public interface AttendeeDao extends CrudRepository<Attendee, Integer> {
     List<Attendee> findByEventIdOrderByLastNameAsc(int eventId);
     List<Attendee> findByEventIdOrderByLastNameAscFirstNameAscSuffixAscMiAscEmailAsc(int eventId);
-    Attendee findByLastNameAndFirstNameAndMiAndEmailIn(String lastName, String firstName, String mi, String email, List<Attendee> attendees);
+    Attendee findByEventIdAndLastNameAndFirstNameAndMiAndSuffixAndEmail(
+            int eventId,
+            String lastName,
+            String firstName,
+            String mi,
+            String suffix,
+            String email
+    );
 }
