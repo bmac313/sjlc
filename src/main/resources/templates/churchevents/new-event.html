@@ -61,7 +61,7 @@
                     <select th:field="*{churchEventType}" class="form-control input-lg">
                         <option th:each="type : ${T(org.sjlchatham.sjlcweb.enums.ChurchEventType).values()}"
                                 th:value="${type.getPropertyName()}"
-                                th:text="${type}">
+                                th:text="${type.getDisplayName()}">
                         </option>
                     </select>
                 </div>
