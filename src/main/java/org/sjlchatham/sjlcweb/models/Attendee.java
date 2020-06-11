@@ -119,15 +119,15 @@ public class Attendee {
     @Override
     public String toString() {
         return "Attendee{" +
-                "id=" + id +
-                ", regDateTime='" + regDateTime + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", mi='" + mi + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", suffix='" + suffix + "'\''" +
-                ", email='" + email + '\'' +
-                ", event=" + event +
-                ", eventId=" + event.getId() +
+                "id=" + this.id +
+                ", regDateTime='" + this.regDateTime + '\'' +
+                ", firstName='" + this.firstName + '\'' +
+                ", mi='" + this.mi + '\'' +
+                ", lastName='" + this.lastName + '\'' +
+                ", suffix='" + this.suffix + "'\''" +
+                ", email='" + this.email + '\'' +
+                ", event=" + this.event.getName() +
+                ", eventId=" + this.event.getId() +
                 '}';
     }
 }

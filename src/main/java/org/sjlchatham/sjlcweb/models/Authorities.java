@@ -25,6 +25,7 @@ public class Authorities {
         this.authority = authority;
     }
 
+    // GETTERS and SETTERS
     public Integer getUserAuthorityId() {
         return userAuthorityId;
     }
@@ -47,5 +48,16 @@ public class Authorities {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    // HELPER METHODS
+
+    @Override
+    public String toString() {
+        return "Authorities{" +
+                "userAuthorityId=" + userAuthorityId +
+                ", user=" + user +
+                ", authority='" + authority + '\'' +
+                '}';
     }
 }

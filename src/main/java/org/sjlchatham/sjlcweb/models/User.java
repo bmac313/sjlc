@@ -10,6 +10,7 @@ import java.util.Set;
 @Table(name = "USERS")
 public class User {
 
+    // Class Properties
     @Id
     @NotNull
     @Size(min = 1, message = "Please enter a username.")
@@ -48,6 +49,7 @@ public class User {
         this.authorities = authorities;
     }
 
+    // GETTERS and SETTERS
     public String getUsername() {
         return this.username;
     }
@@ -90,5 +92,17 @@ public class User {
 
     public void addAuthority(Authorities authority) {
         this.authorities.add(authority);
+    }
+
+    // HELPER METHODS
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", enabled=" + enabled +
+                ", authorities=" + authorities +
+                '}';
     }
 }
