@@ -1,6 +1,7 @@
 package org.sjlchatham.sjlcweb.helpers;
 
 import org.sjlchatham.sjlcweb.models.ChurchEvent;
+import org.sjlchatham.sjlcweb.models.Post;
 
 public class Alert {
 
@@ -37,10 +38,12 @@ public class Alert {
         }
     }
 
-    // Returns an UN-ESCAPED alert message based on the EventType.
-    // Use this method for alert messages WITHOUT the Event Name.
+    // Returns an UN-ESCAPED alert message based on the Alert Type.
+    // Use this method for alert messages WITHOUT the Event or Post Name.
     public String getAlertTextGeneric() {
         switch (this.type) {
+            case "postCreateSuccess":
+                return "The post was created successfully!";
             case "eventRegisterSuccess":
                 return "Your registration was successful. We'll see you there!";
             case "eventCreateSuccess":
@@ -60,36 +63,60 @@ public class Alert {
         }
     }
 
-    // Returns an UN-ESCAPED alert message based on the EventType including the Event Name
+    // Returns an UN-ESCAPED alert message based on the Alert Type including the Post Name
+    // Takes a Post as a parameter.
+    // Use this method for event-related alert messages that INCLUDE the Post Name.
+    public String getAlertTextForPost(Post p) {
+        switch (this.type) {
+            case "postCreateSuccess":
+                return "Post <strong>" + p.getTitle() + "</strong> was created successfully!";
+            case "postEditSuccess":
+                return "Post <strong>" + p.getTitle() + "</strong> was edited successfully!";
+            case "postDeleteSuccess":
+                return "Post <strong>" + p.getTitle() + "</strong> was deleted successfully.";
+            default:
+                return "";
+        }
+    }
+
+    // Returns an UN-ESCAPED alert message based on the Alert Type including the Event Name
     // Takes a ChurchEvent as a parameter.
     // Use this method for event-related alert messages that INCLUDE the Event Name.
-    public String getAlertTextForEvent(ChurchEvent event) {
+    public String getAlertTextForEvent(ChurchEvent e) {
         switch (this.type) {
             case "eventRegisterSuccess":
-                return "Your registration for <strong>" + event.getName() + "</strong> was successful. We'll see you there!";
+                return "Your registration for <strong>" + e.getName() + "</strong> was successful. We'll see you there!";
             case "eventCreateSuccess":
-                return "Event <strong>" + event.getName() + "</strong> created successfully!";
+                return "Event <strong>" + e.getName() + "</strong> created successfully!";
             case "eventEditSuccess":
-                return "Event <strong>" + event.getName() + "</strong> edited successfully!";
+                return "Event <strong>" + e.getName() + "</strong> edited successfully!";
             case  "eventDeleteSuccess":
-                return "Event <strong>" + event.getName() + "</strong> deleted successfully.";
+                return "Event <strong>" + e.getName() + "</strong> deleted successfully.";
             case "eventOverCapacityError":
-                return "<strong>" + event.getName() + "</strong> is full and is no longer open to registration.";
+                return "<strong>" + e.getName() + "</strong> is full and is no longer open to registration.";
             case "eventClosedForRegError":
-                return "<strong>" + event.getName() + "</strong> is currently closed for registration. If you have any questions, please contact the church office at <strong><a href='mailto:stjohnsoffice@comcast.net'> stjohnsoffice@comcast.net</a></strong>.";
+                return "<strong>" + e.getName() + "</strong> is currently closed for registration. If you have any questions, please contact the church office at <strong><a href='mailto:stjohnsoffice@comcast.net'> stjohnsoffice@comcast.net</a></strong>.";
             case "duplicateSignupError":
-                return "There is already a registration on file for <strong>" + event.getName() + "</strong> matching the information you entered. Please check the list of attendees or try again.";
+                return "There is already a registration on file for <strong>" + e.getName() + "</strong> matching the information you entered. Please check the list of attendees or try again.";
             default:
                 return "";
         }
     }
 
     // Returns the alert text for an event that has been deleted and can no longer be accessed.
-    // Takes in an eventName as a String
+    // Takes in an objectName (the name of a ChurchEvent or Post) as a String
     // You MUST store the event name in a String BEFORE event deletion, then pass the String as
     // a @RequestParam.
-    public String createEventDeleteText(String eventName) {
-        return "Event <strong>" + eventName + "</strong> deleted successfully.";
+    public String createDeleteText(String objectName) {
+        switch (this.type) {
+            case "eventDeleteSuccess":
+                return "Event <strong>" + objectName + "</strong> deleted successfully.";
+            case "postDeleteSuccess":
+                return "Post <strong>" + objectName + "</strong> deleted successfully.";
+            default:
+                return "";
+        }
+
     }
 
     // HELPER METHODS
