@@ -25,6 +25,9 @@ public class Alert {
     // Returns a Bootstrap CSS class based on the EventType
     public String getCssClass() {
         switch (this.type) {
+            case "postCreateSuccess":
+            case "postEditSuccess":
+            case "postDeleteSuccess":
             case "eventRegisterSuccess":
             case "eventCreateSuccess":
             case "eventEditSuccess":
