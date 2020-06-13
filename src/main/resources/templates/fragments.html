@@ -317,6 +317,12 @@
 
 <div th:fragment="event-register-page-body">
 
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
     <h2 th:text="${header}"></h2> <!-- header == "Event Signup"; to change, set value in PagesController" -->
     <h3 th:text="${'Registering for: ' + churchEvent.name}" class="text-primary"></h3>
     <section class="alert alert-info">

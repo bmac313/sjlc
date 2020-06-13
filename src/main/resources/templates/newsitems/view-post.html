@@ -19,7 +19,7 @@
         <article class="post" style="max-width:45em; margin:auto;">
             <a th:href="@{/news}" class="btn btn-dark">&lt;- Back to Posts</a>
             <h2 th:text="${post.title}"></h2>
-            <img th:src="${post.imgUrl}" src="" style="max-width:100%;" />
+            <img th:src="${stringOps.isNullOrEmpty(post.imgUrl)} ? '/img/wittenberg_church.jpg/' : ${post.imgUrl}" src="" class="img-responsive img-rounded" />
             <iframe th:src="'https://docs.google.com/document/d/' + ${post.docId} + '/pub?embedded=true'"></iframe>
             <div class="post-signature">
                 <p th:text="'Posted by ' + ${post.author}"></p>
