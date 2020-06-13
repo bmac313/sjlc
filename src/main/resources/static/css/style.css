@@ -192,6 +192,7 @@ li.active a{
 .post {
     padding-left: 1em;
     padding-right: 1em;
+    margin-bottom: 2.5em;
 }
 .post h2 {
     color:#405D92;
@@ -239,11 +240,28 @@ li.active a{
 .post-cell-right span, .post-signature span{
     color: #fff;
 }
+
+.church-event section{
+    height: 12em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-right: 0.5em;
+}
+.event-text-container{
+    padding-top: 1.5em;
+}
 .event-icon-box {
+    background-image: url(../img/checkered_pattern_@2X.png);
+    background-color: #529F96;
+    box-shadow: rgb(180, 228, 223) 0px 8px 0px;
     text-align: center;
 }
 .event-icon-box i {
+    color: #E3E9F8;
     font-size: 7em;
+}
+.event-icon-box h4 {
+    color: #E0F7F5;
 }
 
 .post-signature {
