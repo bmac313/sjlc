@@ -419,6 +419,11 @@ li.active a{
 #social-info a{
     color: #fff;
 }
+#social-info li a p {
+    position: relative;
+    top: -2em;
+    left: 2em;
+}
 
 .page-sidebar, .page-body{
     display: inline-block;
@@ -617,6 +622,9 @@ li.active a{
     #header-scroll-btn{
         padding-right: 0.7em;
     }
+    #social-info li a p {
+        left: 1em;
+    }
 }
 
 @media screen and (max-width: 1090px){
@@ -657,7 +665,15 @@ li.active a{
         height: 21em;
     }
     .social-icon{
-        font-size: 6em;
+        font-size: 4.7em;
+    }
+    #social-info li a p {
+        position: static;
+        display: block;
+        margin: 0;
+    }
+    #social-info .block-list {
+        text-align: center;
     }
     #email-link{
         font-size: 0.7em;
@@ -743,6 +759,9 @@ li.active a{
     .social-icon{
         font-size: 9em;
     }
+    #social-info li a p {
+        font-size: 1.5em;
+    }
     .info-boxes article section{
         text-align: center;
     }
@@ -769,6 +788,9 @@ li.active a{
     }
     .post-signature{
         width: 100%
+    }
+    #showAttendeesModal p{
+        font-size: 0.9em;
     }
 }
 
