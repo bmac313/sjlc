@@ -263,6 +263,12 @@ li.active a{
 .event-icon-box h4 {
     color: #E0F7F5;
 }
+.event-status-open{
+    color: #37e63a;
+}
+.event-status-closed{
+    color: #c90200;
+}
 
 .post-signature {
     background-image: url(../img/checkered_pattern.png);
@@ -571,6 +577,10 @@ li.active a{
 
 .right-align{
     text-align: right;
+}
+
+.transparent{
+    opacity: 0.6;
 }
 
 /* Most pages use top padding to prevent the fixed navbar from covering page elements. This class is used to
