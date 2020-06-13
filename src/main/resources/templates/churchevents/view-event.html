@@ -33,7 +33,13 @@
             <div class="post-signature">
                 <p th:text="'Attendees: ' + ${churchEvent.attendees.size()} + '/' + ${churchEvent.attendeeCapacity}"></p>
                 <p th:text="${churchEvent.getTimeStamp()}"></p>
-                <a class="btn btn-success" th:href="@{'/events/register/' + ${id}}">
+                <p>
+                    Status:
+                    <strong th:class="${churchEvent.isOpenForRegistration()} ? 'text text-success event-status-open' : 'text text-danger event-status-closed'"
+                            th:text="${churchEvent.isOpenForRegistration()} ? 'Open for registration' : 'Closed for registration'">
+                    </strong>
+                </p>
+                <a class="btn btn-success" th:classappend="${isDisabled}" th:href="@{'/events/register/' + ${id}}">
                     Sign Up for This Event
                 </a>
                 <button sec:authorize="isAnonymous()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#showAttendeesModal">
