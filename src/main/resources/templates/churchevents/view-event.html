@@ -10,6 +10,9 @@
     });
 </script>
 
+<!-- TODO: fix attendees modal; clicking the 'x' should close attendees and open the yes/no dialog
+     also, modal content should fit better on mobile -->
+
 <div class="container main-body">
 
     <nav th:replace="fragments::navbar-main"></nav>
@@ -106,8 +109,9 @@
                                         <h5>First Name</h5>
                                     </div>
                                     <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                                        <h5>Suffix</h5>
+                                        <h5>SF</h5>
                                     </div>
+
                                     <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
                                         <h5>MI</h5>
                                     </div>
@@ -118,8 +122,6 @@
                                         <!-- This div is used to secure the column position for the 'x' if an admin is logged in -->
                                     </div>
                                 </div>
-
-                                <!-- TODO: modal layout breaks on mobile, fix. -->
                                 <div class="row" th:each="attendee : ${attendeesForEvent}">
                                     <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                         <p th:text="${attendee.lastName}"></p>
