@@ -42,7 +42,7 @@ public class ChurchEventsController {
             try {
                 model.addAttribute("alert", alert.getAlertTextForEvent(churchEventDao.findOne(eventId)));
             } catch (NoSuchElementException | NullPointerException ex) {
-                model.addAttribute("alert", alert.createEventDeleteText(eventName));
+                model.addAttribute("alert", alert.createDeleteText(eventName));
             }
         } else {
             model.addAttribute("alertClass", "hidden");
