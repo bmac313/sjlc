@@ -2,6 +2,7 @@ package org.sjlchatham.sjlcweb.controllers;
 
 import org.sjlchatham.sjlcweb.data.PostDao;
 import org.sjlchatham.sjlcweb.helpers.Alert;
+import org.sjlchatham.sjlcweb.helpers.StringOps;
 import org.sjlchatham.sjlcweb.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -30,7 +31,6 @@ public class NewsController {
                                Model model) {
 
         if (alertActive) {
-            // TODO: alerts show without CSS. fix.
             Alert alert = new Alert(alertType);
             model.addAttribute("alertClass", alert.getCssClass());
             try {
@@ -61,6 +61,7 @@ public class NewsController {
 
         model.addAttribute("newsActiveStatus", "active");
         model.addAttribute("posts", postDao.findAll(pageRequest));
+        model.addAttribute("stringOps", new StringOps());
         model.addAttribute("title", "Latest News and Updates | St. John's Lutheran Church");
         model.addAttribute("header", "Latest News and Updates");
 
@@ -122,7 +123,7 @@ public class NewsController {
 
         model.addAttribute("title", "View Post | St. John's Lutheran Church");
         model.addAttribute("post", post);
-
+        model.addAttribute("stringOps", new StringOps());
         model.addAttribute("newsActiveStatus", "active");
 
         return "newsitems/view-post";
