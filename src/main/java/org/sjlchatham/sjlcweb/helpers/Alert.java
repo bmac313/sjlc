@@ -71,7 +71,7 @@ public class Alert {
                 return "Event <strong>" + event.getName() + "</strong> created successfully!";
             case "eventEditSuccess":
                 return "Event <strong>" + event.getName() + "</strong> edited successfully!";
-            case "eventDeleteSuccess":
+            case  "eventDeleteSuccess":
                 return "Event <strong>" + event.getName() + "</strong> deleted successfully.";
             case "eventOverCapacityError":
                 return "<strong>" + event.getName() + "</strong> is full and is no longer open to registration.";
@@ -82,6 +82,14 @@ public class Alert {
             default:
                 return "";
         }
+    }
+
+    // Returns the alert text for an event that has been deleted and can no longer be accessed.
+    // Takes in an eventName as a String
+    // You MUST store the event name in a String BEFORE event deletion, then pass the String as
+    // a @RequestParam.
+    public String createEventDeleteText(String eventName) {
+        return "Event <strong>" + eventName + "</strong> deleted successfully.";
     }
 
     // HELPER METHODS
