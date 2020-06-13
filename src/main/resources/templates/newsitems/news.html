@@ -6,13 +6,12 @@
 
 <div class="container main-body">
 <!-- TODO: Default news post picture for if the user doesn't provide a photo -->
-    <!-- TODO: News alerts should use new Alert class. -->
     <nav th:replace="fragments::navbar-main"></nav>
 
     <main class="container main-column">
 
         <div th:class="${alertClass}" role="alert">
-            <span th:text="${alert}"></span>
+            <span th:utext="${alert}"></span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
