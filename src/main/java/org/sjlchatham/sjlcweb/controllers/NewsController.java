@@ -71,6 +71,7 @@ public class NewsController {
 
         model.addAttribute("title", "Create a News Item | St. John's Lutheran Church");
         model.addAttribute("header", "Create a News Item");
+        model.addAttribute("newsActiveStatus", "active");
         model.addAttribute(new Post());
 
         return "newsitems/new-post";
@@ -79,7 +80,6 @@ public class NewsController {
     @RequestMapping(value = "new-post", method = RequestMethod.POST)
     public String handleFormSubmission(@Valid @ModelAttribute Post postToAdd,
                                        Errors errors,
-                                       Principal principal,
                                        Model model) {
 
         if (errors.hasErrors()) {
@@ -113,7 +113,7 @@ public class NewsController {
     }
 
     @RequestMapping(value = "editpost/{id}", method = RequestMethod.GET)
-    public String editPost(@PathVariable(value = "id") int id,
+    public String editPost(@PathVariable(value = "id") @ModelAttribute int id,
                            Model model) {
 
         Post post = postDao.findOne(id);
@@ -121,7 +121,6 @@ public class NewsController {
         model.addAttribute("title", "Edit Post | St. John's Lutheran Church");
         model.addAttribute("header", "Edit Post");
         model.addAttribute("newsActiveStatus", "active");
-        model.addAttribute("postId", id);
 
         model.addAttribute("titleVal", post.getTitle());
         model.addAttribute("docIdVal", post.getDocId());

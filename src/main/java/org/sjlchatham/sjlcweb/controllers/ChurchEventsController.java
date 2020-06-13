@@ -68,6 +68,7 @@ public class ChurchEventsController {
         // Model attributes
         model.addAttribute("title", "Church Events | St. John's Lutheran Church");
         model.addAttribute("header", "Church Events");
+        model.addAttribute("newsActiveStatus", "active");
         model.addAttribute("page", page);
 
         return "churchevents/events";
@@ -100,6 +101,7 @@ public class ChurchEventsController {
         model.addAttribute("title", "SJLC Event Signup Form | St. John's Lutheran Church");
         model.addAttribute("header", "Event Signup");
         model.addAttribute("optionalClass", "alt");
+        model.addAttribute("newsActiveStatus", "active");
         model.addAttribute("pageBodyText", "event-register-page-body");
 
         return "page_generic";
@@ -126,6 +128,7 @@ public class ChurchEventsController {
             model.addAttribute("title", "SJLC Event Signup Form | St. John's Lutheran Church");
             model.addAttribute("header", "Event Signup");
             model.addAttribute("optionalClass", "alt");
+            model.addAttribute("newsActiveStatus", "active");
             model.addAttribute("pageBodyText", "event-register-page-body");
 
             return "page_generic";
@@ -174,6 +177,7 @@ public class ChurchEventsController {
         // Model attributes
         model.addAttribute("title", "Schedule an Event | St. John's Lutheran Church");
         model.addAttribute("header", "Schedule an Event");
+        model.addAttribute("newsActiveStatus", "active");
 
         return "churchevents/new-event";
     }
@@ -188,6 +192,7 @@ public class ChurchEventsController {
             // Model attributes
             model.addAttribute("title", "Schedule an Event | St. John's Lutheran Church");
             model.addAttribute("header", "Schedule an Event");
+            model.addAttribute("newsActiveStatus", "active");
 
             return "churchevents/new-event";
         }
@@ -220,6 +225,7 @@ public class ChurchEventsController {
 
         // Model attributes
         model.addAttribute("title", "Event Details | St John's Lutheran Church");
+        model.addAttribute("newsActiveStatus", "active");
         model.addAttribute(churchEventDao.findOne(id));
 
         return "churchevents/view-event";
@@ -234,6 +240,7 @@ public class ChurchEventsController {
 
         // Model attributes
         model.addAttribute("title", "Edit Event | St. John's Lutheran Church");
+        model.addAttribute("newsActiveStatus", "active");
         model.addAttribute("header", "Edit Event");
 
         return "churchevents/edit-event";
@@ -253,6 +260,7 @@ public class ChurchEventsController {
             // Model attributes
             model.addAttribute("title", "Edit Event | St. John's Lutheran Church");
             model.addAttribute("header", "Edit Event");
+            model.addAttribute("newsActiveStatus", "active");
 
             // Check for custom error in addition to JPA
             if (!attendeeCapacityValid(editedEvent, eventToEdit))
@@ -266,6 +274,7 @@ public class ChurchEventsController {
             // Model attributes
             model.addAttribute("title", "Edit Event | St. John's Lutheran Church");
             model.addAttribute("header", "Edit Event");
+            model.addAttribute("newsActiveStatus", "active");
             model.addAttribute("invalidCapacityError", "The attendee capacity cannot be less than the number of registered attendees.");
 
             return "churchevents/edit-event";
