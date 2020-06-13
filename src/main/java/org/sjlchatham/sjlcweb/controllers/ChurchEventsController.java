@@ -32,13 +32,18 @@ public class ChurchEventsController {
                                        @RequestParam(defaultValue = "false") boolean alertActive,
                                        @RequestParam(defaultValue = "") String alertType,
                                        @RequestParam(defaultValue = "-1") int eventId,
+                                       @RequestParam(defaultValue = "") String eventName,
                                        Model model) {
 
         // If alerts are set to active, create page alert and add to model
         if (alertActive) {
             Alert alert = new Alert(alertType);
             model.addAttribute("alertClass", alert.getCssClass());
-            model.addAttribute("alert", alert.getAlertTextForEvent(churchEventDao.findOne(eventId)));
+            try {
+                model.addAttribute("alert", alert.getAlertTextForEvent(churchEventDao.findOne(eventId)));
+            } catch (NoSuchElementException | NullPointerException ex) {
+                model.addAttribute("alert", alert.createEventDeleteText(eventName));
+            }
         } else {
             model.addAttribute("alertClass", "hidden");
         }
@@ -317,9 +322,10 @@ public class ChurchEventsController {
     @RequestMapping(value = "deleteevent", method = RequestMethod.POST)
     public String deleteEventById(@RequestParam int id) {
 
+        String eventName = churchEventDao.findOne(id).getName();
         churchEventDao.delete(churchEventDao.findOne(id));
 
-        return "redirect:/events?alertActive=true&alertType=eventDeleteSuccess&eventId=" + id;
+        return "redirect:/events?alertActive=true&alertType=eventDeleteSuccess&eventName=" + eventName;
     }
 
     // HELPER METHODS
@@ -355,5 +361,9 @@ public class ChurchEventsController {
     private boolean attendeeCapacityValid(ChurchEvent editedEvent, ChurchEvent origEvent) {
         return editedEvent.getAttendeeCapacity() >= origEvent.getAttendees().size();
     }
+
+    /* TODO: Add helper method that queries all events with dates earlier than LocalDateTime.now.
+     *       Change these events' openForRegistration properties to false.
+     */
 
 }
