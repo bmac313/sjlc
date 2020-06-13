@@ -7,20 +7,10 @@ import java.util.Date;
 @Entity
 public class PasswordResetToken {
 
+    // Class Properties
+
     // Token will expire in 24 hours (60 minutes * 24)
     private static final int TIME_BEFORE_EXPIRATION = 60 * 24;
-
-    public PasswordResetToken() {
-        super();
-    }
-
-    public PasswordResetToken(User user, String token) {
-        super();
-
-        this.user = user;
-        this.token = token;
-        this.expirationDate = calculateExpirationDate(TIME_BEFORE_EXPIRATION);
-    }
 
     @Id
     @GeneratedValue
@@ -34,6 +24,19 @@ public class PasswordResetToken {
 
     private Date expirationDate;
 
+    //CONSTRUCTORS
+    public PasswordResetToken() {
+        super();
+    }
+
+    public PasswordResetToken(User user, String token) {
+        super();
+        this.user = user;
+        this.token = token;
+        this.expirationDate = calculateExpirationDate(TIME_BEFORE_EXPIRATION);
+    }
+
+    // GETTERS and SETTERS
     public static int getTimeBeforeExpiraton() {
         return TIME_BEFORE_EXPIRATION;
     }
@@ -70,6 +73,7 @@ public class PasswordResetToken {
         this.expirationDate = expirationDate;
     }
 
+    // CLASS METHODS
     private Date calculateExpirationDate(final int expirationTimeInMinutes) {
         final Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(new Date().getTime());
@@ -82,6 +86,7 @@ public class PasswordResetToken {
         this.expirationDate = calculateExpirationDate(TIME_BEFORE_EXPIRATION);
     }
 
+    // HELPER METHODS
     @Override
     public String toString() {
         return "Token [String=" + token + "]" +

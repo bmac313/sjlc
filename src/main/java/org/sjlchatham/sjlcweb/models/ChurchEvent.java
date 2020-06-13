@@ -10,7 +10,7 @@ import java.util.*;
 @Entity
 public class ChurchEvent {
 
-    // Properties
+    // Class Properties
     @Id
     @GeneratedValue
     private int id;
@@ -46,7 +46,8 @@ public class ChurchEvent {
     @Max(value = 100000, message = "Attendee capacity currently cannot exceed 100,000 attendees.")
     private int attendeeCapacity;            // The maximum number of attendees allowed to register for the event.
 
-    // Constructors
+
+    // CONSTRUCTORS
     public ChurchEvent(){
         this.openForRegistration = true;
     }
@@ -62,7 +63,7 @@ public class ChurchEvent {
     }
 
 
-    // Getters and Setters
+    // GETTERS and SETTERS
     public int getId() {
         return this.id;
     }
@@ -131,7 +132,8 @@ public class ChurchEvent {
         this.attendeeCapacity = attendeeCapacity;
     }
 
-    // Helper Methods
+
+    // CLASS METHODS
     public String getTimeStamp() {
         return this.eventDate + " @ " + convertMilToStandardTime(this.eventTime) + " CST";
     }
@@ -158,15 +160,34 @@ public class ChurchEvent {
                 + amPM;                                            // Add AM/PM marker
     }
 
+    // This method returns a string containing the CSS class for an icon corresponding to the event type.
+    public String getCssIconClass() {
+        switch (this.churchEventType) {
+            case CHURCH_SERVICE: return "fas fa-church";
+            case CHURCH_ACTIVITY: return "fas fa-bible";
+            case FELLOWSHIP: return "fas fa-users";
+            case FUNERAL: return "fas fa-cross";
+            case MISSION: return "fas fa-globe-africa";
+            case VOLUNTEER: return "fas fa-hands-helping";
+            case YOUTH: return "fas fa-seedling";
+            case OTHER: return "fas fa-icons";
+            default: return "fas fa-icons";
+        }
+    }
+
+    // HELPER METHODS
     @Override
     public String toString() {
         return "ChurchEvent{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", eventDate=" + eventDate +
-                ", churchEventType=" + churchEventType +
-                ", attendees=" + attendees +
-                ", attendeeCapacity=" + attendeeCapacity +
+                "id=" + this.id +
+                ", openForRegistration=" + this.openForRegistration +
+                ", name='" + this.name + '\'' +
+                ", description='" + this.description + '\'' +
+                ", eventDate=" + this.eventDate + '\'' +
+                ", eventTime=" + this.eventTime + '\'' +
+                ", churchEventType=" + this.churchEventType +
+                ", attendees=" + this.attendees +
+                ", attendeeCapacity=" + this.attendeeCapacity +
                 '}';
     }
 }

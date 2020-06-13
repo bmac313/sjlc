@@ -24,10 +24,8 @@
         </div>
 
         <article class="post" style="max-width:45em; margin:auto;">
+            <a th:href="@{/events}" class="btn btn-dark">&lt;- Back to Events</a>
             <h2 th:text="${churchEvent.name}"></h2>
-
-            <!--TODO: display image corresponding to event type
-            <img th:src="" src="" style="max-width:100%;" /> -->
 
             <div class="container-fluid">
                 <p th:text="${churchEvent.description}"></p>
@@ -35,7 +33,7 @@
             <div class="post-signature">
                 <p th:text="'Attendees: ' + ${churchEvent.attendees.size()} + '/' + ${churchEvent.attendeeCapacity}"></p>
                 <p th:text="${churchEvent.getTimeStamp()}"></p>
-                <a class="btn btn-success" th:href="@{'/events/register/' + ${churchEvent.id}}">
+                <a class="btn btn-success" th:href="@{'/events/register/' + ${id}}">
                     Sign Up for This Event
                 </a>
                 <button sec:authorize="isAnonymous()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#showAttendeesModal">
@@ -48,7 +46,7 @@
 
             <div sec:authorize="${hasRole('ROLE_ADMIN')}" class="row">
                 <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-5">
-                    <a th:href="@{'/events/edit/' + ${churchEvent.id}}" class="btn btn-primary">Edit Event</a>
+                    <a th:href="@{'/events/edit/' + ${id}}" class="btn btn-primary">Edit Event</a>
                 </div>
                 <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-5">
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eventDeleteModal">
@@ -102,6 +100,9 @@
                                         <h5>First Name</h5>
                                     </div>
                                     <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        <h5>Suffix</h5>
+                                    </div>
+                                    <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
                                         <h5>MI</h5>
                                     </div>
                                     <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -111,12 +112,17 @@
                                         <!-- This div is used to secure the column position for the 'x' if an admin is logged in -->
                                     </div>
                                 </div>
+
+                                <!-- TODO: modal layout breaks on mobile, fix. -->
                                 <div class="row" th:each="attendee : ${attendeesForEvent}">
                                     <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                         <p th:text="${attendee.lastName}"></p>
                                     </div>
                                     <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                         <p th:text="${attendee.firstName}"></p>
+                                    </div>
+                                    <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                        <p th:text="${attendee.suffix}"></p>
                                     </div>
                                     <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
                                         <p th:text="${attendee.mi}"></p>

@@ -31,6 +31,10 @@ public class Attendee {
     @Size(min = 1, max = 100, message = "Last name must be between 1 and 100.")
     private String lastName;
 
+    @NotNull
+    @Size(max = 4, message = "Suffix cannot exceed 4 characters.")
+    private String suffix;
+
     @Size(min= 1, message = "Please fill out this field.")
     @Pattern(regexp = "^\\w+[-\\w.]*@\\w+((-\\w+)|(\\w*))\\.[a-z]{2,3}$", message = "Please enter a valid email address.")
     private String email;
@@ -44,11 +48,12 @@ public class Attendee {
         this.regDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     }
 
-    public Attendee(String firstName, String mi, String lastName, String email, ChurchEvent event) {
+    public Attendee(String firstName, String mi, String lastName, String suffix, String email, ChurchEvent event) {
         this();
         this.firstName = firstName;
         this.mi = mi;
         this.lastName = lastName;
+        this.suffix = suffix;
         this.email = email;
         this.event = event;
     }
@@ -85,6 +90,14 @@ public class Attendee {
         this.lastName = lastName;
     }
 
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -106,14 +119,15 @@ public class Attendee {
     @Override
     public String toString() {
         return "Attendee{" +
-                "id=" + id +
-                ", regDateTime='" + regDateTime + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", mi='" + mi + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", event=" + event +
-                ", eventId=" + event.getId() +
+                "id=" + this.id +
+                ", regDateTime='" + this.regDateTime + '\'' +
+                ", firstName='" + this.firstName + '\'' +
+                ", mi='" + this.mi + '\'' +
+                ", lastName='" + this.lastName + '\'' +
+                ", suffix='" + this.suffix + "'\''" +
+                ", email='" + this.email + '\'' +
+                ", event=" + this.event.getName() +
+                ", eventId=" + this.event.getId() +
                 '}';
     }
 }

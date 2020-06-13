@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 @Entity
 public class Post {
 
+    // Class Properties
     @Id
     @GeneratedValue
     private int id;
@@ -34,7 +35,7 @@ public class Post {
 
     private final String timeStamp;
 
-
+    // CONSTRUCTORS
     public Post() {
         this.timeStamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     }
@@ -47,6 +48,7 @@ public class Post {
         this.imgUrl = imgUrl;
     }
 
+    //GETTERS and SETTERS
     public int getId() {
         return id;
     }
@@ -87,4 +89,16 @@ public class Post {
         this.imgUrl = imgUrl;
     }
 
+    // HELPER METHODS
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", docId='" + docId + '\'' +
+                ", author='" + author + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", timeStamp='" + timeStamp + '\'' +
+                '}';
+    }
 }

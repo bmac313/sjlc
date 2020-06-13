@@ -28,7 +28,8 @@ public enum ChurchEventType {
 
     @Override
     public String toString() {
-        return this.displayName;
+        return "ChurchEventType{" +
+                "displayName='" + displayName + '\'' +
+                '}';
     }
-
 }
