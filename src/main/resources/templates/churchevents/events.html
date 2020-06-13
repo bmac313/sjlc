@@ -36,29 +36,33 @@
                 </div>
             </section>
 
-            <article class="post church-event" th:each="churchevent : ${churchevents}">
+            <article class="post church-event"
+                     th:each="churchevent : ${churchevents}"
+            >
+                <div th:class="${!churchevent.isOpenForRegistration()} ? 'transparent' : ''">
+                    <a th:href="@{'/events/viewevent/' + ${churchevent.id}}">
+                        <h2 th:text="${churchevent.name}"></h2>
+                    </a>
 
-                <a th:href="@{'/events/viewevent/' + ${churchevent.id}}">
-                    <h2 th:text="${churchevent.name}"></h2>
-                </a>
+                    <div class="row">
 
-                <div class="row">
-
-                    <div class="cells">
-                        <section class="col col-lg-5 col-md-5 text-center post-cell-right">
-                            <div class="event-text-container">
-                                <i class="far fa-calendar-alt inline">&nbsp;&nbsp;</i><h3 th:text="${churchevent.getTimeStamp()}" class="inline"></h3>
-                                <h3 th:text="'Attendees: ' + ${churchevent.attendees.size()} + '/' + ${churchevent.attendeeCapacity}"></h3>
-                                <a class="btn btn-success" th:href="@{'/events/viewevent/' + ${churchevent.id}}">Event Info/Signup</a>
-                            </div>
-                        </section>
-                        <section class="col-lg-4 col-md-4 text-center event-icon-box">
-                            <h4 th:text="${churchevent.churchEventType.getDisplayName()}"></h4>
-                            <i th:class="${churchevent.getCssIconClass()}"></i>
-                        </section>
+                        <div class="cells">
+                            <section class="col col-lg-5 col-md-5 text-center post-cell-right">
+                                <div class="event-text-container">
+                                    <i class="far fa-calendar-alt inline">&nbsp;&nbsp;</i><h3 th:text="${churchevent.getTimeStamp()}" class="inline"></h3>
+                                    <h3 th:text="'Attendees: ' + ${churchevent.attendees.size()} + '/' + ${churchevent.attendeeCapacity}"></h3>
+                                    <a class="btn btn-success"
+                                       th:href="@{'/events/viewevent/' + ${churchevent.id}}"
+                                       th:text="${churchevent.isOpenForRegistration() ? 'Event Info/Signup' : 'Event Info'}"></a>
+                                </div>
+                            </section>
+                            <section class="col-lg-4 col-md-4 text-center event-icon-box">
+                                <h4 th:text="${churchevent.churchEventType.getDisplayName()}"></h4>
+                                <i th:class="${churchevent.getCssIconClass()}"></i>
+                            </section>
+                        </div>
                     </div>
                 </div>
-
             </article>
 
         </section>
