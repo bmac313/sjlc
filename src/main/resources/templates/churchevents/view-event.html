@@ -140,7 +140,7 @@
                                     </div>
                                     <div sec:authorize="hasRole('ROLE_ADMIN')" class="col col-lg-1 col-md-1 col-sm-1 col-xs-1 right-align">
                                         <p>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">x</button>
+                                            <button type="button" class="btn btn-primary btn-remove-attendee" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">x</button>
                                         </p>
                                     </div>
                                     <div sec:authorize="hasRole('ROLE_ADMIN')" class="modal fade" th:id="'attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}" tabindex="-1" role="dialog" th:attr="aria-labelledby='attendeeDeleteConfirmLabel' + ${churchEvent.getAttendees().indexOf(attendee)}" aria-hidden="true">
@@ -162,12 +162,12 @@
                                                             </form>
                                                         </div>
                                                         <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                                            <button class="btn btn-primary" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">No, cancel.</button>
+                                                            <button class="btn btn-primary btn-remove-attendee-cancel" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">No, cancel.</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button class="btn btn-secondary" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">Close</button>
+                                                    <button class="btn btn-secondary btn-remove-attendee-cancel" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">Close</button>
                                                 </div>
                                             </div>
                                         </div>
