@@ -1,6 +1,8 @@
 package org.sjlchatham.sjlcweb.controllers;
 
 import org.sjlchatham.sjlcweb.data.PostDao;
+import org.sjlchatham.sjlcweb.helpers.Alert;
+import org.sjlchatham.sjlcweb.helpers.StringOps;
 import org.sjlchatham.sjlcweb.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +13,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
+import java.util.NoSuchElementException;
 
 @Controller
 @RequestMapping("news")
@@ -24,22 +26,23 @@ public class NewsController {
     public String showNewsPage(@RequestParam(defaultValue = "1") int page,
                                @RequestParam(defaultValue = "false") boolean alertActive,
                                @RequestParam(defaultValue = "") String alertType,
+                               @RequestParam(defaultValue = "-1") int postId,
+                               @RequestParam(defaultValue = "") String postTitle,
                                Model model) {
 
         if (alertActive) {
-            switch (alertType) {
-                case "postCreateSuccess":
-                    model.addAttribute("alertClass", "alert alert-success alert-dismissible");
-                    model.addAttribute("alert", "The post was created successfully!");
-                    break;
-                case "postDeleteSuccess":
-                    model.addAttribute("alertClass", "alert alert-success alert-dismissible");
-                    model.addAttribute("alert", "The post was deleted successfully!");
-                    break;
-                default:
-                    model.addAttribute("alertClass", "");
-                    model.addAttribute("alert", "");
-                    break;
+            Alert alert = new Alert(alertType);
+            model.addAttribute("alertClass", alert.getCssClass());
+            try {
+                model.addAttribute(
+                        "alert",
+                        alert.getAlertTextForPost(postDao.findOne(postId))
+                );
+            } catch (NoSuchElementException | NullPointerException ex) {
+                model.addAttribute(
+                        "alert",
+                        alert.createDeleteText(postTitle)
+                );
             }
         } else {
             model.addAttribute("alertClass", "hidden");
@@ -58,6 +61,7 @@ public class NewsController {
 
         model.addAttribute("newsActiveStatus", "active");
         model.addAttribute("posts", postDao.findAll(pageRequest));
+        model.addAttribute("stringOps", new StringOps());
         model.addAttribute("title", "Latest News and Updates | St. John's Lutheran Church");
         model.addAttribute("header", "Latest News and Updates");
 
@@ -94,19 +98,32 @@ public class NewsController {
 
         postDao.save(postToAdd);
 
-        return "redirect:/news?alertActive=true&alertType=postCreateSuccess";
+        return "redirect:/news?alertActive=true&alertType=postCreateSuccess&postId=" + postToAdd.getId();
     }
 
     @RequestMapping(value = "viewpost/{id}", method = RequestMethod.GET)
-    public String viewPost(@PathVariable(value = "id") int id,
+    public String viewPost(@PathVariable(value = "id") @ModelAttribute int id,
+                           @RequestParam(defaultValue = "false") boolean alertActive,
+                           @RequestParam(defaultValue = "") String alertType,
+                           @RequestParam(defaultValue = "-1") int postId,
                            Model model) {
+
+        if (alertActive) {
+            Alert alert = new Alert(alertType);
+            model.addAttribute("alertClass", alert.getCssClass());
+            model.addAttribute(
+                    "alert",
+                    alert.getAlertTextForPost(postDao.findOne(postId))
+            );
+        } else {
+            model.addAttribute("alertClass", "hidden");
+        }
 
         Post post = postDao.findOne(id);
 
         model.addAttribute("title", "View Post | St. John's Lutheran Church");
-        model.addAttribute("postId", id);
         model.addAttribute("post", post);
-
+        model.addAttribute("stringOps", new StringOps());
         model.addAttribute("newsActiveStatus", "active");
 
         return "newsitems/view-post";
@@ -136,7 +153,7 @@ public class NewsController {
     }
 
     @RequestMapping(value = "editpost/{id}", method = RequestMethod.POST)
-    public String handleEditPostSubmission(@PathVariable(value = "id") int id,
+    public String handleEditPostSubmission(@PathVariable(value = "id") @ModelAttribute int id,
                                            @Valid @ModelAttribute Post editedPost,
                                            Errors errors, Model model) {
 
@@ -144,7 +161,6 @@ public class NewsController {
             model.addAttribute("title", "Edit Post | St. John's Lutheran Church");
             model.addAttribute("header", "Edit Post");
             model.addAttribute("newsActiveStatus", "active");
-            model.addAttribute("postId", id);
 
             model.addAttribute("titleVal", editedPost.getTitle());
             model.addAttribute("docIdVal", editedPost.getDocId());
@@ -163,7 +179,7 @@ public class NewsController {
 
         postDao.save(postToEdit);
 
-        return "redirect:/news/viewpost/{id}";
+        return "redirect:/news/viewpost/{id}?alertActive=true&alertType=postEditSuccess&postId=" + id;
     }
 
     // For safety, a redirect is declared explicitly. Deleting from the database is a potentially dangerous feature.
@@ -176,9 +192,10 @@ public class NewsController {
     @RequestMapping(value = "deletepost", method = RequestMethod.POST)
     public String deletePostById(@RequestParam int postId) {
 
+        String postTitle = postDao.findOne(postId).getTitle();
         postDao.delete(postId);
 
-        return "redirect:/news?alertActive=true&alertType=postDeleteSuccess";
+        return "redirect:/news?alertActive=true&alertType=postDeleteSuccess&postTitle=" + postTitle;
     }
 
 }

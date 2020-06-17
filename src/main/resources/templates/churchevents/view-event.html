@@ -10,6 +10,9 @@
     });
 </script>
 
+<!-- TODO: fix attendees modal; clicking the 'x' should close attendees and open the yes/no dialog
+     also, modal content should fit better on mobile -->
+
 <div class="container main-body">
 
     <nav th:replace="fragments::navbar-main"></nav>
@@ -33,7 +36,13 @@
             <div class="post-signature">
                 <p th:text="'Attendees: ' + ${churchEvent.attendees.size()} + '/' + ${churchEvent.attendeeCapacity}"></p>
                 <p th:text="${churchEvent.getTimeStamp()}"></p>
-                <a class="btn btn-success" th:href="@{'/events/register/' + ${id}}">
+                <p>
+                    Status:
+                    <strong th:class="${churchEvent.isOpenForRegistration()} ? 'text text-success event-status-open' : 'text text-danger event-status-closed'"
+                            th:text="${churchEvent.isOpenForRegistration()} ? 'Open for registration' : 'Closed for registration'">
+                    </strong>
+                </p>
+                <a class="btn btn-success" th:classappend="${isDisabled}" th:href="@{'/events/register/' + ${id}}">
                     Sign Up for This Event
                 </a>
                 <button sec:authorize="isAnonymous()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#showAttendeesModal">
@@ -100,8 +109,9 @@
                                         <h5>First Name</h5>
                                     </div>
                                     <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                                        <h5>Suffix</h5>
+                                        <h5>SF</h5>
                                     </div>
+
                                     <div class="col col-lg-1 col-md-1 col-sm-1 col-xs-1">
                                         <h5>MI</h5>
                                     </div>
@@ -112,8 +122,6 @@
                                         <!-- This div is used to secure the column position for the 'x' if an admin is logged in -->
                                     </div>
                                 </div>
-
-                                <!-- TODO: modal layout breaks on mobile, fix. -->
                                 <div class="row" th:each="attendee : ${attendeesForEvent}">
                                     <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                         <p th:text="${attendee.lastName}"></p>
@@ -132,7 +140,7 @@
                                     </div>
                                     <div sec:authorize="hasRole('ROLE_ADMIN')" class="col col-lg-1 col-md-1 col-sm-1 col-xs-1 right-align">
                                         <p>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">x</button>
+                                            <button type="button" class="btn btn-primary btn-remove-attendee" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">x</button>
                                         </p>
                                     </div>
                                     <div sec:authorize="hasRole('ROLE_ADMIN')" class="modal fade" th:id="'attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}" tabindex="-1" role="dialog" th:attr="aria-labelledby='attendeeDeleteConfirmLabel' + ${churchEvent.getAttendees().indexOf(attendee)}" aria-hidden="true">
@@ -154,12 +162,12 @@
                                                             </form>
                                                         </div>
                                                         <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                                            <button class="btn btn-primary" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">No, cancel.</button>
+                                                            <button class="btn btn-primary btn-remove-attendee-cancel" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">No, cancel.</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button class="btn btn-secondary" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">Close</button>
+                                                    <button class="btn btn-secondary btn-remove-attendee-cancel" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">Close</button>
                                                 </div>
                                             </div>
                                         </div>

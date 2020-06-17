@@ -3,6 +3,7 @@ package org.sjlchatham.sjlcweb.controllers;
 import org.sjlchatham.sjlcweb.data.AttendeeDao;
 import org.sjlchatham.sjlcweb.data.ChurchEventDao;
 import org.sjlchatham.sjlcweb.helpers.Alert;
+import org.sjlchatham.sjlcweb.helpers.DateTime;
 import org.sjlchatham.sjlcweb.models.Attendee;
 import org.sjlchatham.sjlcweb.models.ChurchEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -42,11 +44,14 @@ public class ChurchEventsController {
             try {
                 model.addAttribute("alert", alert.getAlertTextForEvent(churchEventDao.findOne(eventId)));
             } catch (NoSuchElementException | NullPointerException ex) {
-                model.addAttribute("alert", alert.createEventDeleteText(eventName));
+                model.addAttribute("alert", alert.createDeleteText(eventName));
             }
         } else {
             model.addAttribute("alertClass", "hidden");
         }
+
+        // Check to see if any events have passed; if so, close them to registration.
+        closePastEvents();
 
         // Get the page request for paging and sorting the ChurchEvents and return pages
         PageRequest pageRequest = new PageRequest(page-1, 10, Sort.Direction.DESC, "eventDate");
@@ -80,6 +85,10 @@ public class ChurchEventsController {
 
         // Find the ChurchEvent for which the user is registering by ID based on the URL.
         ChurchEvent churchEvent = churchEventDao.findOne(id);
+
+        /* closeEventIfPast() is run here instead of closePastEvents(), and only if the event
+         * is still open. This is done in order to conserve system resources.*/
+        if (churchEvent.isOpenForRegistration()) closeEventIfPast(id);
 
         // Redirect to the events page with an alert if the event's capacity is full or it is closed for registration
         if (churchEvent.getAttendees().size() >= churchEvent.getAttendeeCapacity()) {
@@ -136,6 +145,10 @@ public class ChurchEventsController {
 
         // Find the event by ID from the URL
         ChurchEvent churchEvent = churchEventDao.findOne(id);
+
+        /* closeEventIfPast() is run here instead of closePastEvents(), and only if the event
+         * is still open. This is done in order to conserve system resources.*/
+        if (churchEvent.isOpenForRegistration()) closeEventIfPast(id);
 
         // Redirect to the events page with an alert if the event's capacity is full or it is closed for registration
         if (churchEvent.getAttendees().size() >= churchEvent.getAttendeeCapacity()) {
@@ -217,11 +230,19 @@ public class ChurchEventsController {
             model.addAttribute("alert", alert.getAlertTextForEvent(churchEventDao.findOne(id)));
         }
 
+        /* closeEventIfPast() is run here instead of closePastEvents(), and only if the event
+         * is still open. This is done in order to conserve system resources.*/
+        if (churchEventDao.findOne(id).isOpenForRegistration()) closeEventIfPast(id);
+
         // Open attendee modal if activated
         model.addAttribute("attendeeModalActive", attendeeModalActive);
 
         // Look up list of attendees that have an event.id equal to the PathVariable (event) id; add to model
         model.addAttribute("attendeesForEvent", attendeeDao.findByEventIdOrderByLastNameAscFirstNameAscSuffixAscMiAscEmailAsc(id));
+
+        // Set register button to disabled if the event is closed.
+        if (!churchEventDao.findOne(id).isOpenForRegistration())
+            model.addAttribute("isDisabled", "disabled");
 
         // Model attributes
         model.addAttribute("title", "Event Details | St John's Lutheran Church");
@@ -262,7 +283,7 @@ public class ChurchEventsController {
             model.addAttribute("header", "Edit Event");
             model.addAttribute("newsActiveStatus", "active");
 
-            // Check for custom error in addition to JPA
+            // Check for custom errors in addition to JPA
             if (!attendeeCapacityValid(editedEvent, eventToEdit))
                 model.addAttribute("invalidCapacityError", "The attendee capacity cannot be less than the number of registered attendees.");
 
@@ -371,8 +392,51 @@ public class ChurchEventsController {
         return editedEvent.getAttendeeCapacity() >= origEvent.getAttendees().size();
     }
 
-    /* TODO: Add helper method that queries all events with dates earlier than LocalDateTime.now.
-     *       Change these events' openForRegistration properties to false.
+    /* This method iterates through all events. If an event's date/time is earlier than
+     * LocalDateTime.now, it sets the event's openForRegistration property to false.
      */
+    private void closePastEvents() {
+
+        // Init LDT variable to be assigned
+        LocalDateTime eventDateTime;
+
+        // Query all church events and iterate through them.
+        try {
+            for (ChurchEvent event : churchEventDao.findAll()) {
+
+                eventDateTime = LocalDateTime.parse(event.getEventDate() + "T" + event.getEventTime());
+
+                // Check whether each event's date is before the current time
+                // If match is found, close to event to new attendees, and save the event
+                if (DateTime.isInPast(eventDateTime)) {
+                    event.setOpenForRegistration(false);
+                    churchEventDao.save(event);
+                }
+            }
+        } catch (NoSuchElementException | NullPointerException ex) {
+            System.out.println("No events found for method closePastEvents()");
+        }
+    }
+
+    /* This method takes a ChurchEvent as a parameter. If the event's date/time is earlier than
+     * LocalDateTime.now, it sets the event's openForRegistration property to false.
+     */
+    private void closeEventIfPast(int eventId) {
+
+        // Find the event by id
+        ChurchEvent event = churchEventDao.findOne(eventId);
+
+        // Parse LDT
+        LocalDateTime eventDateTime = LocalDateTime.parse(
+                event.getEventDate() + "T" + event.getEventTime()
+        );
+
+        // Check whether each event's date is before the current time
+        // If match is found, close to event to new attendees, and save the event
+        if (DateTime.isInPast(eventDateTime)) {
+            event.setOpenForRegistration(false);
+            churchEventDao.save(event);
+        }
+    }
 
 }

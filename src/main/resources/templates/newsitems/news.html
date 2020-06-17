@@ -5,14 +5,12 @@
 <body>
 
 <div class="container main-body">
-<!-- TODO: Default news post picture for if the user doesn't provide a photo -->
-    <!-- TODO: News alerts should use new Alert class. -->
     <nav th:replace="fragments::navbar-main"></nav>
 
     <main class="container main-column">
 
         <div th:class="${alertClass}" role="alert">
-            <span th:text="${alert}"></span>
+            <span th:utext="${alert}"></span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -43,7 +41,7 @@
 
                     <div class="cells">
                         <div class="col-lg-5 col-md-5 post-cell-left">
-                            <img th:src="${post.imgUrl} ? ${post.imgUrl} : '/img/wittenberg_church.jpg/'" src="" class="img-responsive img-rounded" />
+                            <img th:src="${stringOps.isNullOrEmpty(post.imgUrl)} ? '/img/wittenberg_church.jpg/' : ${post.imgUrl}" src="" class="img-responsive img-rounded" />
                         </div>
 
                         <div class="col-lg-5 col-md-5 text-center post-cell-right">
