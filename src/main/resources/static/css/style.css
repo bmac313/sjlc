@@ -345,7 +345,7 @@ li.active a{
     background-color: #6276AC;
     box-shadow: 0px 8px 0px #BCC8E8;
     color: #fff;
-    height: 15em;
+    height: 18em;
     padding: 0.4em;
 }
 .nav-boxes .col h3{
@@ -661,6 +661,7 @@ li.active a{
         padding-right: 0.4em;
     }
     .nav-boxes article{
+        height: 18em;
         margin-bottom: 1.5em;
     }
     .page-sidebar img, .page-sidebar img.alt{
@@ -815,7 +816,7 @@ li.active a{
         width: 42%;
     }
     .nav-boxes article{
-        height: 15em;
+        height: 17em;
     }
     .info-boxes article{
         padding-right: 4em;
