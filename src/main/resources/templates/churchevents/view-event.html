@@ -10,9 +10,6 @@
     });
 </script>
 
-<!-- TODO: fix attendees modal; clicking the 'x' should close attendees and open the yes/no dialog
-     also, modal content should fit better on mobile -->
-
 <div class="container main-body">
 
     <nav th:replace="fragments::navbar-main"></nav>
@@ -98,6 +95,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title text-primary" id="showAttendeesModalLabel" th:text="'Attendees for ' + ${churchEvent.name}"></h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         <div class="modal-body">
                             <section class="container-fluid">
@@ -143,40 +143,46 @@
                                             <button type="button" class="btn btn-primary btn-remove-attendee" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">x</button>
                                         </p>
                                     </div>
-                                    <div sec:authorize="hasRole('ROLE_ADMIN')" class="modal fade" th:id="'attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}" tabindex="-1" role="dialog" th:attr="aria-labelledby='attendeeDeleteConfirmLabel' + ${churchEvent.getAttendees().indexOf(attendee)}" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title text-danger" th:id="'attendeeDeleteConfirmLabel' + ${churchEvent.getAttendees().indexOf(attendee)}">WARNING!</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want to remove this attendee? This <strong>cannot</strong> be undone.</p>
-                                                    <div class="row">
-                                                        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                                            <form action="/events/removeattendee" method="post">
-                                                                <input type="hidden" name="attendeeListIdx" th:value="${churchEvent.getAttendees().indexOf(attendee)}" />
-                                                                <input type="hidden" name="attendeeId" th:value="${attendee.id}" />
-                                                                <input type="hidden" name="eventId" th:value="${churchEvent.id}" />
-                                                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                                                                <input type="submit" class="btn btn-danger" value="Yes, remove." />
-                                                            </form>
-                                                        </div>
-                                                        <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                                            <button class="btn btn-primary btn-remove-attendee-cancel" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">No, cancel.</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-secondary btn-remove-attendee-cancel" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </section>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#showAttendeesModal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div sec:authorize="hasRole('ROLE_ADMIN')"
+                 th:each="attendee : ${attendeesForEvent}"
+                 class="modal fade"
+                 th:id="'attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}" tabindex="-1" role="dialog"
+                 th:attr="aria-labelledby='attendeeDeleteConfirmLabel' + ${churchEvent.getAttendees().indexOf(attendee)}"
+                 aria-hidden="true">
+
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title text-danger" th:id="'attendeeDeleteConfirmLabel' + ${churchEvent.getAttendees().indexOf(attendee)}">WARNING!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to remove this attendee? This <strong>cannot</strong> be undone.</p>
+                            <div class="row">
+                                <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <form action="/events/removeattendee" method="post">
+                                        <input type="hidden" name="attendeeListIdx" th:value="${churchEvent.getAttendees().indexOf(attendee)}" />
+                                        <input type="hidden" name="attendeeId" th:value="${attendee.id}" />
+                                        <input type="hidden" name="eventId" th:value="${churchEvent.id}" />
+                                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                                        <input type="submit" class="btn btn-danger" value="Yes, remove." />
+                                    </form>
+                                </div>
+                                <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <button class="btn btn-primary btn-remove-attendee-cancel" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">No, cancel.</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary btn-remove-attendee-cancel" data-toggle="modal" th:attr="data-target='#attendeeDeleteConfirm' + ${churchEvent.getAttendees().indexOf(attendee)}">Close</button>
                         </div>
                     </div>
                 </div>
