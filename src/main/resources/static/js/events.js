@@ -9,6 +9,7 @@ $(window).resize(function() {
 var initEvents = function() {
     bindHeaderEvents();
     bindNavBoxEvents();
+    bindModalEvents();
 }
 
 var bindHeaderEvents = function() {
@@ -109,6 +110,29 @@ var bindNavBoxEvents = function() {
         });
     }
 };
+
+var bindModalEvents = function() {
+    $('.btn-remove-attendee').bind({
+        click: function() {
+           // Note: The confirm dialog is toggled on using the "data-toggle" property in view-event.html
+
+           // Uncomment if you want the attendees modal to close then the dialog opens; BE SURE TO also uncomment
+           //           the toggle in .btn-remove-attendee-cancel below to reopen the list when this dialog is closed!
+           //$('#showAttendeesModal').modal('toggle');
+        }
+    });
+
+    $('.btn-remove-attendee-cancel').bind({
+        click: function() {
+            // Note: The confirm dialog is toggled off using the "data-toggle" property in view-event.html
+
+            // ONLY uncomment the below line if you are toggling off the attendees list upon opening this dialog (see above).
+            //$('#showAttendeesModal').modal('toggle');
+
+            $('#showAttendeesModal').css('overflow-y', 'auto'); // re-enable vertical scrolling on main modal
+        }
+    });
+}
 
 var rebindNavBoxEvents = function() {
     $('#about-us').unbind();
