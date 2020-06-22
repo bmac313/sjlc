@@ -16,7 +16,17 @@
 
     <main class="container">
         <h1 th:text="${header}"></h1>
-        <p>Fields marked with an asterisk (*) are required.</p>
+        <section class="alert alert-info">
+            <div class="row container-fluid">
+                <div class="col col-lg-2 col-md-2 col-sm-2">
+                    <i class="fas fa-info-circle alert-icon"></i>
+                </div>
+                <div class="col col-lg-10 col-md-10 col-sm-10">
+                    <p class="text-info">Fields marked with an <strong>asterisk (*)</strong> are required.</p>
+                </div>
+            </div>
+        </section>
+
         <form th:object="${post}" method="post">
 
             <div class="form-group row">

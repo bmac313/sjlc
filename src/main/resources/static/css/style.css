@@ -360,6 +360,10 @@ li.active a{
     color: #fff;
 }
 
+#sermons-newsletter li a{
+    font-size: 0.8em;
+}
+
 .block-list{
     list-style-type: none;
     padding-left: 0;
@@ -664,6 +668,9 @@ li.active a{
         height: 18em;
         margin-bottom: 1.5em;
     }
+    #sermons-newsletter li a{
+        font-size: 0.9em;
+    }
     .page-sidebar img, .page-sidebar img.alt{
         margin-left: 0;
         margin-right: 0;
@@ -707,7 +714,7 @@ li.active a{
     .post iframe{
         height: 12em;
     }
-    .btn-primary, .btn-dark, .btn-default {
+    .btn-primary, .btn-dark, .btn-default, .btn-secondary, .btn-danger, .btn-success {
         font-size: 1em;
     }
     .navbar-nav li a{
