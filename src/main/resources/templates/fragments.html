@@ -104,8 +104,10 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="https://drive.google.com/file/d/1qeOedW0EAprsUdUms6i9dvh0lukiGTkX/view?usp=sharing" target="_blank">Current Sermon</a>
                         <a class="dropdown-item" href="https://drive.google.com/file/d/1Hcyb6gcv1Z7cZqOvASGymrhjB6e2Uqg5/view?usp=sharing" target="_blank">Current Newsletter</a>
+                        <a class="dropdown-item" href="https://drive.google.com/file/d/1kdrWAJanvcbdrHsLyGlsIHpjGn6Sl_U-/view?usp=sharing" target="_blank">Current Family News</a>
                         <a class="dropdown-item" href="/downloads/sermons">Sermon Archives</a>
                         <a class="dropdown-item" href="/downloads/newsletter">Newsletter Archives</a>
+                        <a class="dropdown-item" href="/downloads/familynews">Family News Archives</a>
                     </div>
                 </li>
             </ul>
@@ -314,6 +316,34 @@
 
     <h3>2014</h3>
     <iframe src="https://drive.google.com/embeddedfolderview?id=1yqB6Mjipy3h8FNENFNYRPK5ATsJkgjVA#list" style="width:100%; border:0;"></iframe>
+</div>
+
+<div th:fragment="family-news-page-body">
+    <h2 th:text="${header}"></h2> <!-- header == "Family News Archive; to change, set value in PagesController" -->
+
+    <h3>2020</h3>
+    <iframe src="https://drive.google.com/embeddedfolderview?id=1LXIt4hsJ_zuJ0j70FR_YfCulVltvpe8K#list"
+            style="width:100%; height:25em; border:0;"></iframe>
+            <!--IMPORTANT NOTE: remove the height property if any other years are being used. -->
+
+    <!-- Use the below folders if news older than 2020 are uploaded.
+    <h3>2019</h3>
+    <iframe src="" style="width:100%; border:0;"></iframe>
+
+    <h3>2018</h3>
+    <iframe src="" style="width:100%; border:0;"></iframe>
+
+    <h3>2017</h3>
+    <iframe src="" style="width:100%; border:0;"></iframe>
+
+    <h3>2016</h3>
+    <iframe src="" style="width:100%; border:0;"></iframe>
+
+    <h3>2015</h3>
+    <iframe src="" style="width:100%; border:0;"></iframe>
+
+    <h3>2014</h3>
+    <iframe src="" style="width:100%; border:0;"></iframe> -->
 </div>
 
 <div th:fragment="event-register-page-body">
