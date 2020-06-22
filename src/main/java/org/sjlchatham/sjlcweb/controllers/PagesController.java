@@ -179,4 +179,21 @@ public class PagesController {
         return "page_generic";
     }
 
+    @RequestMapping(value = "/downloads/familynews", method = RequestMethod.GET)
+    public String showFamilyNewsPage(Model model) {
+
+        String[] sideBarImagePaths = {"/img/altar.png", "/img/piano.png", "/img/aisle.png"};
+
+        model.addAttribute("sideBarImagePaths", sideBarImagePaths);
+        model.addAttribute("headerImagePath", "/img/altar_wide.png");
+        model.addAttribute("title", "Family News Archives | St. John's Lutheran Church");
+        model.addAttribute("header", "Family News Archives");
+        model.addAttribute("sermonsActiveStatus", "active");
+        model.addAttribute("optionalClass", "alt");
+        model.addAttribute("pageBodyText", "family-news-page-body");
+
+        return "page_generic";
+
+    }
+
 }
