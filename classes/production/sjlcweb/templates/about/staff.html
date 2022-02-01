@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head"></head>
+<body>
+
+<div class="container main-body">
+    <nav th:replace="fragments::navbar-main"></nav>
+    <main class="container">
+        <div class="page-row">
+
+            <article class="page-item clearfix">
+                <h3>Pastor</h3>
+                <div class="left width-40">
+                    <img src="" th:src="@{/img/PASTOR_ROGERS.jpg}" />
+                </div>
+                <div th:replace="fragments :: staff-pastor-body"></div>
+            </article>
+            <article class="page-item clearfix">
+                <h3>Assistant Pastor</h3>
+                <div class="left width-40">
+                    <img src="" th:src="@{/img/RevMarkMiller.jpeg}" />
+                </div>
+                <div th:replace="fragments :: staff-asst-pastor-body"></div>
+            </article>
+            <article class="page-item clearfix">
+                <h3>Preschool Teacher</h3>
+                <div class="left width-40">
+                    <img src="" th:src="@{/img/TINA_MCRAE.jpg}" />
+                </div>
+                <div th:replace="fragments :: staff-teacher-body"></div>
+            </article>
+            <article class="page-item clearfix">
+                <h3>Preschool Aide</h3>
+                <div class="left width-40">
+                    <img src="" th:src="@{/img/DEB_TRAUTMAN.jpg}" />
+                </div>
+                <div th:replace="fragments :: staff-aide-body"></div>
+            </article>
+
+        </div>
+    </main>
+    <footer th:replace="fragments::footer"></footer>
+</div>
+
+</body>
+</html>

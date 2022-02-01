@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="container main-body">
+
+    <nav th:replace="fragments::navbar-main"></nav>
+
+    <main class="container main-column">
+
+        <div th:class="${alertClass}" th:text="${alert}"></div>
+
+        <div class="row container">
+            <div sec:authorize="${isAuthenticated()}" class="col col-lg-12 col-md-12 col-sm-12">
+                <a class="btn btn-primary" th:href="@{/news/new-post}">Create a News Item</a>
+            </div>
+        </div>
+
+        <article class="post" th:each="post : ${posts}">
+
+            <a th:href="@{'/news/viewpost/' + ${post.id}}">
+                <h2 th:text="${post.title}"></h2>
+            </a>
+
+            <div class="row">
+
+                <div class="cells">
+                    <div class="col-lg-5 col-md-5 post-cell-left">
+                        <img th:src="${post.imgUrl} ? ${post.imgUrl} : '/img/wittenberg_church.jpg/'" src="" class="img-responsive img-rounded" />
+                    </div>
+
+                    <div class="col-lg-5 col-md-5 text-center post-cell-right">
+                        <h3 th:text="'Posted by ' + ${post.author}"></h3>
+                        <span class="lead" th:text="'at: ' + ${post.timeStamp}"></span>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+
+        <nav aria-label="...">
+            <ul class="pager">
+                <li><a th:href="@{'/news?page=' + ${page - 1}}" th:class="${visibilityPrev}">Previous Page</a></li>
+                <li><a th:href="@{'/news?page=' + ${page + 1}}" th:class="${visibilityNext}">Next Page</a></li>
+            </ul>
+        </nav>
+
+        <footer th:replace="fragments::footer"></footer>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

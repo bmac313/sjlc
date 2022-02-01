@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="container main-body no-top-padding">
+
+    <header th:replace="fragments::header-wrapper"></header>
+
+    <main class="container main-column">
+
+        <div th:class="${alertClass}" th:text="${alert}"></div>
+
+        <section class="row" id="contact-info">
+            <div class="col col-lg-12 col-md-12 col-sm-12">
+                <h3>St. John's Lutheran Church</h3>
+                <p>1225 North Main Street, Chatham, Illinois</p>
+            </div>
+        </section>
+
+        <section th:if="${featuredPost}" class="jumbotron jumbotron-fluid">
+            <p>
+                <span class="h2">Message of the Day:</span>
+                <span class="h4" th:text="${featuredPost.title}"></span>
+            </p>
+            <p class="lead">
+                <a class="btn btn-primary" th:href="@{'/news/viewpost/' + ${featuredPost.id}}">Read More</a>
+            </p>
+        </section>
+
+        <h4 id="mobile-nav-instructions" class="hidden" style="text-align:center;">Tap a box to toggle navigation.</h4>
+
+        <section class="row nav-boxes">
+            <div class="col col-xs-12 col-sm-6 col-md-3">
+                <article id="about-us">
+                    <h3>About Us</h3>
+                    <img alt="Wood engraging of Leonardo Da Vinci's 'The Last Supper'" src="" th:src="@{/img/community_links.png}" />
+                    <ul class="block-list hidden">
+                        <li><a href='/about/beliefs'>What We Believe</a></li>
+                        <li><a href='/about/worship'>About Our Worship</a></li>
+                        <li><a href='/about/staff'>Staff</a></li>
+                        <li><a href='/about/history'>Church History</a></li>
+                    </ul>
+                </article>
+            </div>
+            <div class="col col-xs-12 col-sm-6 col-md-3">
+                <article id="preschool">
+                    <h3>Preschool</h3>
+                    <img alt="Photo of the St. John's Lutheran Preschool playground" src="" th:src="@{/img/preschool.png}" />
+                    <ul class="block-list hidden">
+                        <li><a href='/preschool'>About</a></li>
+                        <li><a href="https://drive.google.com/open?id=1rBdzAIqL65sMS7Fc1QawkxDlIyezixM0" target="_blank">Registration Form</a></li>
+                        <li><a href="https://drive.google.com/open?id=16qaE26I-YWSLeL8izE-tYW8RwxxxR3fw" target="_blank">Child Record Form</a></li>
+                        <li><a href="https://drive.google.com/open?id=1GGTqEkN37_7W0bqT_pDhCzjkurk4Mbaa" target="_blank">Parent Handbook</a></li>
+                    </ul>
+                </article>
+            </div>
+            <div class="col col-xs-12 col-sm-6 col-md-3">
+                <article id="calendar">
+                    <h3>Happenings</h3>
+                    <img alt="Close-up of a blue calendar" src="" th:src="@{/img/calendar.png}" />
+                    <ul class="block-list hidden">
+                        <li><a href="/news">News &amp; Updates</a></li>
+                        <li><a href="/calendar">Calendar</a></li>
+                        <li><a href="/links">Links</a></li>
+                    </ul>
+                </article>
+            </div>
+            <div class="col col-xs-12 col-sm-6 col-md-3">
+                <article id="sermons-newsletter">
+                    <h3>Sermons &amp; Newsletters</h3>
+                    <img alt="Close-up of the glass door to the St. John's Sanctuary" src="" th:src="@{/img/ministries.png}" />
+                    <ul class="block-list hidden">
+                        <li><a href="https://drive.google.com/file/d/1qeOedW0EAprsUdUms6i9dvh0lukiGTkX/view?usp=sharing" target="_blank">Current Sermon</a></li>
+                        <li><a href="https://drive.google.com/file/d/18XnNrlH7VR1wb6sR2NtfGzbcgh4KBnby/view?usp=sharing" target="_blank">Current Newsletter</a></li>
+                        <li><a href="/downloads/sermons">Sermon Archives</a></li>
+                        <li><a href="/downloads/newsletter">Newsletter Archives</a></li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="row info-boxes">
+            <div class="col col-xs-12 col-sm-4 col-md-4">
+                <article id="worship-times">
+                    <h3>Worship Times</h3>
+                    <img alt="Exterior photo of St. John's Lutheran Church" src="" th:src="@{/img/love.jpg}" />
+                    <p>Saturdays @ 6:00 p.m.</p>
+                    <p>Sundays @ 9:00 a.m.</p>
+                    <p>Holy Communion - Weekly</p>
+                </article>
+            </div>
+
+            <div class="col col-xs-12 col-sm-4 col-md-4">
+                <article id="contact-box">
+                    <h3>Contact Us</h3>
+                    <img alt="Closeup photo of our altar emphasizing the communion ware" src="" th:src="@{/img/altar_closeup.png}" />
+                    <p><i class="fas fa-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://goo.gl/maps/ogSNefzEWoy" target="_blank">1225 N Main St. Chatham, IL</a></p>
+                    <p><i class="fas fa-phone"></i>&nbsp;&nbsp;&nbsp;(217) 483-2612</p>
+                    <p><i class="fas fa-envelope-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a id="email-link" href="mailto:stjohnslcms@comcast.net">stjohnslcms@comcast.net</a></p>
+                </article>
+            </div>
+
+            <div class="col col-xs-12 col-sm-4 col-md-4">
+                <article id="facebook-info">
+                    <h3>Find Us On Facebook</h3>
+                    <a id="facebook-icon" target="_blank" href="https://www.facebook.com/StJohnsLutheranChurchAndPreschool/"><i class="fab fa-facebook"></i></a>
+                </article>
+            </div>
+        </section>
+
+        <section th:replace="fragments::footer"></section>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>
