@@ -10,6 +10,8 @@
 
     <main class="container main-column">
 
+        <div th:class="${alertClass}" th:text="${alert}"></div>
+
         <section class="row" id="contact-info">
             <div class="col col-lg-12 col-md-12 col-sm-12">
                 <h3>St. John's Lutheran Church</h3>
@@ -18,8 +20,10 @@
         </section>
 
         <section th:if="${featuredPost}" class="jumbotron jumbotron-fluid">
-            <h2>Message of the Day:</h2>
-            <h4 th:text="${featuredPost.title}"></h4>
+            <p>
+                <span class="h2">Message of the Day:</span>
+                <span class="h4" th:text="${featuredPost.title}"></span>
+            </p>
             <p class="lead">
                 <a class="btn btn-primary" th:href="@{'/news/viewpost/' + ${featuredPost.id}}">Read More</a>
             </p>
@@ -46,11 +50,9 @@
                     <img alt="Photo of the St. John's Lutheran Preschool playground" src="" th:src="@{/img/preschool.png}" />
                     <ul class="block-list hidden">
                         <li><a href='/preschool'>About</a></li>
-                        <li><a href="https://drive.google.com/file/d/1eEbrzkthFVgDC5hjmc6mlnG8Ig6mexNf" target="_blank">Registration Form</a></li>
-						<li><a href="https://drive.google.com/file/d/1A6yZeHKKtcMvxZgmnRtJ33Qxt-lAHWAr" target="_blank">Registration Form (editable PDF)</a></li>
-                        <li><a href="https://drive.google.com/file/d/16_YXHTQkVzJLv9Ljuq_Osx7HGdok16kz" target="_blank">Auto Payment Form</a></li>
-                        <li><a href="https://drive.google.com/file/d/1aRNiXUwX9gp2__m779O-PdKRtTP8qU5E" target="_blank">Child's Record Form</a></li>
-                        <li><a href="https://drive.google.com/file/d/1aHLQOcwkWP-uD7PvJ6mBJ5n2kzEGKA3J" target="_blank">Parent Handbook</a></li>
+                        <li><a href="https://drive.google.com/open?id=1rBdzAIqL65sMS7Fc1QawkxDlIyezixM0" target="_blank">Registration Form</a></li>
+                        <li><a href="https://drive.google.com/open?id=16qaE26I-YWSLeL8izE-tYW8RwxxxR3fw" target="_blank">Child Record Form</a></li>
+                        <li><a href="https://drive.google.com/open?id=1GGTqEkN37_7W0bqT_pDhCzjkurk4Mbaa" target="_blank">Parent Handbook</a></li>
                     </ul>
                 </article>
             </div>
@@ -60,7 +62,6 @@
                     <img alt="Close-up of a blue calendar" src="" th:src="@{/img/calendar.png}" />
                     <ul class="block-list hidden">
                         <li><a href="/news">News &amp; Updates</a></li>
-                        <li><a href="/events">Church Events</a></li>
                         <li><a href="/calendar">Calendar</a></li>
                         <li><a href="/links">Links</a></li>
                     </ul>
@@ -71,12 +72,10 @@
                     <h3>Sermons &amp; Newsletters</h3>
                     <img alt="Close-up of the glass door to the St. John's Sanctuary" src="" th:src="@{/img/ministries.png}" />
                     <ul class="block-list hidden">
-                        <li><a href="https://drive.google.com/file/d/1aA7nLI-4cpA3fYtbMJ6Rtjr-B2N7RtGk/view?usp=sharing" target="_blank">Current Sermon</a></li>
-                        <li><a href="https://drive.google.com/file/d/1Hcyb6gcv1Z7cZqOvASGymrhjB6e2Uqg5/view?usp=sharing" target="_blank">Current Newsletter</a></li>
-                        <li><a href="https://drive.google.com/file/d/1kdrWAJanvcbdrHsLyGlsIHpjGn6Sl_U-/view?usp=sharing" target="_blank">Current Family News</a></li>
+                        <li><a href="https://drive.google.com/file/d/1qeOedW0EAprsUdUms6i9dvh0lukiGTkX/view?usp=sharing" target="_blank">Current Sermon</a></li>
+                        <li><a href="https://drive.google.com/file/d/18XnNrlH7VR1wb6sR2NtfGzbcgh4KBnby/view?usp=sharing" target="_blank">Current Newsletter</a></li>
                         <li><a href="/downloads/sermons">Sermon Archives</a></li>
                         <li><a href="/downloads/newsletter">Newsletter Archives</a></li>
-                        <li><a href="/downloads/familynews">Family News Archives</a></li>
                     </ul>
                 </article>
             </div>
@@ -99,27 +98,14 @@
                     <img alt="Closeup photo of our altar emphasizing the communion ware" src="" th:src="@{/img/altar_closeup.png}" />
                     <p><i class="fas fa-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://goo.gl/maps/ogSNefzEWoy" target="_blank">1225 N Main St. Chatham, IL</a></p>
                     <p><i class="fas fa-phone"></i>&nbsp;&nbsp;&nbsp;(217) 483-2612</p>
-                    <p><i class="fas fa-envelope-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a id="email-link" href="mailto:stjohnsoffice@comcast.net">stjohnsoffice@comcast.net</a></p>
+                    <p><i class="fas fa-envelope-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a id="email-link" href="mailto:stjohnslcms@comcast.net">stjohnslcms@comcast.net</a></p>
                 </article>
             </div>
 
             <div class="col col-xs-12 col-sm-4 col-md-4">
-                <article id="social-info">
-                    <h3>Find Us On Social Media</h3>
-                    <ul class="block-list">
-                        <li>
-                            <a target="_blank" href="https://www.facebook.com/StJohnsLutheranChurchAndPreschool/">
-                                <i class="fab fa-facebook social-icon inline"></i>
-                                <p class="inline lead">Facebook</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://www.youtube.com/channel/UC-rhLL6J8wZF7Cm3XSzZjcA">
-                                <i class="fab fa-youtube social-icon inline"></i>
-                                <p class="inline lead">YouTube</p>
-                            </a>
-                        </li>
-                    </ul>
+                <article id="facebook-info">
+                    <h3>Find Us On Facebook</h3>
+                    <a id="facebook-icon" target="_blank" href="https://www.facebook.com/StJohnsLutheranChurchAndPreschool/"><i class="fab fa-facebook"></i></a>
                 </article>
             </div>
         </section>

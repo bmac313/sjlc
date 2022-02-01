@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>502 Bad Gateway</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/events.js}"></script>
+</head>
+<body>
+
+<nav th:replace="fragments::navbar-main"></nav>
+<main class="container main-body">
+    <section class="error-page">
+        <i class="fas fa-times error-icon"></i>
+        <p>
+            There was a problem resolving the hostname. Please retry the URL. If this does not solve the problem, please contact the developer at
+            <a href="mailto:brendan.t.mcrae@gmail.com">brendan.t.mcrae@gmail.com</a>
+        </p>
+    </section>
+    <h1>502 Bad Gateway</h1>
+
+    <footer th:replace="fragments::footer"></footer>
+</main>
+
+
+</body>
+</html>

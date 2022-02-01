@@ -5,21 +5,20 @@
     <title th:text="${title}"></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" th:href="@{/css/style.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/389e0843ba.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" th:src="@{/js/events.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/events.js}"></script>
 </head>
 
 <body>
 
 <header th:fragment="header-wrapper" class="header-wrapper">
-    <div th:class="${alertClass}" th:text="${alert}"></div>
     <div id="header-upper-row" class="row">
         <div class="col col-lg-8 col-md-8 col-sm-8 col-xs-8 text-left">
             <img class="width-20" alt="LCMS Logo" src="" th:src="@{/img/Maroon_LCMS_Logo_transparent.png}" />
@@ -40,8 +39,7 @@
             <article class="login-msg">
                 <div sec:authorize="${isAuthenticated()}">
                     <p>Welcome, <span sec:authentication="name"></span></p>
-                    <a href="/logout" class="btn btn-primary">Log Out</a><br />
-                    <a href="/changepass" class="btn btn-dark">Change Password</a>
+                    <a href="/logout" class="btn btn-primary">Log Out</a>
                 </div>
             </article>
         </div>
@@ -80,11 +78,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="/preschool">About</a>
-                        <a class="dropdown-item" target="_blank" href="https://drive.google.com/file/d/1eEbrzkthFVgDC5hjmc6mlnG8Ig6mexNf">Registration Form</a>
-						<a class="dropdown-item" target="_blank" href="https://drive.google.com/file/d/1A6yZeHKKtcMvxZgmnRtJ33Qxt-lAHWAr">Registration Form (editable PDF)</a>
-                        <a class="dropdown-item" target="_blank" href="https://drive.google.com/file/d/16_YXHTQkVzJLv9Ljuq_Osx7HGdok16kz">Auto Payment Form</a>
-                        <a class="dropdown-item" target="_blank" href="https://drive.google.com/file/d/1aRNiXUwX9gp2__m779O-PdKRtTP8qU5E">Child's Record Form</a>
-                        <a class="dropdown-item" target="_blank" href="https://drive.google.com/file/d/1aHLQOcwkWP-uD7PvJ6mBJ5n2kzEGKA3J">Parent Handbook</a>
+                        <a class="dropdown-item" target="_blank" href="https://drive.google.com/open?id=1rBdzAIqL65sMS7Fc1QawkxDlIyezixM0">Registration Form</a>
+                        <a class="dropdown-item" target="_blank" href="https://drive.google.com/open?id=16qaE26I-YWSLeL8izE-tYW8RwxxxR3fw">Child Record Form</a>
+                        <a class="dropdown-item" target="_blank" href="https://drive.google.com/open?id=1GGTqEkN37_7W0bqT_pDhCzjkurk4Mbaa">Parent Handbook</a>
                     </div>
                 </li>
                 <li th:class="${newsActiveStatus}">
@@ -93,7 +89,6 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="/news">News &amp; Updates</a>
-                        <a class="dropdown-item" href="/events">Church Events</a>
                         <a class="dropdown-item" href="/calendar">Calendar</a>
                         <a class="dropdown-item" href="/links">Links</a>
                     </div>
@@ -103,12 +98,10 @@
                         Sermons &amp; Newsletter
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="https://drive.google.com/file/d/1aA7nLI-4cpA3fYtbMJ6Rtjr-B2N7RtGk/view?usp=sharing" target="_blank">Current Sermon</a>
-                        <a class="dropdown-item" href="https://drive.google.com/file/d/1Hcyb6gcv1Z7cZqOvASGymrhjB6e2Uqg5/view?usp=sharing" target="_blank">Current Newsletter</a>
-                        <a class="dropdown-item" href="https://drive.google.com/file/d/1kdrWAJanvcbdrHsLyGlsIHpjGn6Sl_U-/view?usp=sharing" target="_blank">Current Family News</a>
+                        <a class="dropdown-item" href="https://drive.google.com/file/d/1qeOedW0EAprsUdUms6i9dvh0lukiGTkX/view?usp=sharing" target="_blank">Current Sermon</a>
+                        <a class="dropdown-item" href="https://drive.google.com/file/d/18XnNrlH7VR1wb6sR2NtfGzbcgh4KBnby/view?usp=sharing" target="_blank">Current Newsletter</a>
                         <a class="dropdown-item" href="/downloads/sermons">Sermon Archives</a>
                         <a class="dropdown-item" href="/downloads/newsletter">Newsletter Archives</a>
-                        <a class="dropdown-item" href="/downloads/familynews">Family News Archives</a>
                     </div>
                 </li>
             </ul>
@@ -123,8 +116,11 @@
 </nav>
 
 <div th:fragment="staff-pastor-body">
-    <p><strong>Rev. Kevin Wendorf</strong> Rev. Kevin Wendorf was born December 10, 1971 to Roger and Erna Wendorf.  He was raised with his two brothers in Cottage Grove, Minnesota.  He received his B.A degree at the University of Minnesota-Duluth in 1994.  After college, Pastor Wendorf worked at the Minnesota Department of Corrections as a counselor, working with delinquent youth in Red Wing, Minnesota from 1994 to 2000.  He was accepted to the Seminary in Fort Wayne, Indiana in 2001.  After completing his Master of Divinity in the spring of 2005, Pastor Wendorf’s first call was to St. John’s Lutheran Church – Ash Grove in Onarga, Illinois where he served from 2005 to 2014.  His second call was to St. Paul’s Lutheran Church in Havana where he served from 2014 to 2019.  He has been called to St. John’s Lutheran Church in Chatham, Illinois where he will be installed on January 12, 2020.</p>
-    <p>He is married to Barbara (Torbeck) Wendorf.  Pastor and Barbara have been blessed with three children, Matthew, Michael, and Elizabeth.  Pastor and Barbara enjoy walking, riding bikes, reading, and watching classic films.</p>
+    <p><strong>Pastor Rogers</strong> has been serving as pastor at St. Johns since June 19, 2005. He is a graduate of Concordia Theological seminary, Fort Wayne, IN.</p>
+    <p>His favorite Bible verse is Romans 1:16. "For I am not ashamed of the Gospel, for it is the power of salvation unto all who believe."</p>
+    <p>Pastor Rogers faithfully proclaims the Word of God, both Law and Gospel, among the members of St. Johns and throughout the community, while sharing the love of Christ in Word and caring service to the neighbor.</p>
+    <p>He married his wife, Jeri, on May 17, 1975. Together they have two grown sons, Erik and Christopher, who have blessed them with three wonderful grandchildren.</p>
+    <p>Pastor Rogers holds an associates degree in technology, a Bachelors Degree in Electrical Engineering, and a Masters Degree of Divinty. He worked for 30 years in various engineering positions before answering God's call to serve as a pastor. His greatest joy is seeing his flock grow in their faith and trust in the Lord and coming to realize the truth that we are saved by grace alone, through faith alone in Christ Jesus and His saving work on the cross for sinners.</p>
 </div>
 <div th:fragment="staff-asst-pastor-body">
     <p><strong>The Reverend Mark Allan Miller</strong> was born on November 2, 1955, in Oak Park, Illinois, to Robert and Harriet (nee Hyman) Miller [both are now deceased].  He is the oldest of three children, having a brother David, and sister, Joy.  He was baptized (Dec. 11, 1955) and confirmed (May 18, 1969) at Faith Ev. Lutheran Church of Cicero, Illinois.</p>
@@ -134,14 +130,13 @@
     <p>The Millers reside at 2608 Haverford Road, Springfield, IL 62704-4264.</p>
 </div>
 <div th:fragment="staff-teacher-body">
-    <p><strong>Stephanie Hill</strong> is a mother of three and married to her husband, Tom. In her own words: "I have been working with children since I was fifteen! I enjoy being outdoors, taking walks, playing board games and spending eventTime with my family! I am looking forward to teaching and getting to know all your little ones!"</p>
+    <p><strong>Tina McRae,</strong> Tina McRae has been teaching at St. John's since 2008. She attended Lewis and Clark Community College in Godfey, IL. She and her husband Jeff have two children. She was a stay-at-home for 14 years and enjoyed raising her sons. She spends her time helping out at church, staying active, and teaching young children.</p>
 </div>
 <div th:fragment="staff-aide-body">
-    <p><strong>Deborah "Debbie" Trautmann</strong> moved to the area in 2008 with her husband Mark and four children: Brandon, Cortney, Caitlin, and Arial. They also have a dog, Grace, and a cat, Jonas. Debbie attended Robert Morris College and Carl Sandburg College. She has been a preschool teacher since 2003 and has been at St Johns as a preschool teacher aide since 2008. Debbie recently remarked, "I have the best job in the world. I am very active in my church, love spending eventTime with my family, going on walks, and am very blessed by what God has done in my life."</p>
+    <p><strong>Deborah "Debbie" Trautmann</strong> moved to the area in 2008 with her husband Mark and four children: Brandon, Cortney, Caitlin, and Arial. They also have a dog, Grace, and a cat, Jonas. Debbie attended Robert Morris College and Carl Sandburg College. She has been a preschool teacher since 2003 and has been at St Johns as a preschool teacher aide since 2008. Debbie recently remarked, "I have the best job in the world. I am very active in my church, love spending time with my family, going on walks, and am very blessed by what God has done in my life."</p>
 </div>
 <div th:fragment="staff-secretary-body">
-    <p><strong>Catherine Davis</strong> is married to Brent and they have 3 children together- Logan, Ethan, and Aurora. All three of her kids attended Preschool here at St. John’s Lutheran Church and from there she became the secretary here at St. John’s. Catherine is active in Scouting with her boys and spends a lot of eventTime on the football fields with the boys and at the gym watching Aurora do gymnastics. When she isn’t busy being a mom she loves relaxing at home, watching movies, and playing all sorts of games.</p>
-    <p>Catherine’s favorite Bible verse is Philippians 2:8 “Being found in appearance as a man, He humbled Himself by becoming obedient to the point of death, even death on a cross.”  She believes that this verse shows the perfect example of Jesus’ obedience and inspires her to live likewise.</p>
+    <p><strong>Jeri Rogers</strong> [Bio in progress]</p>
 </div>
 
 
@@ -162,7 +157,7 @@
         <div class="inline-box width-30">
             <h4>Faith Alone</h4>
             <i class="fas fa-fire"></i>
-            <p>By His suffering and death as the substitute for all people of all eventTime, Jesus purchased and won forgiveness of sins and eternal life in heaven for all who believe in Him. God creates faith in Christ and gives people forgiveness through Him.</p>
+            <p>By His suffering and death as the substitute for all people of all time, Jesus purchased and won forgiveness of sins and eternal life in heaven for all who believe in Him. God creates faith in Christ and gives people forgiveness through Him.</p>
         </div>
 
         <div class="inline-box width-30">
@@ -192,7 +187,7 @@
 
 <div th:fragment="history-page-body">
     <h2 th:text="${header}"></h2>
-    <p><strong>FIRST STEPS:</strong> The earliest beginings of St. John's Lutheran Congregation eventDate back to the early 1860's when Gottlob Schmidt, a member of Trinity Lutheran Church in Springfield, arranged to have services held in his home. Pastor Bartling, of Trinity Church, came occassionally to conduct services and to administer the Sacaments of Baptism and Holy Communion. Some years later August Bliefnick joined Schmidt and they arranged with Pastor Burkhardt to hold services every two weeks in the Dave Harmon school house 1 and 1/4 miles east of Chatham. Here church-school was also heled during the summer months for children. Later this small unorganized group was served by Pastors Benson and Lochner of Springfield and by students of Concordia Seminary.</p>
+    <p><strong>FIRST STEPS:</strong> The earliest beginings of St. John's Lutheran Congregation date back to the early 1860's when Gottlob Schmidt, a member of Trinity Lutheran Church in Springfield, arranged to have services held in his home. Pastor Bartling, of Trinity Church, came occassionally to conduct services and to administer the Sacaments of Baptism and Holy Communion. Some years later August Bliefnick joined Schmidt and they arranged with Pastor Burkhardt to hold services every two weeks in the Dave Harmon school house 1 and 1/4 miles east of Chatham. Here church-school was also heled during the summer months for children. Later this small unorganized group was served by Pastors Benson and Lochner of Springfield and by students of Concordia Seminary.</p>
     <p><strong>CONGREGATION ORGANIZED:</strong> Under the leadership of Rev. Lochner, pastor of Trinty Lutheran Church, Springfield, St. John's Congregation was organized in October 1877, and pledged itself to the Lutheran faith and practice. Seeing the need for a place for worship, the congregation erected a frame church building on what would later be known as the Carl Wykoks farm, one mile east of Chatham.</p>
     <p>After a decade of faithful service from Pastor Lochner, the congregation come under the care of Prof. A. Craemer, President of Concordia Seminary in Springfield.  he served the congregation from 1887 to 1891 with the assistance of students from the Seminary. Students who were assigned were Messrs. Wenzel, Hueschen, Heinke, Jank, Beil, Wendt, and Wagner.</p>
 </div>
@@ -201,7 +196,7 @@
     <h2 th:text="${header}"></h2>
     <p>It is the goal of St. John's Lutheran Church to provide a Christ-centered educational program in which young children of this community will grow spiritually, physically, intellectually, morally, and emotionally.</p>
     <p>Please call the Church Office at (217) 483-2612 for registration forms and an informational packet. All students are welcome. St. John's Lutheran Preschool admits students of any race, color, and national or ethnic origin.</p>
-    <p><strong><em>Morning and Afternoon Classes are limited to 10 students per class.</em></strong></p>
+    <p><strong><em>Class sizes are limited to 15 students for 3-year-olds and 20 students for 4-yr-olds</em></strong></p>
 
     <h3>Objectives</h3>
     <p>Our objectives are to teach each child that Jesus Christ is the Son of God who gave His life to save sinners; to develop the God-given abilities of each child; to encourage the child to grow spiritually, physically, intellectually, morally, and emotionally; and to prepare each child for kindergarten through participation in a developmental program consisting of the following areas:</p>
@@ -217,15 +212,13 @@
     </ul>
 
     <h3>Class Schedule</h3>
-    <p><strong>3-year-old program</strong> will meet on Tuesday and Thursday mornings.</p>
-	<p><strong>4-year-old program</strong> will meet on Monday and Wednesday, and Thursday mornings.</p>
-    <p><strong>Morning Classes</strong> meet from 8:30 - 11:00 a.m.</p>
-    <p><strong>Afternoon Classes</strong> meet from 12:00 - 2:30 p.m.</p>
+    <p><strong>3-year-old classes</strong> meet Tuesday and Thursday 8:30 a.m. - 11:00 a.m.</p>
+    <p><strong>4-year-old classes</strong> meet Monday, Wednesday, and Friday 8:30 a.m - 11:00 a.m</p>
 
     <h3>Tuition and Fees</h3>
     <p><strong>Registration Fee:</strong> $50 (non-refundable)</p>
-    <p><strong>Tuition for 3-year-old program:</strong> $115/month</p>
-	<p><strong>Tuition for 4-year-old program:</strong> $135/month</p>
+    <p><strong>Tuition (3-year-olds):</strong> $100/month</p>
+    <p><strong>Tuition (4-year-olds):</strong> $120/month</p>
 
 </div>
 
@@ -279,19 +272,6 @@
 
 <div th:fragment="sermons-page-body">
     <h2 th:text="${header}"></h2> <!-- header == "Sermon Archives"; to change, set value in PagesController -->
-
-    <h3>2022</h3>
-    <iframe src="https://drive.google.com/embeddedfolderview?id=1-0k6soOvfa7-OrSsPW-kbY-jnq5W3GkV#list" style="width:100%; border:0;"></iframe>
-	
-	<h3>2021</h3>
-    <iframe src="https://drive.google.com/embeddedfolderview?id=1PE6SPnJrcI8JdAicfPPMV5dcKRsWqBaL#list" style="width:100%; border:0;"></iframe>
-
-    <h3>2020</h3>
-    <iframe src="https://drive.google.com/embeddedfolderview?id=1MKFa07xqY1GfqUzzuAnEoNXtD_-NLRqQ#list" style="width:100%; border:0;"></iframe>
-
-    <h3>2019</h3>
-    <iframe src="https://drive.google.com/embeddedfolderview?id=1-OQVc340Hep3UB99xE3PQlshezmzqTZD#list" style="width:100%; border:0;"></iframe>
-
     <h3>2018</h3>
     <iframe src="https://drive.google.com/embeddedfolderview?id=10jw6FN-8SLkoDk2FnHcia0NgPJ0g6AMh#list" style="width:100%; border:0;"></iframe>
 
@@ -304,19 +284,6 @@
 
 <div th:fragment="newsletter-page-body">
     <h2 th:text="${header}"></h2> <!-- header == "Newsletter Archives; to change, set value in PagesController" -->
-
-    <h3>2022</h3>
-    <iframe src="https://drive.google.com/embeddedfolderview?id=1-0k6soOvfa7-OrSsPW-kbY-jnq5W3GkV#list" style="width:100%; border:0;"></iframe>
-	
-	<h3>2021</h3>
-    <iframe src="https://drive.google.com/embeddedfolderview?id=1_dM1eyMSk4oRi9ImwTbH10jYuOfVbQGu#list" style="width:100%; border:0;"></iframe>
-
-    <h3>2020</h3>
-    <iframe src="https://drive.google.com/embeddedfolderview?id=1QioZh-bGfn3V0bDPpg_peospzy2H9ZY_#list" style="width:100%; border:0;"></iframe>
-
-    <h3>2019</h3>
-    <iframe src="https://drive.google.com/embeddedfolderview?id=1LkU9VZFDhtFxEOJHgZTlSP-f-qGYhJxU#list" style="width:100%; border:0;"></iframe>
-
     <h3>2018</h3>
     <iframe src="https://drive.google.com/embeddedfolderview?id=1ixguiQ4F_RGnkKSRLM--NptsLjlcPFlf#list" style="width:100%; border:0;"></iframe>
 
@@ -331,111 +298,6 @@
 
     <h3>2014</h3>
     <iframe src="https://drive.google.com/embeddedfolderview?id=1yqB6Mjipy3h8FNENFNYRPK5ATsJkgjVA#list" style="width:100%; border:0;"></iframe>
-</div>
-
-<div th:fragment="family-news-page-body">
-    <h2 th:text="${header}"></h2> <!-- header == "Family News Archive; to change, set value in PagesController" -->
-
-    <h3>2021</h3>
-    <iframe src="https://drive.google.com/embeddedfolderview?id=1QOVYVAdhJ0tYMsnB1CrvhGQVxXTvqr7L#list" style="width:100%; border:0;"></iframe>
-
-    <h3>2020</h3>
-    <iframe src="https://drive.google.com/embeddedfolderview?id=1LXIt4hsJ_zuJ0j70FR_YfCulVltvpe8K#list"
-            style="width:100%; height:20em; border:0;"></iframe>
-            <!--IMPORTANT NOTE: remove the height property if any other years are being used. -->
-
-    <!-- Use the below folders if news older than 2020 are uploaded.
-    <h3>2019</h3>
-    <iframe src="" style="width:100%; border:0;"></iframe>
-
-    <h3>2018</h3>
-    <iframe src="" style="width:100%; border:0;"></iframe>
-
-    <h3>2017</h3>
-    <iframe src="" style="width:100%; border:0;"></iframe>
-
-    <h3>2016</h3>
-    <iframe src="" style="width:100%; border:0;"></iframe>
-
-    <h3>2015</h3>
-    <iframe src="" style="width:100%; border:0;"></iframe>
-
-    <h3>2014</h3>
-    <iframe src="" style="width:100%; border:0;"></iframe> -->
-</div>
-
-<div th:fragment="event-register-page-body">
-
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
-
-    <h2 th:text="${header}"></h2> <!-- header == "Event Signup"; to change, set value in PagesController" -->
-    <h3 th:text="${'Registering for: ' + churchEvent.name}" class="text-primary"></h3>
-    <section class="alert alert-info">
-        <div class="row container-fluid">
-            <div class="col col-lg-2 col-md-2 col-sm-2">
-                <i class="fas fa-info-circle alert-icon"></i>
-            </div>
-            <div class="col col-lg-10 col-md-10 col-sm-10">
-                <p class="text-info">Fields marked with an <strong>asterisk (*)</strong> are required.</p>
-            </div>
-        </div>
-    </section>
-    <form th:object="${attendee}" method="post">
-
-        <div class="form-group row">
-            <label th:for="firstName" class="col-sm-2 col-form-label">First Name*</label>
-            <div class="col-sm-7">
-                <input th:field="*{firstName}" class="form-control input-lg" />
-            </div>
-            <span th:errors="*{firstName}" class="text-danger"></span>
-        </div>
-
-        <div class="form-group row">
-            <label th:for="mi" class="col-sm-2 col-form-label">MI</label>
-            <div class="col-lg-2 col-md-2 col-sm-7">
-                <input th:field="*{mi}" class="form-control input-lg" />
-            </div>
-            <span th:errors="*{mi}" class="text-danger"></span>
-        </div>
-
-        <div class="form-group row">
-            <label th:for="lastName" class="col-sm-2 col-form-label">Last Name*</label>
-            <div class="col-sm-7">
-                <input th:field="*{lastName}" class="form-control input-lg" />
-            </div>
-            <span th:errors="*{lastName}" class="text-danger"></span>
-        </div>
-
-        <div class="form-group row">
-            <label th:for="suffix"  class="col-sm-2 col-form-label">Suffix
-                <a href="#" data-toggle="tooltip" title="e.g. Jr, Sr, III, etc.">
-                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-                </a>
-            </label>
-            <div class="col-lg-2 col-md-2 col-sm-7">
-                <input th:field="*{suffix}" class="form-control input-lg" />
-            </div>
-            <span th:errors="*{suffix}" class="text-danger col-sm-3"></span>
-        </div>
-
-        <div class="form-group row">
-            <label th:for="email" class="col-sm-2 col-form-label">Email*</label>
-            <div class="col-sm-7">
-                <input type="email" th:field="*{email}" class="form-control input-lg" />
-            </div>
-            <span th:errors="*{email}" class="text-danger"></span>
-        </div>
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-
-        <input type="submit" value="Register" class="btn btn-primary" />
-        <a th:href="@{'/events/viewevent/' + ${id}}" class="btn btn-danger">Cancel</a>
-
-    </form>
-
 </div>
 
 <div th:fragment="footer" class="footer">

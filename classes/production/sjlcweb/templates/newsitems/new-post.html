@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<div class="container main-body">
+
+    <nav th:replace="fragments::navbar-main"></nav>
+
+    <main class="container">
+        <h1 th:text="${header}"></h1>
+        <p>Fields marked with an asterisk (*) are required.</p>
+        <form th:object="${post}" method="post">
+
+            <div class="form-group row">
+                <label th:for="title" class="col-sm-2 col-form-label">Post Title*</label>
+                <div class="col-sm-7">
+                    <input th:field="*{title}" class="form-control input-lg" />
+                </div>
+                <span th:errors="*{title}" class="text-danger col-sm-3"></span>
+            </div>
+
+            <div class="form-group row">
+                <label th:for="docId" class="col-sm-2 col-form-label">Document ID*
+                    <a href="#" data-toggle="tooltip" title="Enter the ID of a public Google Document.">
+                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                    </a>
+                </label>
+                <div class="col-sm-7">
+                    <input th:field="*{docId}" class="form-control input-lg" />
+                </div>
+                <span th:errors="*{docId}" class="text-danger col-sm-3"></span>
+            </div>
+
+            <div class="form-group row">
+                <label th:for="author" class="col-sm-2 col-form-label">Author*
+                    <a href="#" data-toggle="tooltip" title="Who's making this post?">
+                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                    </a>
+                </label>
+                <div class="col-sm-7">
+                    <input th:field="*{author}" class="form-control input-lg" />
+                </div>
+                <span th:errors="*{author}" class="text-danger col-sm-3"></span>
+            </div>
+
+            <div class="form-group row">
+                <label th:for="imgUrl"  class="col-sm-2 col-form-label">Photo URL*
+                    <a href="#" data-toggle="tooltip" title="Upload your image to an image host (such as imgur) then paste the direct link to it here.">
+                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                    </a>
+                </label>
+                <div class="col-sm-7">
+                    <input th:field="*{imgUrl}" class="form-control input-lg" />
+                </div>
+                <span th:errors="*{imgUrl}" class="text-danger col-sm-3"></span>
+            </div>
+
+            <div class="form-group row">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <div class="col-sm-2">
+                    <input type="submit" value="Post" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </form>
+    </main>
+
+    <footer th:replace="fragments::footer"></footer>
+
+</div>
+
+</body>
+</html>
