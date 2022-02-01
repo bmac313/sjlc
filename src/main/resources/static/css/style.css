@@ -364,6 +364,10 @@ li.active a{
     font-size: 0.8em;
 }
 
+#preschool li a{
+    font-size: 0.8em;
+}
+
 .block-list{
     list-style-type: none;
     padding-left: 0;
@@ -669,6 +673,9 @@ li.active a{
         margin-bottom: 1.5em;
     }
     #sermons-newsletter li a{
+        font-size: 0.9em;
+    }
+	#preschool li a{
         font-size: 0.9em;
     }
     .page-sidebar img, .page-sidebar img.alt{
